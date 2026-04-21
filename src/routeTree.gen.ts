@@ -9,11 +9,37 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ViewAdsRouteImport } from './routes/view-ads'
+import { Route as VideoRouteImport } from './routes/video'
+import { Route as TemplatesRouteImport } from './routes/templates'
+import { Route as SocialRouteImport } from './routes/social'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as FeaturesRouteImport } from './routes/features'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CreateAdRouteImport } from './routes/create-ad'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ViewAdsRoute = ViewAdsRouteImport.update({
+  id: '/view-ads',
+  path: '/view-ads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VideoRoute = VideoRouteImport.update({
+  id: '/video',
+  path: '/video',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TemplatesRoute = TemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialRoute = SocialRouteImport.update({
+  id: '/social',
+  path: '/social',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
@@ -22,6 +48,16 @@ const PricingRoute = PricingRouteImport.update({
 const FeaturesRoute = FeaturesRouteImport.update({
   id: '/features',
   path: '/features',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateAdRoute = CreateAdRouteImport.update({
+  id: '/create-ad',
+  path: '/create-ad',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -38,39 +74,122 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/create-ad': typeof CreateAdRoute
+  '/dashboard': typeof DashboardRoute
   '/features': typeof FeaturesRoute
   '/pricing': typeof PricingRoute
+  '/social': typeof SocialRoute
+  '/templates': typeof TemplatesRoute
+  '/video': typeof VideoRoute
+  '/view-ads': typeof ViewAdsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/create-ad': typeof CreateAdRoute
+  '/dashboard': typeof DashboardRoute
   '/features': typeof FeaturesRoute
   '/pricing': typeof PricingRoute
+  '/social': typeof SocialRoute
+  '/templates': typeof TemplatesRoute
+  '/video': typeof VideoRoute
+  '/view-ads': typeof ViewAdsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/create-ad': typeof CreateAdRoute
+  '/dashboard': typeof DashboardRoute
   '/features': typeof FeaturesRoute
   '/pricing': typeof PricingRoute
+  '/social': typeof SocialRoute
+  '/templates': typeof TemplatesRoute
+  '/video': typeof VideoRoute
+  '/view-ads': typeof ViewAdsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/features' | '/pricing'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/create-ad'
+    | '/dashboard'
+    | '/features'
+    | '/pricing'
+    | '/social'
+    | '/templates'
+    | '/video'
+    | '/view-ads'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/features' | '/pricing'
-  id: '__root__' | '/' | '/about' | '/features' | '/pricing'
+  to:
+    | '/'
+    | '/about'
+    | '/create-ad'
+    | '/dashboard'
+    | '/features'
+    | '/pricing'
+    | '/social'
+    | '/templates'
+    | '/video'
+    | '/view-ads'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/create-ad'
+    | '/dashboard'
+    | '/features'
+    | '/pricing'
+    | '/social'
+    | '/templates'
+    | '/video'
+    | '/view-ads'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CreateAdRoute: typeof CreateAdRoute
+  DashboardRoute: typeof DashboardRoute
   FeaturesRoute: typeof FeaturesRoute
   PricingRoute: typeof PricingRoute
+  SocialRoute: typeof SocialRoute
+  TemplatesRoute: typeof TemplatesRoute
+  VideoRoute: typeof VideoRoute
+  ViewAdsRoute: typeof ViewAdsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/view-ads': {
+      id: '/view-ads'
+      path: '/view-ads'
+      fullPath: '/view-ads'
+      preLoaderRoute: typeof ViewAdsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/video': {
+      id: '/video'
+      path: '/video'
+      fullPath: '/video'
+      preLoaderRoute: typeof VideoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/templates': {
+      id: '/templates'
+      path: '/templates'
+      fullPath: '/templates'
+      preLoaderRoute: typeof TemplatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social': {
+      id: '/social'
+      path: '/social'
+      fullPath: '/social'
+      preLoaderRoute: typeof SocialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -83,6 +202,20 @@ declare module '@tanstack/react-router' {
       path: '/features'
       fullPath: '/features'
       preLoaderRoute: typeof FeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create-ad': {
+      id: '/create-ad'
+      path: '/create-ad'
+      fullPath: '/create-ad'
+      preLoaderRoute: typeof CreateAdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -105,9 +238,24 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CreateAdRoute: CreateAdRoute,
+  DashboardRoute: DashboardRoute,
   FeaturesRoute: FeaturesRoute,
   PricingRoute: PricingRoute,
+  SocialRoute: SocialRoute,
+  TemplatesRoute: TemplatesRoute,
+  VideoRoute: VideoRoute,
+  ViewAdsRoute: ViewAdsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
