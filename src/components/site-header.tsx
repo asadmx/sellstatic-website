@@ -16,7 +16,7 @@ import logo from "@/assets/sellstatic-logo.png";
 
 type MenuItem = {
   title: string;
-  to: "/" | "/features" | "/pricing" | "/about";
+  to: "/" | "/create-ad" | "/video" | "/view-ads" | "/templates" | "/social" | "/pricing";
   icon: React.ReactNode;
   gradientFrom: string;
   gradientTo: string;
@@ -24,11 +24,11 @@ type MenuItem = {
 
 const menuItems: MenuItem[] = [
   { title: "Home", to: "/", icon: <IoHomeOutline />, gradientFrom: "#a955ff", gradientTo: "#ea51ff" },
-  { title: "Create Ad", to: "/features", icon: <IoAddCircleOutline />, gradientFrom: "#56CCF2", gradientTo: "#2F80ED" },
-  { title: "Video", to: "/features", icon: <IoVideocamOutline />, gradientFrom: "#FF9966", gradientTo: "#FF5E62" },
-  { title: "View Ads", to: "/features", icon: <IoGridOutline />, gradientFrom: "#80FF72", gradientTo: "#7EE8FA" },
-  { title: "Templates", to: "/features", icon: <IoCopyOutline />, gradientFrom: "#ffa9c6", gradientTo: "#f434e2" },
-  { title: "Social", to: "/features", icon: <IoShareSocialOutline />, gradientFrom: "#fceabb", gradientTo: "#f8b500" },
+  { title: "Create Ad", to: "/create-ad", icon: <IoAddCircleOutline />, gradientFrom: "#56CCF2", gradientTo: "#2F80ED" },
+  { title: "Video", to: "/video", icon: <IoVideocamOutline />, gradientFrom: "#FF9966", gradientTo: "#FF5E62" },
+  { title: "View Ads", to: "/view-ads", icon: <IoGridOutline />, gradientFrom: "#80FF72", gradientTo: "#7EE8FA" },
+  { title: "Templates", to: "/templates", icon: <IoCopyOutline />, gradientFrom: "#ffa9c6", gradientTo: "#f434e2" },
+  { title: "Social", to: "/social", icon: <IoShareSocialOutline />, gradientFrom: "#fceabb", gradientTo: "#f8b500" },
   { title: "Pricing", to: "/pricing", icon: <IoStatsChartOutline />, gradientFrom: "#a955ff", gradientTo: "#7e5bef" },
 ];
 
@@ -96,7 +96,7 @@ export function SiteHeader() {
               <a href="#">Log in</a>
             </Button>
             <Button asChild size="sm" className="shadow-md shadow-primary/20">
-              <a href="#">Dashboard</a>
+              <Link to="/dashboard">Dashboard</Link>
             </Button>
             <button
               onClick={() => setOpen(!open)}
