@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, BarChart3, Menu, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const menuItems = [
-  { name: "Features", href: "#" },
-  { name: "Solution", href: "#" },
+  { name: "Analytics", href: "#" },
+  { name: "Planning", href: "#" },
+  { name: "SmartLinks", href: "#" },
   { name: "Pricing", href: "#" },
-  { name: "About", href: "#" },
 ];
 
 export function HeroSection() {
@@ -74,7 +74,7 @@ export function HeroSection() {
                   </Button>
                   <Button asChild size="sm">
                     <a href="#">
-                      <span>Sign Up</span>
+                      <span>Start Free Trial</span>
                     </a>
                   </Button>
                 </div>
@@ -95,44 +95,50 @@ export function HeroSection() {
                 <span className="rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-primary-foreground">
                   New
                 </span>
-                <span className="text-muted-foreground">Introducing Tailark HTML</span>
+                <span className="text-muted-foreground">Introducing AI-powered SmartLinks</span>
                 <ArrowRight className="size-3.5" />
               </a>
 
               <h1 className="mt-8 text-balance text-4xl font-semibold md:text-5xl lg:text-6xl">
-                Production Ready Digital Marketing Blocks
+                All-in-one Social Media Analytics & Planning
               </h1>
               <p className="mx-auto mt-6 max-w-xl text-balance text-muted-foreground">
-                Beautifully crafted, fully responsive, and endlessly customizable blocks to ship
-                your next marketing site faster than ever.
+                Manage Instagram, LinkedIn, TikTok, Facebook and YouTube from one dashboard.
+                Track growth, plan content, and grow your brand with SellStatic.
               </p>
 
               <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Button asChild size="lg">
                   <a href="#">
-                    <span>Get Started</span>
+                    <span>Start Free Trial</span>
                     <ArrowRight className="ml-2 size-4" />
                   </a>
                 </Button>
                 <Button asChild size="lg" variant="outline">
                   <a href="#">
-                    <span>Learn More</span>
+                    <span>View Demo</span>
                   </a>
                 </Button>
               </div>
 
               <div className="mt-12 grid grid-cols-3 gap-6 border-t pt-8 text-sm">
                 <div>
-                  <p className="font-semibold">Faster</p>
-                  <p className="mt-1 text-xs text-muted-foreground">Lightning quick performance</p>
+                  <p className="font-semibold">5 Channels</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Instagram, LinkedIn, TikTok & more
+                  </p>
                 </div>
                 <div>
-                  <p className="font-semibold">Modern</p>
-                  <p className="mt-1 text-xs text-muted-foreground">Built on the latest stack</p>
+                  <p className="font-semibold">Smart Planning</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Schedule and publish with ease
+                  </p>
                 </div>
                 <div>
-                  <p className="font-semibold">100% Customizable</p>
-                  <p className="mt-1 text-xs text-muted-foreground">Adapt to your brand</p>
+                  <p className="font-semibold">Real-time Insights</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Track followers, posts & engagement
+                  </p>
                 </div>
               </div>
             </div>
@@ -146,8 +152,10 @@ export function HeroSection() {
 const Logo = ({ className }: { className?: string }) => {
   return (
     <div className={cn("flex items-center gap-2", className)}>
-      <div className="size-7 rounded-md bg-primary" />
-      <span className="text-lg font-semibold">Tailark</span>
+      <div className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
+        <BarChart3 className="size-4" />
+      </div>
+      <span className="text-lg font-semibold">SellStatic</span>
     </div>
   );
 };
