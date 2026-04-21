@@ -1,92 +1,140 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "@tanstack/react-router";
-import { BarChart3, Menu, X } from "lucide-react";
+import { Link, useLocation } from "@tanstack/react-router";
+import { Menu, X } from "lucide-react";
+import {
+  IoHomeOutline,
+  IoAddCircleOutline,
+  IoVideocamOutline,
+  IoGridOutline,
+  IoCopyOutline,
+  IoShareSocialOutline,
+  IoStatsChartOutline,
+} from "react-icons/io5";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/sellstatic-logo.png";
 
-const menuItems = [
-  { name: "Features", to: "/features" as const },
-  { name: "Pricing", to: "/pricing" as const },
-  { name: "About", to: "/about" as const },
+type MenuItem = {
+  title: string;
+  to: "/" | "/features" | "/pricing" | "/about";
+  icon: React.ReactNode;
+  gradientFrom: string;
+  gradientTo: string;
+};
+
+const menuItems: MenuItem[] = [
+  { title: "Home", to: "/", icon: <IoHomeOutline />, gradientFrom: "#a955ff", gradientTo: "#ea51ff" },
+  { title: "Create Ad", to: "/features", icon: <IoAddCircleOutline />, gradientFrom: "#56CCF2", gradientTo: "#2F80ED" },
+  { title: "Video", to: "/features", icon: <IoVideocamOutline />, gradientFrom: "#FF9966", gradientTo: "#FF5E62" },
+  { title: "View Ads", to: "/features", icon: <IoGridOutline />, gradientFrom: "#80FF72", gradientTo: "#7EE8FA" },
+  { title: "Templates", to: "/features", icon: <IoCopyOutline />, gradientFrom: "#ffa9c6", gradientTo: "#f434e2" },
+  { title: "Social", to: "/features", icon: <IoShareSocialOutline />, gradientFrom: "#fceabb", gradientTo: "#f8b500" },
+  { title: "Pricing", to: "/pricing", icon: <IoStatsChartOutline />, gradientFrom: "#a955ff", gradientTo: "#7e5bef" },
 ];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   return (
-    <header>
-      <nav className="fixed z-20 w-full border-b border-dashed bg-background/80 backdrop-blur md:relative">
-        <div className="m-auto max-w-5xl px-6">
-          <div className="flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
-            <div className="flex w-full justify-between lg:w-auto">
-              <Link to="/" aria-label="home" className="flex items-center space-x-2">
-                <Logo />
-              </Link>
+    <header className="sticky top-0 z-30 w-full border-b border-border/60 bg-background/80 backdrop-blur-xl">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="flex items-center justify-between gap-6 py-3">
+          {/* Logo */}
+          <Link to="/" aria-label="SellStatic home" className="flex items-center gap-2.5 shrink-0">
+            <img src={logo} alt="SellStatic" className="h-9 w-auto" />
+            <span className="text-lg font-semibold tracking-tight">
+              Sell<span className="italic text-primary">Static</span>
+            </span>
+          </Link>
 
-              <button
-                onClick={() => setOpen(!open)}
-                aria-label={open ? "Close Menu" : "Open Menu"}
-                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
-              >
-                <Menu
-                  className={cn("m-auto size-6 duration-200", open && "rotate-180 scale-0 opacity-0")}
-                />
-                <X
-                  className={cn(
-                    "absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200",
-                    open && "rotate-0 scale-100 opacity-100",
-                  )}
-                />
-              </button>
-            </div>
+          {/* Gradient menu — desktop */}
+          <nav aria-label="Main navigation" className="hidden lg:block">
+            <ul className="flex items-center gap-3">
+              {menuItems.map(({ title, icon, gradientFrom, gradientTo, to }) => {
+                const isActive =
+                  to === "/" ? location.pathname === "/" : location.pathname.startsWith(to);
+                return (
+                  <li
+                    key={title}
+                    style={
+                      {
+                        "--gradient-from": gradientFrom,
+                        "--gradient-to": gradientTo,
+                      } as React.CSSProperties
+                    }
+                    className={cn(
+                      "group relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-card shadow-sm ring-1 ring-border transition-all duration-500 hover:w-36 hover:shadow-none hover:ring-0",
+                      isActive && "ring-2 ring-primary/60",
+                    )}
+                  >
+                    <Link to={to} className="absolute inset-0 z-20 rounded-full" aria-label={title}>
+                      <span className="sr-only">{title}</span>
+                    </Link>
 
-            <div
-              className={cn(
-                "mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border bg-background p-6 shadow-2xl shadow-foreground/5 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none",
-                open && "block!",
-              )}
+                    {/* Gradient fill on hover */}
+                    <span className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(45deg,var(--gradient-from),var(--gradient-to))] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    {/* Glow */}
+                    <span className="pointer-events-none absolute inset-x-0 top-2 -z-10 h-full rounded-full bg-[linear-gradient(45deg,var(--gradient-from),var(--gradient-to))] opacity-0 blur-[15px] transition-opacity duration-500 group-hover:opacity-50" />
+                    {/* Icon */}
+                    <span className="pointer-events-none relative z-10 text-xl text-muted-foreground transition-transform duration-500 group-hover:scale-0">
+                      {icon}
+                    </span>
+                    {/* Title */}
+                    <span className="pointer-events-none absolute z-10 scale-0 text-xs font-medium uppercase tracking-wide text-white transition-transform duration-500 delay-150 group-hover:scale-100">
+                      {title}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          {/* Right actions */}
+          <div className="flex items-center gap-2">
+            <Button asChild size="sm" variant="outline" className="hidden sm:inline-flex">
+              <a href="#">Log in</a>
+            </Button>
+            <Button asChild size="sm" className="shadow-md shadow-primary/20">
+              <a href="#">Dashboard</a>
+            </Button>
+            <button
+              onClick={() => setOpen(!open)}
+              aria-label={open ? "Close menu" : "Open menu"}
+              className="ml-1 inline-flex size-9 items-center justify-center rounded-md border lg:hidden"
             >
-              <div className="lg:pr-4">
-                <ul className="space-y-6 text-base lg:flex lg:gap-8 lg:space-y-0 lg:text-sm">
-                  {menuItems.map((item) => (
-                    <li key={item.name}>
-                      <Link
-                        to={item.to}
-                        className="block text-muted-foreground duration-150 hover:text-accent-foreground"
-                        activeProps={{ className: "text-foreground font-medium" }}
-                      >
-                        <span>{item.name}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit lg:border-l lg:pl-6">
-                <Button asChild variant="outline" size="sm">
-                  <a href="#"><span>Log in</span></a>
-                </Button>
-                <Button asChild size="sm">
-                  <a href="#"><span>Start free</span></a>
-                </Button>
-              </div>
-            </div>
+              {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
           </div>
         </div>
-      </nav>
-    </header>
-  );
-}
 
-function Logo() {
-  return (
-    <div className="flex items-center gap-2">
-      <div className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
-        <BarChart3 className="size-4" />
+        {/* Mobile menu */}
+        {open && (
+          <nav className="lg:hidden pb-4">
+            <ul className="grid grid-cols-2 gap-2">
+              {menuItems.map(({ title, to, icon, gradientFrom, gradientTo }) => (
+                <li key={title}>
+                  <Link
+                    to={to}
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-3 rounded-xl border bg-card p-3 text-sm font-medium hover:bg-accent"
+                  >
+                    <span
+                      className="grid size-9 place-items-center rounded-full text-white"
+                      style={{
+                        background: `linear-gradient(45deg, ${gradientFrom}, ${gradientTo})`,
+                      }}
+                    >
+                      {icon}
+                    </span>
+                    {title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </div>
-      <span className="text-lg font-semibold">
-        Sell<span className="italic text-primary">Static</span>
-      </span>
-    </div>
+    </header>
   );
 }
