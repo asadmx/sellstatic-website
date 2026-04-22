@@ -1,10 +1,34 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock, Wrench, Plug, DollarSign } from "lucide-react";
+import { ArrowRight, Clock, Wrench, Plug, DollarSign, Play, Sparkles, Layers, Zap, ShieldCheck, BarChart3 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { StepsShowcase } from "@/components/steps-showcase";
 import { FeaturedLogos } from "@/components/blocks/featured-logos";
 import { Link } from "@tanstack/react-router";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+const features = [
+  { icon: Sparkles, title: "AI Ad Generator", desc: "Describe your offer in a sentence — get 100 on-brand ad variations across formats in seconds." },
+  { icon: Layers, title: "Brand Kit Sync", desc: "Upload your logo, fonts, and colors once. Every asset stays perfectly on-brand, automatically." },
+  { icon: Zap, title: "One-Click Publish", desc: "Schedule and post to 13+ networks from a single calendar — no more copy-pasting between dashboards." },
+  { icon: ShieldCheck, title: "Approval Workflows", desc: "Loop in stakeholders with shareable previews and inline comments before anything goes live." },
+  { icon: BarChart3, title: "Live Performance", desc: "See which creative is winning in real time, then auto-remix the best performers into new variants." },
+  { icon: Plug, title: "Native Integrations", desc: "Plug into Meta, TikTok, Google, LinkedIn, and more — no Zapier, no duct tape, just connect and go." },
+];
+
+const faqs = [
+  { q: "How is SellStatic different from a regular ad tool?", a: "Most tools give you a blank canvas. SellStatic gives you 100 finished, on-brand ad variations the moment you describe your campaign — then publishes them everywhere from one place." },
+  { q: "How quickly can I get started?", a: "Under 5 minutes. Import your brand kit, connect your ad accounts, and your first batch of ads is ready to schedule before your coffee gets cold." },
+  { q: "Which platforms do you support?", a: "Facebook, Instagram, Threads, X, TikTok, LinkedIn, Pinterest, YouTube, Twitch, Google Business, plus Facebook Ads, Google Ads, and TikTok Ads." },
+  { q: "Do I need design or copywriting skills?", a: "Nope. Our AI handles layout, typography, and copy in your brand voice. You stay in control with quick edits and one-click variations." },
+  { q: "Is my data safe?", a: "Yes. We never use your content to train public models, your brand assets are encrypted at rest, and you can export or delete everything at any time." },
+  { q: "Can I try it free?", a: "Absolutely. Start free with no credit card — generate your first 25 ads on us." },
+];
 
 const problems = [
   { icon: Clock, title: "Time Consuming", desc: "Creating and managing content takes much longer than it should." },
