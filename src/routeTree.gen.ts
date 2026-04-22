@@ -14,6 +14,7 @@ import { Route as VideoRouteImport } from './routes/video'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as SocialRouteImport } from './routes/social'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as PlatformsRouteImport } from './routes/platforms'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CreateAdRouteImport } from './routes/create-ad'
@@ -43,6 +44,11 @@ const SocialRoute = SocialRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlatformsRoute = PlatformsRouteImport.update({
+  id: '/platforms',
+  path: '/platforms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeaturesRoute = FeaturesRouteImport.update({
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/create-ad': typeof CreateAdRoute
   '/dashboard': typeof DashboardRoute
   '/features': typeof FeaturesRoute
+  '/platforms': typeof PlatformsRoute
   '/pricing': typeof PricingRoute
   '/social': typeof SocialRoute
   '/templates': typeof TemplatesRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/create-ad': typeof CreateAdRoute
   '/dashboard': typeof DashboardRoute
   '/features': typeof FeaturesRoute
+  '/platforms': typeof PlatformsRoute
   '/pricing': typeof PricingRoute
   '/social': typeof SocialRoute
   '/templates': typeof TemplatesRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/create-ad': typeof CreateAdRoute
   '/dashboard': typeof DashboardRoute
   '/features': typeof FeaturesRoute
+  '/platforms': typeof PlatformsRoute
   '/pricing': typeof PricingRoute
   '/social': typeof SocialRoute
   '/templates': typeof TemplatesRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/create-ad'
     | '/dashboard'
     | '/features'
+    | '/platforms'
     | '/pricing'
     | '/social'
     | '/templates'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/create-ad'
     | '/dashboard'
     | '/features'
+    | '/platforms'
     | '/pricing'
     | '/social'
     | '/templates'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/create-ad'
     | '/dashboard'
     | '/features'
+    | '/platforms'
     | '/pricing'
     | '/social'
     | '/templates'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   CreateAdRoute: typeof CreateAdRoute
   DashboardRoute: typeof DashboardRoute
   FeaturesRoute: typeof FeaturesRoute
+  PlatformsRoute: typeof PlatformsRoute
   PricingRoute: typeof PricingRoute
   SocialRoute: typeof SocialRoute
   TemplatesRoute: typeof TemplatesRoute
@@ -195,6 +208,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platforms': {
+      id: '/platforms'
+      path: '/platforms'
+      fullPath: '/platforms'
+      preLoaderRoute: typeof PlatformsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/features': {
@@ -241,6 +261,7 @@ const rootRouteChildren: RootRouteChildren = {
   CreateAdRoute: CreateAdRoute,
   DashboardRoute: DashboardRoute,
   FeaturesRoute: FeaturesRoute,
+  PlatformsRoute: PlatformsRoute,
   PricingRoute: PricingRoute,
   SocialRoute: SocialRoute,
   TemplatesRoute: TemplatesRoute,
