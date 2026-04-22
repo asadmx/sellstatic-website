@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Link, useLocation } from "@tanstack/react-router";
+import { AuroraButton } from "@/components/ui/aurora-button";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import {
   IoHomeOutline,
@@ -35,6 +36,7 @@ const menuItems: MenuItem[] = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <header className="sticky top-0 z-30 w-full border-b border-border/60 bg-background/80 backdrop-blur-xl">
@@ -88,13 +90,19 @@ export function SiteHeader() {
           </nav>
 
           {/* Right actions */}
-          <div className="flex items-center gap-2">
-            <Button asChild size="sm" variant="outline" className="hidden sm:inline-flex">
-              <Link to="/login">Log in</Link>
-            </Button>
-            <Button asChild size="sm" className="shadow-md shadow-primary/20">
-              <Link to="/dashboard">Dashboard</Link>
-            </Button>
+          <div className="flex items-center gap-3">
+            <AuroraButton
+              onClick={() => navigate({ to: "/login" })}
+              className="hidden h-9 px-4 sm:inline-flex"
+            >
+              Log in
+            </AuroraButton>
+            <AuroraButton
+              onClick={() => navigate({ to: "/dashboard" })}
+              className="h-9 px-4 font-semibold"
+            >
+              Dashboard
+            </AuroraButton>
             <button
               onClick={() => setOpen(!open)}
               aria-label={open ? "Close menu" : "Open menu"}
