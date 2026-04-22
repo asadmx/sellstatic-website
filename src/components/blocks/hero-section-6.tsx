@@ -1,10 +1,34 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock, Wrench, Plug, DollarSign } from "lucide-react";
+import { ArrowRight, Clock, Wrench, Plug, DollarSign, Play, Sparkles, Layers, Zap, ShieldCheck, BarChart3 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { StepsShowcase } from "@/components/steps-showcase";
 import { FeaturedLogos } from "@/components/blocks/featured-logos";
 import { Link } from "@tanstack/react-router";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+const features = [
+  { icon: Sparkles, title: "AI Ad Generator", desc: "Describe your offer in a sentence — get 100 on-brand ad variations across formats in seconds." },
+  { icon: Layers, title: "Brand Kit Sync", desc: "Upload your logo, fonts, and colors once. Every asset stays perfectly on-brand, automatically." },
+  { icon: Zap, title: "One-Click Publish", desc: "Schedule and post to 13+ networks from a single calendar — no more copy-pasting between dashboards." },
+  { icon: ShieldCheck, title: "Approval Workflows", desc: "Loop in stakeholders with shareable previews and inline comments before anything goes live." },
+  { icon: BarChart3, title: "Live Performance", desc: "See which creative is winning in real time, then auto-remix the best performers into new variants." },
+  { icon: Plug, title: "Native Integrations", desc: "Plug into Meta, TikTok, Google, LinkedIn, and more — no Zapier, no duct tape, just connect and go." },
+];
+
+const faqs = [
+  { q: "How is SellStatic different from a regular ad tool?", a: "Most tools give you a blank canvas. SellStatic gives you 100 finished, on-brand ad variations the moment you describe your campaign — then publishes them everywhere from one place." },
+  { q: "How quickly can I get started?", a: "Under 5 minutes. Import your brand kit, connect your ad accounts, and your first batch of ads is ready to schedule before your coffee gets cold." },
+  { q: "Which platforms do you support?", a: "Facebook, Instagram, Threads, X, TikTok, LinkedIn, Pinterest, YouTube, Twitch, Google Business, plus Facebook Ads, Google Ads, and TikTok Ads." },
+  { q: "Do I need design or copywriting skills?", a: "Nope. Our AI handles layout, typography, and copy in your brand voice. You stay in control with quick edits and one-click variations." },
+  { q: "Is my data safe?", a: "Yes. We never use your content to train public models, your brand assets are encrypted at rest, and you can export or delete everything at any time." },
+  { q: "Can I try it free?", a: "Absolutely. Start free with no credit card — generate your first 25 ads on us." },
+];
 
 const problems = [
   { icon: Clock, title: "Time Consuming", desc: "Creating and managing content takes much longer than it should." },
@@ -64,6 +88,40 @@ export function HeroSection() {
         {/* AS FEATURED IN */}
         <FeaturedLogos />
 
+        {/* DEMO VIDEO */}
+        <section className="mx-auto max-w-5xl px-6 py-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
+              See it in action
+            </p>
+            <h2 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
+              Watch SellStatic build a <span className="italic text-primary">full campaign</span> in 60 seconds.
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              From a one-line brief to scheduled posts across every platform — no editing, no juggling tabs.
+            </p>
+          </div>
+
+          <div className="group relative mx-auto mt-12 aspect-video max-w-4xl overflow-hidden rounded-3xl border bg-card shadow-2xl shadow-primary/10 ring-1 ring-white/10">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-fuchsia-400/20 to-amber-200/30" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_50%)]" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <button
+                type="button"
+                aria-label="Play demo video"
+                className="relative grid size-20 place-items-center rounded-full bg-background/90 text-primary shadow-xl backdrop-blur transition-transform duration-300 group-hover:scale-110"
+              >
+                <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-primary/40" />
+                <Play className="size-7 fill-current" />
+              </button>
+            </div>
+            <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-background/80 px-3 py-1.5 text-xs font-medium backdrop-blur">
+              <span className="size-2 animate-pulse rounded-full bg-red-500" />
+              Live demo · 1:02
+            </div>
+          </div>
+        </section>
+
         {/* PROBLEMS */}
         <section className="mx-auto max-w-5xl px-6 py-24">
           <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
@@ -85,6 +143,40 @@ export function HeroSection() {
             ))}
           </div>
         </section>
+
+        {/* CORE FEATURES */}
+        <section className="border-y bg-card/40">
+          <div className="mx-auto max-w-6xl px-6 py-24">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
+                Core features
+              </p>
+              <h2 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
+                Everything you need to <span className="italic text-primary">launch and learn</span>.
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Six tightly-integrated tools that replace your entire creative stack.
+              </p>
+            </div>
+
+            <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {features.map((f) => (
+                <div
+                  key={f.title}
+                  className="group relative overflow-hidden rounded-2xl border bg-background p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
+                >
+                  <div className="absolute -right-10 -top-10 size-32 rounded-full bg-primary/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
+                  <div className="relative grid size-11 place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20">
+                    <f.icon className="size-5" />
+                  </div>
+                  <h3 className="relative mt-5 text-lg font-semibold">{f.title}</h3>
+                  <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
 
         {/* SHIP CTA */}
         <section className="border-y bg-accent/40">
@@ -192,6 +284,35 @@ export function HeroSection() {
                 <Link to="/pricing">View pricing</Link>
               </Button>
             </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="mx-auto max-w-4xl px-6 py-24">
+          <div className="grid gap-12 md:grid-cols-[1fr_2fr] md:items-start">
+            <div>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
+                FAQs
+              </p>
+              <h2 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
+                Questions about <span className="italic text-primary">SellStatic</span>?
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Everything you need to know about our platform, pricing, and how AI ad generation works.
+              </p>
+            </div>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((f, i) => (
+                <AccordionItem key={i} value={`item-${i}`} className="border-border/60">
+                  <AccordionTrigger className="text-left text-base font-medium hover:no-underline">
+                    {f.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                    {f.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </section>
 
