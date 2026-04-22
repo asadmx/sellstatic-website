@@ -18,6 +18,7 @@ export function SiteFooter() {
           <FooterCol title="Product" items={[
             { label: "Features", to: "/features" as const },
             { label: "Pricing", to: "/pricing" as const },
+            { label: "Platforms", to: "/platforms" as const },
           ]} />
           <FooterCol title="Company" items={[
             { label: "About", to: "/about" as const },
@@ -48,7 +49,7 @@ function FooterCol({
   items,
 }: {
   title: string;
-  items: { label: string; to: "/features" | "/pricing" | "/about" }[];
+  items: { label: string; to: "/features" | "/pricing" | "/about" | "/platforms" }[];
 }) {
   return (
     <div>

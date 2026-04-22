@@ -41,11 +41,8 @@ export function SiteHeader() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-center justify-between gap-6 py-3">
           {/* Logo */}
-          <Link to="/" aria-label="SellStatic home" className="flex items-center gap-2.5 shrink-0">
-            <img src={logo} alt="SellStatic" className="h-9 w-auto" />
-            <span className="text-lg font-semibold tracking-tight">
-              Sell<span className="italic text-primary">Static</span>
-            </span>
+          <Link to="/" aria-label="SellStatic home" className="flex items-center shrink-0">
+            <img src={logo} alt="SellStatic" className="h-10 w-auto" />
           </Link>
 
           {/* Gradient menu — desktop */}
