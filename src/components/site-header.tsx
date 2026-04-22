@@ -16,7 +16,7 @@ import logo from "@/assets/sellstatic-logo.png";
 
 type MenuItem = {
   title: string;
-  to: "/" | "/create-ad" | "/video" | "/view-ads" | "/templates" | "/social" | "/pricing";
+  to: "/" | "/create-ad" | "/video" | "/view-ads" | "/templates" | "/social" | "/pricing" | "/login";
   icon: React.ReactNode;
   gradientFrom: string;
   gradientTo: string;
@@ -90,7 +90,7 @@ export function SiteHeader() {
           {/* Right actions */}
           <div className="flex items-center gap-2">
             <Button asChild size="sm" variant="outline" className="hidden sm:inline-flex">
-              <a href="#">Log in</a>
+              <Link to="/login">Log in</Link>
             </Button>
             <Button asChild size="sm" className="shadow-md shadow-primary/20">
               <Link to="/dashboard">Dashboard</Link>

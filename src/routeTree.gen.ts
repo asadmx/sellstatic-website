@@ -15,6 +15,7 @@ import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as SocialRouteImport } from './routes/social'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PlatformsRouteImport } from './routes/platforms'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CreateAdRouteImport } from './routes/create-ad'
@@ -51,6 +52,11 @@ const PlatformsRoute = PlatformsRouteImport.update({
   path: '/platforms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FeaturesRoute = FeaturesRouteImport.update({
   id: '/features',
   path: '/features',
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/create-ad': typeof CreateAdRoute
   '/dashboard': typeof DashboardRoute
   '/features': typeof FeaturesRoute
+  '/login': typeof LoginRoute
   '/platforms': typeof PlatformsRoute
   '/pricing': typeof PricingRoute
   '/social': typeof SocialRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/create-ad': typeof CreateAdRoute
   '/dashboard': typeof DashboardRoute
   '/features': typeof FeaturesRoute
+  '/login': typeof LoginRoute
   '/platforms': typeof PlatformsRoute
   '/pricing': typeof PricingRoute
   '/social': typeof SocialRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/create-ad': typeof CreateAdRoute
   '/dashboard': typeof DashboardRoute
   '/features': typeof FeaturesRoute
+  '/login': typeof LoginRoute
   '/platforms': typeof PlatformsRoute
   '/pricing': typeof PricingRoute
   '/social': typeof SocialRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | '/create-ad'
     | '/dashboard'
     | '/features'
+    | '/login'
     | '/platforms'
     | '/pricing'
     | '/social'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/create-ad'
     | '/dashboard'
     | '/features'
+    | '/login'
     | '/platforms'
     | '/pricing'
     | '/social'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/create-ad'
     | '/dashboard'
     | '/features'
+    | '/login'
     | '/platforms'
     | '/pricing'
     | '/social'
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   CreateAdRoute: typeof CreateAdRoute
   DashboardRoute: typeof DashboardRoute
   FeaturesRoute: typeof FeaturesRoute
+  LoginRoute: typeof LoginRoute
   PlatformsRoute: typeof PlatformsRoute
   PricingRoute: typeof PricingRoute
   SocialRoute: typeof SocialRoute
@@ -217,6 +230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlatformsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/features': {
       id: '/features'
       path: '/features'
@@ -261,6 +281,7 @@ const rootRouteChildren: RootRouteChildren = {
   CreateAdRoute: CreateAdRoute,
   DashboardRoute: DashboardRoute,
   FeaturesRoute: FeaturesRoute,
+  LoginRoute: LoginRoute,
   PlatformsRoute: PlatformsRoute,
   PricingRoute: PricingRoute,
   SocialRoute: SocialRoute,
@@ -271,12 +292,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock, Wrench, Plug, DollarSign, Type, Image as ImageIcon, Eye, Palette } from "lucide-react";
+import { ArrowRight, Clock, Wrench, Plug, DollarSign } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { StepsShowcase } from "@/components/steps-showcase";
 import { Link } from "@tanstack/react-router";
 
 const featuredIn = [
@@ -34,12 +35,6 @@ const stats = [
   { v: "20+", l: "Hours saved per week" },
 ];
 
-const steps = [
-  { n: "01", icon: Type, title: "Add Text", desc: "Describe your offer and audience in plain English." },
-  { n: "02", icon: ImageIcon, title: "Add Images", desc: "Drop in product shots or brand assets — AI suggests visuals." },
-  { n: "03", icon: Eye, title: "Ad Preview", desc: "See ready-to-publish variations across formats instantly." },
-  { n: "04", icon: Palette, title: "Edit Templates", desc: "Lock fonts, colors, and layout with your brand kit." },
-];
 
 export function HeroSection() {
   return (
@@ -192,22 +187,11 @@ export function HeroSection() {
             From idea to live ad in <span className="italic text-primary">four steps</span>.
           </h2>
 
-          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border bg-border md:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s) => (
-              <div key={s.n} className="bg-card p-8 transition-colors hover:bg-accent/40">
-                <div className="flex items-center justify-between">
-                  <div className="grid size-12 place-items-center rounded-xl border bg-background text-primary">
-                    <s.icon className="size-5" />
-                  </div>
-                  <span className="text-3xl font-semibold italic text-muted-foreground/30">{s.n}</span>
-                </div>
-                <h3 className="mt-5 text-lg font-semibold">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-              </div>
-            ))}
+          <div className="mt-12">
+            <StepsShowcase />
           </div>
           <p className="mt-6 text-center text-xs text-muted-foreground">
-            Tip: Hover or focus a step to preview. The stage auto-cycles when idle.
+            Hover a step to preview. Built for speed — every interaction takes seconds, not hours.
           </p>
         </section>
 
