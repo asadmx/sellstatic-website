@@ -3,18 +3,8 @@ import { ArrowRight, Clock, Wrench, Plug, DollarSign } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { StepsShowcase } from "@/components/steps-showcase";
+import { FeaturedLogos } from "@/components/blocks/featured-logos";
 import { Link } from "@tanstack/react-router";
-
-const featuredIn = [
-  "Schulich School of Business",
-  "York University",
-  "Canadian SME",
-  "League of Innovators",
-  "DMZ",
-  "YEY Awards",
-  "Collision",
-  "Web Summit",
-];
 
 const problems = [
   { icon: Clock, title: "Time Consuming", desc: "Creating and managing content takes much longer than it should." },
@@ -72,18 +62,7 @@ export function HeroSection() {
         </section>
 
         {/* AS FEATURED IN */}
-        <section className="border-y bg-card">
-          <div className="mx-auto max-w-5xl px-6 py-10">
-            <p className="text-center text-xs uppercase tracking-wider text-muted-foreground">
-              As Featured In
-            </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-sm font-semibold text-muted-foreground/70">
-              {featuredIn.map((l) => (
-                <span key={l}>{l}</span>
-              ))}
-            </div>
-          </div>
-        </section>
+        <FeaturedLogos />
 
         {/* PROBLEMS */}
         <section className="mx-auto max-w-5xl px-6 py-24">
