@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { AuroraButton } from "@/components/ui/aurora-button";
 import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
