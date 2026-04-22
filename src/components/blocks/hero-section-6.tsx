@@ -287,6 +287,35 @@ export function HeroSection() {
           </div>
         </section>
 
+        {/* FAQ */}
+        <section className="mx-auto max-w-4xl px-6 py-24">
+          <div className="grid gap-12 md:grid-cols-[1fr_2fr] md:items-start">
+            <div>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
+                FAQs
+              </p>
+              <h2 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
+                Questions about <span className="italic text-primary">SellStatic</span>?
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Everything you need to know about our platform, pricing, and how AI ad generation works.
+              </p>
+            </div>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((f, i) => (
+                <AccordionItem key={i} value={`item-${i}`} className="border-border/60">
+                  <AccordionTrigger className="text-left text-base font-medium hover:no-underline">
+                    {f.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                    {f.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
+
         {/* NEWSLETTER */}
         <section className="mx-auto max-w-3xl px-6 py-20 text-center">
           <h2 className="text-2xl font-semibold md:text-3xl">
