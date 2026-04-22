@@ -20,7 +20,7 @@ const ads = Array.from({ length: 9 }).map((_, i) => ({
   id: i + 1,
   title: ["Spring Launch", "Brand Story", "Retargeting", "Product Hero", "Holiday Promo", "App Install", "Loyalty Drop", "Black Friday", "Webinar Push"][i],
   platform: ["Instagram", "TikTok", "Meta", "YouTube", "LinkedIn"][i % 5],
-  ctr: (Math.random() * 5 + 1).toFixed(2),
+  ctr: [3.21, 4.78, 2.05, 5.42, 1.87, 3.94, 2.66, 4.12, 3.05][i].toFixed(2),
 }));
 
 function ViewAdsPage() {
