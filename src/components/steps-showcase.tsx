@@ -1,15 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
-import stepText from "@/assets/step-text.jpg";
-import stepImages from "@/assets/step-images.jpg";
-import stepPreview from "@/assets/step-preview.jpg";
-import stepTemplates from "@/assets/step-templates.jpg";
 
 interface Step {
   title: string;
   description: string;
   year: string;
-  image: string;
+  video: string;
 }
 
 const steps: Step[] = [
@@ -17,25 +13,25 @@ const steps: Step[] = [
     title: "Add Text",
     description: "Describe your offer and audience in plain English.",
     year: "01",
-    image: stepText,
+    video: "/steps/add-text.mp4",
   },
   {
     title: "Add Images",
     description: "Drop in product shots or brand assets — AI suggests visuals.",
     year: "02",
-    image: stepImages,
+    video: "/steps/add-images.mp4",
   },
   {
     title: "Ad Preview",
     description: "See ready-to-publish variations across formats instantly.",
     year: "03",
-    image: stepPreview,
+    video: "/steps/ad-preview.mp4",
   },
   {
     title: "Edit Templates",
     description: "Lock fonts, colors, and layout with your brand kit.",
     year: "04",
-    image: stepTemplates,
+    video: "/steps/edit-templates.mp4",
   },
 ];
 
@@ -88,15 +84,16 @@ export function StepsShowcase() {
             "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), scale 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
-        <div className="relative h-[200px] w-[300px] overflow-hidden rounded-xl bg-secondary">
+        <div className="relative h-[240px] w-[380px] overflow-hidden rounded-xl bg-secondary">
           {steps.map((s, index) => (
-            <img
+            <video
               key={s.title}
-              src={s.image}
-              alt={s.title}
-              loading="lazy"
-              width={768}
-              height={512}
+              src={s.video}
+              muted
+              loop
+              playsInline
+              autoPlay
+              preload="metadata"
               className="absolute inset-0 h-full w-full object-cover transition-all duration-500 ease-out"
               style={{
                 opacity: hoveredIndex === index ? 1 : 0,
