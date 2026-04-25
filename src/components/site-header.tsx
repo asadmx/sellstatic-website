@@ -1,4 +1,4 @@
-import { AuroraButton } from "@/components/ui/aurora-button";
+import { HoverButton } from "@/components/ui/hover-button";
 import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import {
@@ -86,18 +86,18 @@ export function SiteHeader() {
 
           {/* Right actions */}
           <div className="flex items-center gap-2 pr-1">
-            <AuroraButton
+            <HoverButton
               onClick={() => navigate({ to: "/login" })}
-              className="hidden h-8 px-3 text-xs sm:inline-flex"
+              className="hidden sm:inline-flex"
             >
               Log in
-            </AuroraButton>
-            <AuroraButton
+            </HoverButton>
+            <HoverButton
               onClick={() => navigate({ to: "/dashboard" })}
-              className="h-8 px-3 text-xs font-semibold"
+              className="[--circle-start:theme(colors.fuchsia.500)] [--circle-end:theme(colors.amber.300)]"
             >
               Dashboard
-            </AuroraButton>
+            </HoverButton>
             <button
               onClick={() => setOpen(!open)}
               aria-label={open ? "Close menu" : "Open menu"}
