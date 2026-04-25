@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { StepsShowcase } from "@/components/steps-showcase";
 import { FeaturedLogos } from "@/components/blocks/featured-logos";
+import { ConnectedPlatforms } from "@/components/blocks/connected-platforms";
 import { GradientText } from "@/components/ui/gradient-text";
 import { Reveal } from "@/components/reveal";
 import { Link } from "@tanstack/react-router";
@@ -112,22 +113,17 @@ export function HeroSection() {
           </Reveal>
 
           <Reveal delay={150}>
-            <div className="group relative mx-auto mt-12 aspect-video max-w-4xl overflow-hidden rounded-3xl border bg-card shadow-2xl shadow-primary/10 ring-1 ring-white/10">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-fuchsia-400/20 to-amber-200/30" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_50%)]" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <button
-                  type="button"
-                  aria-label="Play demo video"
-                  className="relative grid size-20 place-items-center rounded-full bg-background/90 text-primary shadow-xl backdrop-blur transition-transform duration-300 group-hover:scale-110"
-                >
-                  <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-primary/40" />
-                  <Play className="size-7 fill-current" />
-                </button>
-              </div>
-              <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-background/80 px-3 py-1.5 text-xs font-medium backdrop-blur">
+            <div className="group relative mx-auto mt-12 aspect-video max-w-4xl overflow-hidden rounded-3xl border bg-black shadow-2xl shadow-primary/10 ring-1 ring-white/10">
+              <video
+                src="/sellstatic-trailer.mp4"
+                controls
+                playsInline
+                preload="metadata"
+                className="h-full w-full object-cover"
+              />
+              <div className="pointer-events-none absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-background/80 px-3 py-1.5 text-xs font-medium backdrop-blur">
                 <span className="size-2 animate-pulse rounded-full bg-red-500" />
-                Live demo · 1:02
+                Official trailer
               </div>
             </div>
           </Reveal>
@@ -227,16 +223,7 @@ export function HeroSection() {
             Connect your accounts once. SellStatic schedules and publishes to all of them.
           </p>
 
-          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {platforms.map((p) => (
-              <div
-                key={p}
-                className="rounded-xl border bg-card p-4 text-center text-sm font-medium transition-colors hover:bg-accent/40"
-              >
-                {p}
-              </div>
-            ))}
-          </div>
+          <ConnectedPlatforms />
         </section>
 
         {/* WHY CHOOSE US */}
