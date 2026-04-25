@@ -384,3 +384,57 @@ export function HeroSection() {
     </>
   );
 }
+
+function DemoVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  const handlePlay = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.play();
+    setPlaying(true);
+  };
+
+  return (
+    <div className="relative mx-auto mt-12 max-w-4xl">
+      {/* Glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -inset-10 -z-10 rounded-[3rem] opacity-70 blur-3xl"
+        style={{
+          background:
+            "radial-gradient(60% 60% at 50% 50%, hsl(var(--primary) / 0.45), transparent 70%), radial-gradient(40% 40% at 80% 30%, #a855f7aa, transparent 70%), radial-gradient(40% 40% at 20% 70%, #ec4899aa, transparent 70%)",
+        }}
+      />
+      <div className="group relative aspect-video overflow-hidden rounded-3xl border bg-black shadow-2xl shadow-primary/20 ring-1 ring-white/10">
+        <video
+          ref={videoRef}
+          src="/sellstatic-trailer.mp4"
+          poster={trailerPoster}
+          controls={playing}
+          playsInline
+          preload="metadata"
+          onPause={() => setPlaying(false)}
+          onPlay={() => setPlaying(true)}
+          className="h-full w-full object-cover"
+        />
+
+        {!playing && (
+          <button
+            type="button"
+            onClick={handlePlay}
+            aria-label="Play demo video"
+            className="absolute inset-0 grid place-items-center bg-black/20 transition-colors hover:bg-black/10"
+          >
+            <span className="relative grid size-24 place-items-center rounded-full bg-white/10 backdrop-blur-md ring-1 ring-white/30 transition-transform duration-300 hover:scale-110">
+              <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-primary/40" />
+              <span className="absolute inset-2 -z-10 rounded-full bg-gradient-to-br from-primary to-fuchsia-500" />
+              <Play className="size-10 translate-x-0.5 fill-white text-white" />
+            </span>
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
