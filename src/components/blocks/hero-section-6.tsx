@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock, Wrench, Plug, DollarSign, Play, Sparkles, Layers, Zap, ShieldCheck, BarChart3 } from "lucide-react";
+import { ArrowRight, Clock, Wrench, Plug, DollarSign, Sparkles, Layers, Zap, ShieldCheck, BarChart3 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { StepsShowcase } from "@/components/steps-showcase";
@@ -42,10 +42,6 @@ const problems = [
   { icon: DollarSign, title: "Wasting Money", desc: "Paying for multiple tools and freelancers adds up quickly." },
 ];
 
-const platforms = [
-  "Facebook", "Instagram", "Threads", "X (Twitter)", "TikTok", "LinkedIn",
-  "Google Business", "Pinterest", "YouTube", "Twitch", "Facebook Ads", "Google Ads", "TikTok Ads",
-];
 
 const stats = [
   { v: "100+", l: "Ad creatives generated" },
