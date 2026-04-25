@@ -99,7 +99,7 @@ export function HeroSection() {
 
         {/* DEMO VIDEO */}
         <section className="mx-auto max-w-5xl px-6 py-20">
-          <div className="mx-auto max-w-2xl text-center">
+          <Reveal className="mx-auto max-w-2xl text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
               See it in action
             </p>
@@ -109,26 +109,28 @@ export function HeroSection() {
             <p className="mt-4 text-muted-foreground">
               From a one-line brief to scheduled posts across every platform — no editing, no juggling tabs.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="group relative mx-auto mt-12 aspect-video max-w-4xl overflow-hidden rounded-3xl border bg-card shadow-2xl shadow-primary/10 ring-1 ring-white/10">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-fuchsia-400/20 to-amber-200/30" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_50%)]" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <button
-                type="button"
-                aria-label="Play demo video"
-                className="relative grid size-20 place-items-center rounded-full bg-background/90 text-primary shadow-xl backdrop-blur transition-transform duration-300 group-hover:scale-110"
-              >
-                <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-primary/40" />
-                <Play className="size-7 fill-current" />
-              </button>
+          <Reveal delay={150}>
+            <div className="group relative mx-auto mt-12 aspect-video max-w-4xl overflow-hidden rounded-3xl border bg-card shadow-2xl shadow-primary/10 ring-1 ring-white/10">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-fuchsia-400/20 to-amber-200/30" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_50%)]" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <button
+                  type="button"
+                  aria-label="Play demo video"
+                  className="relative grid size-20 place-items-center rounded-full bg-background/90 text-primary shadow-xl backdrop-blur transition-transform duration-300 group-hover:scale-110"
+                >
+                  <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-primary/40" />
+                  <Play className="size-7 fill-current" />
+                </button>
+              </div>
+              <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-background/80 px-3 py-1.5 text-xs font-medium backdrop-blur">
+                <span className="size-2 animate-pulse rounded-full bg-red-500" />
+                Live demo · 1:02
+              </div>
             </div>
-            <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-background/80 px-3 py-1.5 text-xs font-medium backdrop-blur">
-              <span className="size-2 animate-pulse rounded-full bg-red-500" />
-              Live demo · 1:02
-            </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* PROBLEMS */}
@@ -141,14 +143,16 @@ export function HeroSection() {
           </h2>
 
           <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border bg-border md:grid-cols-2 lg:grid-cols-4">
-            {problems.map((p) => (
-              <div key={p.title} className="bg-card p-8 transition-colors hover:bg-accent/40">
-                <div className="grid size-12 place-items-center rounded-xl border bg-background text-primary">
-                  <p.icon className="size-5" />
+            {problems.map((p, i) => (
+              <Reveal key={p.title} delay={i * 80} className="bg-card">
+                <div className="h-full p-8 transition-colors hover:bg-accent/40">
+                  <div className="grid size-12 place-items-center rounded-xl border bg-background text-primary">
+                    <p.icon className="size-5" />
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold">{p.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
                 </div>
-                <h3 className="mt-5 text-lg font-semibold">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </section>
@@ -169,18 +173,19 @@ export function HeroSection() {
             </div>
 
             <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {features.map((f) => (
-                <div
-                  key={f.title}
-                  className="group relative overflow-hidden rounded-2xl border bg-background p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
-                >
-                  <div className="absolute -right-10 -top-10 size-32 rounded-full bg-primary/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
-                  <div className="relative grid size-11 place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20">
-                    <f.icon className="size-5" />
+              {features.map((f, i) => (
+                <Reveal key={f.title} delay={i * 70}>
+                  <div
+                    className="group relative h-full overflow-hidden rounded-2xl border bg-background p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
+                  >
+                    <div className="absolute -right-10 -top-10 size-32 rounded-full bg-primary/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
+                    <div className="relative grid size-11 place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20">
+                      <f.icon className="size-5" />
+                    </div>
+                    <h3 className="relative mt-5 text-lg font-semibold">{f.title}</h3>
+                    <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
                   </div>
-                  <h3 className="relative mt-5 text-lg font-semibold">{f.title}</h3>
-                  <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
