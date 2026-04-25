@@ -258,6 +258,60 @@ export function HeroSection() {
           </div>
         </section>
 
+        {/* IN THE WILD — team photos */}
+        <section className="mx-auto max-w-6xl px-6 py-24">
+          <Reveal>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
+              In the wild
+            </p>
+            <h2 className="max-w-2xl text-3xl font-semibold md:text-4xl lg:text-5xl">
+              Built by founders who've <span className="italic text-primary">shipped</span> in front of crowds.
+            </h2>
+            <p className="mt-4 max-w-2xl text-muted-foreground">
+              From Web Summit's main stage to local startup fairs — we've stress-tested SellStatic
+              with real marketers, real campaigns, and real deadlines.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-4 md:grid-cols-5 md:gap-6">
+            <Reveal className="md:col-span-3" delay={100}>
+              <div className="group relative overflow-hidden rounded-3xl border bg-card shadow-xl shadow-primary/5">
+                <img
+                  src={webSummit}
+                  alt="SellStatic founders presenting on the Web Summit stage"
+                  className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-6">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-white/70">
+                    Web Summit · Lisbon
+                  </p>
+                  <p className="mt-1 text-lg font-semibold text-white">
+                    Pitching the future of AI-generated advertising.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal className="md:col-span-2" delay={200}>
+              <div className="group relative h-full overflow-hidden rounded-3xl border bg-card shadow-xl shadow-primary/5">
+                <img
+                  src={teamBooth}
+                  alt="SellStatic team at a startup expo booth"
+                  className="aspect-[4/5] h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-6">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-white/70">
+                    Startup Expo
+                  </p>
+                  <p className="mt-1 text-lg font-semibold text-white">
+                    Meeting marketers face-to-face.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
         {/* HOW IT WORKS */}
         <section className="mx-auto max-w-5xl px-6 py-24">
           <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
