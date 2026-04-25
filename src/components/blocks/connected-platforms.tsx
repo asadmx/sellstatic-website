@@ -6,7 +6,6 @@ import {
   SiThreads,
   SiX,
   SiTiktok,
-  SiLinkedin,
   SiGoogle,
   SiPinterest,
   SiYoutube,
@@ -14,11 +13,11 @@ import {
   SiMeta,
   SiGoogleads,
 } from "react-icons/si";
-import type { IconType } from "react-icons";
+import { FaLinkedin } from "react-icons/fa";
 
 interface Platform {
   name: string;
-  icon: IconType;
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
   color: string; // brand hex
   bg?: string;
 }
@@ -34,7 +33,7 @@ const platforms: Platform[] = [
   { name: "Instagram", icon: SiInstagram, color: "#E1306C", bg: "bg-white" },
   { name: "Threads", icon: SiThreads, color: "#000000", bg: "bg-white" },
   { name: "X (Twitter)", icon: SiX, color: "#000000", bg: "bg-white" },
-  { name: "LinkedIn", icon: SiLinkedin, color: "#0A66C2", bg: "bg-white" },
+  { name: "LinkedIn", icon: FaLinkedin, color: "#0A66C2", bg: "bg-white" },
   { name: "Google Business", icon: SiGoogle, color: "#4285F4", bg: "bg-white" },
 ];
 
