@@ -111,19 +111,7 @@ export function HeroSection() {
           </Reveal>
 
           <Reveal delay={150}>
-            <div className="group relative mx-auto mt-12 aspect-video max-w-4xl overflow-hidden rounded-3xl border bg-black shadow-2xl shadow-primary/10 ring-1 ring-white/10">
-              <video
-                src="/sellstatic-trailer.mp4"
-                controls
-                playsInline
-                preload="metadata"
-                className="h-full w-full object-cover"
-              />
-              <div className="pointer-events-none absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-background/80 px-3 py-1.5 text-xs font-medium backdrop-blur">
-                <span className="size-2 animate-pulse rounded-full bg-red-500" />
-                Official trailer
-              </div>
-            </div>
+            <DemoVideo />
           </Reveal>
         </section>
 
