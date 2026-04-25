@@ -12,7 +12,7 @@ import {
 } from "react-icons/io5";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/sellstatic-logo.png";
+import logo from "@/assets/sellstatic-logo-mark.png";
 
 type MenuItem = {
   title: string;
@@ -42,8 +42,9 @@ export function SiteHeader() {
       <div className="mx-auto max-w-6xl rounded-full border border-border/60 bg-background/70 px-4 shadow-lg shadow-primary/5 ring-1 ring-white/5 backdrop-blur-xl supports-[backdrop-filter]:bg-background/50">
         <div className="flex items-center justify-between gap-4 py-2">
           {/* Logo */}
-          <Link to="/" aria-label="SellStatic home" className="flex shrink-0 items-center pl-2">
-            <img src={logo} alt="SellStatic" className="h-8 w-auto" />
+          <Link to="/" aria-label="SellStatic home" className="flex shrink-0 items-center gap-2 pl-2">
+            <img src={logo} alt="SellStatic" className="h-9 w-auto" />
+            <span className="text-sm font-semibold tracking-[0.2em] text-foreground">SELLSTATIC</span>
           </Link>
 
           {/* Gradient menu — desktop */}
