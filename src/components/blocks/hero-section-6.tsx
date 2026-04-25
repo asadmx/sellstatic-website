@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock, Wrench, Plug, DollarSign, Sparkles, Layers, Zap, ShieldCheck, BarChart3 } from "lucide-react";
+import { ArrowRight, Clock, Wrench, Plug, DollarSign, Sparkles, Layers, Zap, ShieldCheck, BarChart3, Play } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { StepsShowcase } from "@/components/steps-showcase";
@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/accordion";
 import teamBooth from "@/assets/team-booth.jpg";
 import webSummit from "@/assets/web-summit.jpg";
+import trailerPoster from "@/assets/trailer-poster.jpg";
+import { useRef, useState } from "react";
 
 const features = [
   { icon: Sparkles, title: "AI Ad Generator", desc: "Describe your offer in a sentence — get 100 on-brand ad variations across formats in seconds." },
