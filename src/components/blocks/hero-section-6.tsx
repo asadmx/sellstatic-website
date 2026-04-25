@@ -64,27 +64,32 @@ export function HeroSection() {
         <section className="overflow-hidden">
           <div className="relative mx-auto max-w-5xl px-6 py-28 lg:py-24">
             <div className="relative z-10 mx-auto max-w-3xl text-center">
-              <span className="mx-auto inline-flex items-center gap-2 rounded-full border border-primary/20 bg-accent px-4 py-1 text-xs font-medium uppercase tracking-wider text-accent-foreground">
+              <GradientText
+                as="span"
+                className="mx-auto inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-foreground"
+              >
                 <span className="size-1.5 animate-pulse rounded-full bg-primary" />
                 100 ads · 15 seconds · 13 platforms
-              </span>
+              </GradientText>
 
-              <h1 className="mt-8 text-balance text-4xl font-semibold md:text-5xl lg:text-6xl">
-                Your AI and marketing engine built for <span className="italic text-primary">growth</span>.
-              </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-balance text-muted-foreground">
-                SellStatic turns your ideas into on-brand ads and social posts, then schedules
-                them across platforms — so you can focus on what matters most.
-              </p>
+              <Reveal as="div" delay={100}>
+                <h1 className="mt-8 text-balance text-4xl font-semibold md:text-5xl lg:text-6xl">
+                  Your AI and marketing engine built for <span className="italic text-primary">growth</span>.
+                </h1>
+                <p className="mx-auto mt-6 max-w-2xl text-balance text-muted-foreground">
+                  SellStatic turns your ideas into on-brand ads and social posts, then schedules
+                  them across platforms — so you can focus on what matters most.
+                </p>
 
-              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Button asChild size="lg">
-                  <Link to="/create-ad"><span>Try Now</span><ArrowRight className="ml-2 size-4" /></Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link to="/dashboard"><span>Open dashboard</span></Link>
-                </Button>
-              </div>
+                <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <Button asChild size="lg">
+                    <Link to="/create-ad"><span>Try Now</span><ArrowRight className="ml-2 size-4" /></Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline">
+                    <Link to="/dashboard"><span>Open dashboard</span></Link>
+                  </Button>
+                </div>
+              </Reveal>
             </div>
           </div>
         </section>
