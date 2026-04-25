@@ -4,6 +4,8 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { StepsShowcase } from "@/components/steps-showcase";
 import { FeaturedLogos } from "@/components/blocks/featured-logos";
+import { GradientText } from "@/components/ui/gradient-text";
+import { Reveal } from "@/components/reveal";
 import { Link } from "@tanstack/react-router";
 import {
   Accordion,
@@ -11,6 +13,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import teamBooth from "@/assets/team-booth.jpg";
+import webSummit from "@/assets/web-summit.jpg";
 
 const features = [
   { icon: Sparkles, title: "AI Ad Generator", desc: "Describe your offer in a sentence — get 100 on-brand ad variations across formats in seconds." },
