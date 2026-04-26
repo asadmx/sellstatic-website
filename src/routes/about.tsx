@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { TestimonialsCarousel } from "@/components/blocks/testimonials-carousel";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -57,27 +58,11 @@ function AboutPage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-5xl px-6 py-24">
-          <h2 className="max-w-xl text-3xl font-semibold md:text-4xl">
-            Loved by teams shipping <span className="italic text-primary">real campaigns</span>.
-          </h2>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {testimonials.map((t) => (
-              <div key={t.name} className="rounded-2xl border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-lg">
-                <p className="italic leading-relaxed text-foreground/80">"{t.quote}"</p>
-                <div className="mt-6 flex items-center gap-3">
-                  <div className="grid size-10 place-items-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
-                    {t.initial}
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold">{t.name}</div>
-                    <div className="text-xs text-muted-foreground">{t.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        <TestimonialsCarousel
+          title="Why teams love SellStatic"
+          subtitle="What our customers are saying"
+          testimonials={testimonials}
+        />
 
         <section className="border-t bg-accent/40">
           <div className="mx-auto max-w-5xl px-6 py-20 text-center">
