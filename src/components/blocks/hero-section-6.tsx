@@ -243,7 +243,7 @@ export function HeroSection() {
           <div className="grid gap-12 md:grid-cols-2 md:items-center">
             <Reveal>
               <h2 className="text-4xl font-semibold leading-tight md:text-5xl">
-                About <GradientText as="span" className="italic text-primary">SellStatic</GradientText>
+                About <span className="italic text-primary">SellStatic</span>
                 <br />
                 with Creativity and Speed
               </h2>
