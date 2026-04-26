@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/accordion";
 import teamBooth from "@/assets/team-booth.jpg";
 import webSummit from "@/assets/web-summit.jpg";
+import wildCollision from "@/assets/wild-collision.jpg";
+import wildTeam from "@/assets/wild-team.jpg";
 import trailerPoster from "@/assets/trailer-poster.jpg";
 import { useRef, useState } from "react";
 
@@ -236,56 +238,53 @@ export function HeroSection() {
           </div>
         </section>
 
-        {/* IN THE WILD — team photos */}
+        {/* ABOUT — team photos collage */}
         <section className="mx-auto max-w-6xl px-6 py-24">
-          <Reveal>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
-              In the wild
-            </p>
-            <h2 className="max-w-2xl text-3xl font-semibold md:text-4xl lg:text-5xl">
-              Built by founders who've <span className="italic text-primary">shipped</span> in front of crowds.
-            </h2>
-            <p className="mt-4 max-w-2xl text-muted-foreground">
-              From Web Summit's main stage to local startup fairs — we've stress-tested SellStatic
-              with real marketers, real campaigns, and real deadlines.
-            </p>
-          </Reveal>
-
-          <div className="mt-12 grid gap-4 md:grid-cols-5 md:gap-6">
-            <Reveal className="md:col-span-3" delay={100}>
-              <div className="group relative overflow-hidden rounded-3xl border bg-card shadow-xl shadow-primary/5">
-                <img
-                  src={webSummit}
-                  alt="SellStatic founders presenting on the Web Summit stage"
-                  className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-6">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-white/70">
-                    Web Summit · Lisbon
-                  </p>
-                  <p className="mt-1 text-lg font-semibold text-white">
-                    Pitching the future of AI-generated advertising.
-                  </p>
-                </div>
+          <div className="grid gap-12 md:grid-cols-2 md:items-center">
+            <Reveal>
+              <h2 className="text-4xl font-semibold leading-tight md:text-5xl">
+                About <GradientText as="span" className="italic text-primary">SellStatic</GradientText>
+                <br />
+                with Creativity and Speed
+              </h2>
+              <p className="mt-6 max-w-md text-muted-foreground">
+                Wherever you are shouldn't be a limiter to great marketing. We're building an
+                AI-first platform to help modern teams create, publish, and measure campaigns —
+                fast and on brand.
+              </p>
+              <div className="mt-8">
+                <Button asChild size="lg">
+                  <Link to="/about">Explore Product <ArrowRight className="ml-1 size-4" /></Link>
+                </Button>
               </div>
             </Reveal>
-            <Reveal className="md:col-span-2" delay={200}>
-              <div className="group relative h-full overflow-hidden rounded-3xl border bg-card shadow-xl shadow-primary/5">
+
+            <Reveal delay={150}>
+              <div className="grid grid-cols-2 gap-4">
+                <img
+                  src={wildCollision}
+                  alt="SellStatic team at Collision Toronto"
+                  loading="lazy"
+                  className="aspect-square w-full rounded-2xl border object-cover shadow-lg shadow-primary/5 transition-transform duration-500 hover:scale-[1.02]"
+                />
                 <img
                   src={teamBooth}
-                  alt="SellStatic team at a startup expo booth"
-                  className="aspect-[4/5] h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  alt="SellStatic founders at expo booth"
                   loading="lazy"
+                  className="aspect-square w-full rounded-2xl border object-cover shadow-lg shadow-primary/5 transition-transform duration-500 hover:scale-[1.02]"
                 />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-6">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-white/70">
-                    Startup Expo
-                  </p>
-                  <p className="mt-1 text-lg font-semibold text-white">
-                    Meeting marketers face-to-face.
-                  </p>
-                </div>
+                <img
+                  src={webSummit}
+                  alt="SellStatic on stage at Web Summit"
+                  loading="lazy"
+                  className="aspect-square w-full rounded-2xl border object-cover shadow-lg shadow-primary/5 transition-transform duration-500 hover:scale-[1.02]"
+                />
+                <img
+                  src={wildTeam}
+                  alt="SellStatic team in branded shirts"
+                  loading="lazy"
+                  className="aspect-square w-full rounded-2xl border object-cover shadow-lg shadow-primary/5 transition-transform duration-500 hover:scale-[1.02]"
+                />
               </div>
             </Reveal>
           </div>
