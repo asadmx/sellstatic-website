@@ -16,7 +16,7 @@ import logo from "@/assets/sellstatic-logo-mark.png";
 
 type MenuItem = {
   title: string;
-  to: "/" | "/create-ad" | "/video" | "/view-ads" | "/templates" | "/social" | "/pricing" | "/login";
+  to: "/" | "/create-ad" | "/video" | "/view-ads" | "/templates" | "/social" | "/pricing" | "/login" | "/about";
   icon: React.ReactNode;
   gradientFrom: string;
   gradientTo: string;
@@ -30,6 +30,7 @@ const menuItems: MenuItem[] = [
   { title: "Templates", to: "/templates", icon: <IoCopyOutline />, gradientFrom: "#ffa9c6", gradientTo: "#f434e2" },
   { title: "Social", to: "/social", icon: <IoShareSocialOutline />, gradientFrom: "#fceabb", gradientTo: "#f8b500" },
   { title: "Pricing", to: "/pricing", icon: <IoStatsChartOutline />, gradientFrom: "#a955ff", gradientTo: "#7e5bef" },
+  { title: "About", to: "/about", icon: <IoStatsChartOutline />, gradientFrom: "#7EE8FA", gradientTo: "#a955ff" },
 ];
 
 export function SiteHeader() {
@@ -43,7 +44,7 @@ export function SiteHeader() {
         <div className="flex items-center justify-between gap-4 py-2">
           {/* Logo */}
           <Link to="/" aria-label="SellStatic home" className="flex shrink-0 items-center pl-2">
-            <img src={logo} alt="SellStatic" className="h-9 w-auto" />
+            <img src={logo} alt="SellStatic" className="h-12 w-auto" />
           </Link>
 
           {/* Gradient menu — desktop */}
