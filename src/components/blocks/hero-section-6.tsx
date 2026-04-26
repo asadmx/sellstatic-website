@@ -70,7 +70,7 @@ export function HeroSection() {
                 className="mx-auto inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-foreground"
               >
                 <span className="size-1.5 animate-pulse rounded-full bg-primary" />
-                100 ads · 15 seconds · 13 platforms
+                Marketing made easy
               </GradientText>
 
               <Reveal as="div" delay={100}>
