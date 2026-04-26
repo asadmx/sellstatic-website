@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { StepsShowcase } from "@/components/steps-showcase";
 import { FeaturedLogos } from "@/components/blocks/featured-logos";
 import { ConnectedPlatforms } from "@/components/blocks/connected-platforms";
-import { GradientText } from "@/components/ui/gradient-text";
+import { GooeyText } from "@/components/ui/gooey-text";
 import { Reveal } from "@/components/reveal";
 import { Link } from "@tanstack/react-router";
 import {
@@ -65,13 +65,11 @@ export function HeroSection() {
         <section className="overflow-hidden">
           <div className="relative mx-auto max-w-5xl px-6 py-28 lg:py-24">
             <div className="relative z-10 mx-auto max-w-3xl text-center">
-              <GradientText
-                as="span"
-                className="mx-auto inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-foreground"
-              >
-                <span className="size-1.5 animate-pulse rounded-full bg-primary" />
-                Marketing made easy
-              </GradientText>
+              <GooeyText
+                texts={["Marketing", "made", "easy"]}
+                className="mx-auto h-12 w-full max-w-md"
+                textClassName="text-2xl md:text-3xl font-semibold tracking-tight text-primary"
+              />
 
               <Reveal as="div" delay={100}>
                 <h1 className="mt-8 text-balance text-4xl font-semibold md:text-5xl lg:text-6xl">
