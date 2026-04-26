@@ -1,4 +1,4 @@
-import { HoverButton } from "@/components/ui/hover-button";
+import { GlowButton } from "@/components/ui/glow-button";
 import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import {
@@ -9,6 +9,7 @@ import {
   IoCopyOutline,
   IoShareSocialOutline,
   IoStatsChartOutline,
+  IoInformationCircleOutline,
 } from "react-icons/io5";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -30,7 +31,7 @@ const menuItems: MenuItem[] = [
   { title: "Templates", to: "/templates", icon: <IoCopyOutline />, gradientFrom: "#ffa9c6", gradientTo: "#f434e2" },
   { title: "Social", to: "/social", icon: <IoShareSocialOutline />, gradientFrom: "#fceabb", gradientTo: "#f8b500" },
   { title: "Pricing", to: "/pricing", icon: <IoStatsChartOutline />, gradientFrom: "#a955ff", gradientTo: "#7e5bef" },
-  { title: "About", to: "/about", icon: <IoStatsChartOutline />, gradientFrom: "#7EE8FA", gradientTo: "#a955ff" },
+  { title: "About", to: "/about", icon: <IoInformationCircleOutline />, gradientFrom: "#7EE8FA", gradientTo: "#a955ff" },
 ];
 
 export function SiteHeader() {
@@ -86,19 +87,16 @@ export function SiteHeader() {
           </nav>
 
           {/* Right actions */}
-          <div className="flex items-center gap-2 pr-1">
-            <HoverButton
+          <div className="flex items-center gap-3 pr-1">
+            <GlowButton
               onClick={() => navigate({ to: "/login" })}
               className="hidden sm:inline-flex"
             >
               Log in
-            </HoverButton>
-            <HoverButton
-              onClick={() => navigate({ to: "/dashboard" })}
-              className="[--circle-start:theme(colors.fuchsia.500)] [--circle-end:theme(colors.amber.300)]"
-            >
+            </GlowButton>
+            <GlowButton onClick={() => navigate({ to: "/dashboard" })}>
               Dashboard
-            </HoverButton>
+            </GlowButton>
             <button
               onClick={() => setOpen(!open)}
               aria-label={open ? "Close menu" : "Open menu"}
