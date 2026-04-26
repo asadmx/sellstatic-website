@@ -1,4 +1,4 @@
-import { HoverButton } from "@/components/ui/hover-button";
+import { GlowButton } from "@/components/ui/glow-button";
 import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import {
@@ -9,6 +9,7 @@ import {
   IoCopyOutline,
   IoShareSocialOutline,
   IoStatsChartOutline,
+  IoInformationCircleOutline,
 } from "react-icons/io5";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
