@@ -196,8 +196,24 @@ export function HeroSection() {
           </div>
         </section>
 
+        {/* PRODUCT FEATURE CAROUSEL */}
+        <section className="mx-auto max-w-6xl px-6 py-24">
+          <Reveal className="mx-auto mb-12 max-w-2xl text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
+              Everything we offer
+            </p>
+            <h2 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
+              One platform, <span className="italic text-primary">every tool</span> you need.
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              Ad creator, video generator, scheduled posts, performance dashboard — all under one roof.
+            </p>
+          </Reveal>
+          <FeatureCarousel steps={productSteps} image={productImages} />
+        </section>
 
-        {/* SHIP CTA */}
+        {/* AD SHOWCASE */}
+        <AdShowcase />
         <section className="border-y bg-accent/40">
           <div className="mx-auto grid max-w-5xl gap-10 px-6 py-20 md:grid-cols-2 md:items-center">
             <h2 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
