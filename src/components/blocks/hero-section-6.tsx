@@ -214,6 +214,8 @@ export function HeroSection() {
 
         {/* AD SHOWCASE */}
         <AdShowcase />
+
+        {/* SHIP CTA */}
         <section className="border-y bg-accent/40">
           <div className="mx-auto grid max-w-5xl gap-10 px-6 py-20 md:grid-cols-2 md:items-center">
             <h2 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
