@@ -5,6 +5,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { StepsShowcase } from "@/components/steps-showcase";
 import { FeaturedLogos } from "@/components/blocks/featured-logos";
 import { ConnectedPlatforms } from "@/components/blocks/connected-platforms";
+import { FeatureCarousel } from "@/components/blocks/feature-carousel";
+import { AdShowcase } from "@/components/blocks/ad-showcase";
 import { GooeyText } from "@/components/ui/gooey-text";
 import { Reveal } from "@/components/reveal";
 import { Link } from "@tanstack/react-router";
@@ -19,7 +21,28 @@ import webSummit from "@/assets/web-summit.jpg";
 import wildCollision from "@/assets/wild-collision.jpg";
 import wildTeam from "@/assets/wild-team.jpg";
 import trailerPoster from "@/assets/trailer-poster.jpg";
+import stepImages from "@/assets/step-images.jpg";
+import stepText from "@/assets/step-text.jpg";
+import stepTemplates from "@/assets/step-templates.jpg";
+import stepPreview from "@/assets/step-preview.jpg";
 import { useRef, useState } from "react";
+
+const productSteps = [
+  { id: "1", name: "Ad Creator", title: "Generate ads from a one-line brief", description: "Describe your offer and SellStatic generates 100+ on-brand ad variations across every format and aspect ratio in seconds." },
+  { id: "2", name: "Video Generator", title: "Turn any idea into a multi-scene video", description: "Drop a link, image, or text. Our AI Video Director writes the script, picks visuals, adds voiceover, and renders it for every channel." },
+  { id: "3", name: "Scheduled Posts", title: "Plan a month of posts in one calendar", description: "Schedule across 13+ platforms from a single drag-and-drop calendar. Approvals, time zones, and best-time-to-post handled for you." },
+  { id: "4", name: "Dashboard", title: "See what's working — instantly", description: "Track CTR, impressions, conversions, and spend across every ad and channel from one clean performance dashboard." },
+];
+
+const productImages = {
+  step1img1: stepText,
+  step1img2: stepImages,
+  step2img1: stepTemplates,
+  step2img2: stepPreview,
+  step3img: stepImages,
+  step4img: stepPreview,
+  alt: "SellStatic product screenshot",
+};
 
 const features = [
   { icon: Sparkles, title: "AI Ad Generator", desc: "Describe your offer in a sentence — get 100 on-brand ad variations across formats in seconds." },
