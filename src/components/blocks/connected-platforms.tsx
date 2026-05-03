@@ -13,7 +13,6 @@ import {
   SiGoogleads,
   SiMeta,
 } from "react-icons/si";
-import { FaLinkedin } from "lucide-react/dist/lucide-react"; // fallback if missing
 import { Globe, Rss, Briefcase, Plus, X as XIcon } from "lucide-react";
 import { FaLinkedin as Linkedin } from "react-icons/fa";
 
