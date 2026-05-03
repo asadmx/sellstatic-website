@@ -1,0 +1,37 @@
+# SellStatic
+
+> SellStatic is an AI-powered marketing platform that turns one-line briefs into on-brand ads, videos, and social posts — and publishes them across 13+ platforms from a single workspace.
+
+SellStatic helps marketing teams generate hundreds of ad variations in seconds, schedule posts across every major social network, and track performance from one dashboard. Built for speed, brand consistency, and measurable growth.
+
+## Core Features
+
+- AI Ad Generator — describe your offer, get 100+ on-brand ad variations in seconds
+- AI Video Director — turn a link, image, or text into a multi-scene video ad
+- Brand Kit Sync — logo, fonts, colors applied automatically to every asset
+- Multi-Platform Publishing — schedule and post to 13+ networks from one calendar
+- Performance Analytics — real-time CTR, impressions, and conversion tracking
+- Approval Workflows — shareable previews and inline comments before publish
+- 300+ Templates — professionally designed for every industry and format
+
+## Connected Platforms
+
+Facebook, Instagram, Threads, X (Twitter), TikTok, LinkedIn, Pinterest, YouTube, Twitch, Google Business, Bluesky, plus Meta Ads, Google Ads, and TikTok Ads.
+
+## Pages
+
+- [Home](https://gentle-ui-blocks.lovable.app/): Product overview and demo
+- [Features](https://gentle-ui-blocks.lovable.app/features): Full feature list
+- [Pricing](https://gentle-ui-blocks.lovable.app/pricing): Starter, Professional, Growth plans
+- [Platforms](https://gentle-ui-blocks.lovable.app/platforms): Supported channels
+- [About](https://gentle-ui-blocks.lovable.app/about): Team and story
+
+## Pricing
+
+- Starter — $39/mo (or $26/mo annual) — 1,500 credits
+- Professional — $99/mo (or $66/mo annual) — 5,000 credits
+- Growth — $199/mo (or $133/mo annual) — 15,000 credits
+
+## Contact
+
+hello@sellstatic.com
