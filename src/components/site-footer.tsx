@@ -1,11 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { Twitter, Linkedin, Github, Mail } from "lucide-react";
+import { Twitter, Linkedin, Mail } from "lucide-react";
 import logo from "@/assets/sellstatic-logo-mark.png";
 
 const socialLinks = [
   { icon: <Twitter className="size-4" />, href: "#", label: "Twitter" },
   { icon: <Linkedin className="size-4" />, href: "#", label: "LinkedIn" },
-  { icon: <Github className="size-4" />, href: "#", label: "GitHub" },
   { icon: <Mail className="size-4" />, href: "mailto:hello@sellstatic.com", label: "Email" },
 ];
 
