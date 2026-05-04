@@ -158,11 +158,11 @@ function FeatureCard({
               "radial-gradient(420px circle at var(--x) var(--y), color-mix(in oklab, var(--primary) 18%, transparent), transparent 60%)",
           }}
         />
-        <div className="relative m-8 min-h-[420px] w-[calc(100%-4rem)] md:m-10">
+        <div className="relative grid gap-8 p-8 md:grid-cols-2 md:gap-10 md:p-10">
           <AnimatePresence mode="wait">
             <motion.div
               key={step}
-              className="flex w-full flex-col gap-4 md:w-3/5"
+              className="flex flex-col gap-4 md:max-w-md"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -178,8 +178,8 @@ function FeatureCard({
                 {steps[step].description}
               </p>
             </motion.div>
+            <div className="relative min-h-[320px] md:min-h-[420px]">{children}</div>
           </AnimatePresence>
-          {children}
         </div>
       </div>
     </motion.div>
