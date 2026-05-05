@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
+import { AnimatedPricing } from "@/components/blocks/animated-pricing";
 import { Check, Minus } from "lucide-react";
 import { useState } from "react";
 
@@ -105,35 +106,7 @@ function PricingPage() {
 
         {/* Pricing tier cards */}
         <section className="mx-auto max-w-6xl px-6 pb-20">
-          <div className="grid gap-6 md:grid-cols-3">
-            {plans.map((p) => (
-              <div
-                key={p.name}
-                className={
-                  "rounded-2xl border bg-card p-8 transition-all " +
-                  (p.highlight ? "border-primary shadow-xl shadow-primary/10 md:-translate-y-2" : "")
-                }
-              >
-                {p.highlight && (
-                  <div className="mb-3 inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
-                    Most popular
-                  </div>
-                )}
-                <h3 className="text-lg font-semibold">{p.name}</h3>
-                <div className="mt-3 flex items-baseline gap-1">
-                  <span className="text-4xl font-semibold">${annual ? p.annual : p.monthly}</span>
-                  <span className="text-sm text-muted-foreground">/mo</span>
-                </div>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {p.credits} credits / month
-                </p>
-                <p className="mt-4 text-sm text-muted-foreground">{p.desc}</p>
-                <Button className="mt-6 w-full" variant={p.highlight ? "default" : "outline"}>
-                  {p.cta}
-                </Button>
-              </div>
-            ))}
-          </div>
+          <AnimatedPricing />
         </section>
 
         {/* Feature matrix */}
