@@ -106,7 +106,7 @@ function PricingPage() {
 
         {/* Pricing tier cards */}
         <section className="mx-auto max-w-6xl px-6 pb-20">
-          <AnimatedPricing />
+          <AnimatedPricing annual={annual} />
         </section>
 
         {/* Feature matrix */}
