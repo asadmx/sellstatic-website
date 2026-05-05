@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
+import { AnimatedPricing } from "@/components/blocks/animated-pricing";
 import { Check, Minus } from "lucide-react";
 import { useState } from "react";
 
