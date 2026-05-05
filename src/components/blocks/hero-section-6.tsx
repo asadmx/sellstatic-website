@@ -57,12 +57,12 @@ const productImages = {
 };
 
 const features = [
-  { icon: Sparkles, title: "AI Ad Generator", desc: "Describe your offer in a sentence — get 100 on-brand ad variations across formats in seconds." },
-  { icon: Layers, title: "Brand Kit Sync", desc: "Upload your logo, fonts, and colors once. Every asset stays perfectly on-brand, automatically." },
-  { icon: Zap, title: "One-Click Publish", desc: "Schedule and post to 13+ networks from a single calendar — no more copy-pasting between dashboards." },
-  { icon: ShieldCheck, title: "Approval Workflows", desc: "Loop in stakeholders with shareable previews and inline comments before anything goes live." },
-  { icon: BarChart3, title: "Live Performance", desc: "See which creative is winning in real time, then auto-remix the best performers into new variants." },
-  { icon: Plug, title: "Native Integrations", desc: "Plug into Meta, TikTok, Google, LinkedIn, and more — no Zapier, no duct tape, just connect and go." },
+  { icon: TbWand, title: "AI Ad Generator", desc: "Describe your offer in a sentence — get 100 on-brand ad variations across formats in seconds." },
+  { icon: TbPalette, title: "Brand Kit Sync", desc: "Upload your logo, fonts, and colors once. Every asset stays perfectly on-brand, automatically." },
+  { icon: TbRocket, title: "One-Click Publish", desc: "Schedule and post to 13+ networks from a single calendar — no more copy-pasting between dashboards." },
+  { icon: TbUsersGroup, title: "Approval Workflows", desc: "Loop in stakeholders with shareable previews and inline comments before anything goes live." },
+  { icon: TbChartHistogram, title: "Live Performance", desc: "See which creative is winning in real time, then auto-remix the best performers into new variants." },
+  { icon: TbApps, title: "Native Integrations", desc: "Plug into Meta, TikTok, Google, LinkedIn, and more — no Zapier, no duct tape, just connect and go." },
 ];
 
 const faqs = [
@@ -75,10 +75,10 @@ const faqs = [
 ];
 
 const problems = [
-  { icon: Clock, title: "Time Consuming", desc: "Creating and managing content takes much longer than it should." },
-  { icon: Wrench, title: "Skill Gaps", desc: "You need design, writing, and tech skills just to get started." },
-  { icon: Plug, title: "Poor Integration", desc: "Tools don't talk to each other, making publishing and planning a hassle." },
-  { icon: DollarSign, title: "Wasting Money", desc: "Paying for multiple tools and freelancers adds up quickly." },
+  { icon: TbClockHour4, title: "Time Consuming", desc: "Creating and managing content takes much longer than it should." },
+  { icon: TbPuzzle2, title: "Skill Gaps", desc: "You need design, writing, and tech skills just to get started." },
+  { icon: TbPlugConnected, title: "Poor Integration", desc: "Tools don't talk to each other, making publishing and planning a hassle." },
+  { icon: TbCoin, title: "Wasting Money", desc: "Paying for multiple tools and freelancers adds up quickly." },
 ];
 
 
