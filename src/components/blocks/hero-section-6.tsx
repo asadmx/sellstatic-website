@@ -1,5 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock, Wrench, Plug, DollarSign, Sparkles, Layers, Zap, ShieldCheck, BarChart3, Play } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
+import {
+  TbClockHour4,
+  TbPuzzle2,
+  TbPlugConnected,
+  TbCoin,
+  TbWand,
+  TbPalette,
+  TbRocket,
+  TbUsersGroup,
+  TbChartHistogram,
+  TbApps,
+} from "react-icons/tb";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { StepsShowcase } from "@/components/steps-showcase";
