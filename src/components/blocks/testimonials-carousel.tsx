@@ -29,12 +29,12 @@ function Avatar({ name }: { name: string }) {
 
 function Card({ t }: { t: Testimonial }) {
   return (
-    <div className="flex h-full flex-col justify-between gap-6 rounded-2xl border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
-      <p className="text-sm leading-relaxed text-foreground/90">"{t.quote}"</p>
-      <div className="flex items-center gap-3">
+    <div className="flex h-full flex-col justify-between gap-6 rounded-2xl border bg-card p-6 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 hover:shadow-lg">
+      <p className="text-base leading-relaxed text-foreground">"{t.quote}"</p>
+      <div className="flex items-center gap-3 border-t pt-4">
         <Avatar name={t.name} />
         <div>
-          <p className="text-sm font-semibold leading-tight">{t.name}</p>
+          <p className="text-sm font-semibold leading-tight text-foreground">{t.name}</p>
           <p className="text-xs text-muted-foreground">{t.role}</p>
         </div>
       </div>
