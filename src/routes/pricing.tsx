@@ -111,35 +111,52 @@ function PricingPage() {
 
         {/* Feature matrix */}
         <section className="mx-auto max-w-6xl px-6 pb-24">
-          <h2 className="text-2xl font-semibold md:text-3xl">What's included</h2>
-          <div className="mt-6 overflow-hidden rounded-2xl border bg-card">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
-                <thead className="bg-muted/40 text-xs uppercase tracking-wider text-muted-foreground">
-                  <tr>
-                    <th className="px-6 py-4 font-semibold">Feature</th>
-                    {plans.map((p) => (
-                      <th key={p.name} className="px-6 py-4 text-center font-semibold">
-                        {p.name}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {features.map((row, i) => (
-                    <tr key={row.label} className={i % 2 ? "bg-background" : "bg-muted/20"}>
-                      <td className="px-6 py-3.5 font-medium text-foreground/90">{row.label}</td>
-                      {row.values.map((v, idx) => (
-                        <td key={idx} className="px-6 py-3.5 text-center">
-                          <CellValue value={v} />
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+          <div className="mb-10 text-center">
+            <p className="text-xs font-semibold uppercase tracking-wider text-primary">Compare plans</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+              Everything that's <span className="italic text-primary">included</span>
+            </h2>
           </div>
+
+          <div className="overflow-hidden rounded-3xl border bg-gradient-to-b from-card to-card/50 shadow-[0_10px_40px_-12px_rgba(0,0,0,0.08)]">
+            {/* Header */}
+            <div className="grid grid-cols-[1.5fr_1fr_1fr_1fr] items-center gap-4 border-b bg-muted/30 px-6 py-5 sm:px-8">
+              <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Feature
+              </div>
+              {plans.map((p) => (
+                <div key={p.name} className="text-center">
+                  <div
+                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${
+                      p.highlight
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-background text-foreground"
+                    }`}
+                  >
+                    {p.name}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Rows */}
+            <ul className="divide-y">
+              {features.map((row) => (
+                <li
+                  key={row.label}
+                  className="grid grid-cols-[1.5fr_1fr_1fr_1fr] items-center gap-4 px-6 py-4 transition-colors hover:bg-muted/20 sm:px-8"
+                >
+                  <div className="text-sm font-medium text-foreground/90">{row.label}</div>
+                  {row.values.map((v, idx) => (
+                    <div key={idx} className="text-center">
+                      <CellValue value={v} />
+                    </div>
+                  ))}
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <p className="mt-8 text-center text-xs text-muted-foreground">
             ✓ Unlimited exports · ✓ Cancel anytime · ✓ 14-day Pro trial
           </p>
