@@ -177,6 +177,29 @@ function AboutPage() {
           </div>
         </section>
 
+        {/* Map */}
+        <section className="border-t">
+          <div className="mx-auto max-w-6xl px-6 py-20">
+            <div className="mb-8 text-center">
+              <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
+                <MapPin className="size-3" /> Find us
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+                Toronto, <span className="italic text-primary">Canada</span>
+              </h2>
+            </div>
+            <div className="overflow-hidden rounded-3xl border shadow-sm">
+              <iframe
+                title="SellStatic location — Toronto, Canada"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-79.5432%2C43.6160%2C-79.3175%2C43.7615&layer=mapnik&marker=43.6532%2C-79.3832"
+                className="h-[420px] w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="border-t bg-accent/40">
           <div className="mx-auto max-w-5xl px-6 py-20 text-center">
