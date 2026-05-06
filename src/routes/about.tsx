@@ -18,16 +18,15 @@ export const Route = createFileRoute("/about")({
 });
 
 const team = [
-  { name: "Alex Carter", role: "Co-Founder", color: "from-indigo-300 to-indigo-500" },
-  { name: "Jordan Lee", role: "CTO", color: "from-pink-300 to-pink-500" },
-  { name: "Morgan Reyes", role: "Lead UX Designer", color: "from-rose-300 to-rose-500" },
-  { name: "Sam Patel", role: "Co-Founder", color: "from-purple-300 to-purple-500" },
-  { name: "Riley Chen", role: "Head of Growth", color: "from-amber-300 to-amber-500" },
-  { name: "Taylor Brooks", role: "Engineering", color: "from-emerald-300 to-emerald-500" },
-  { name: "Jamie Park", role: "Product", color: "from-sky-300 to-sky-500" },
-  { name: "Casey Diaz", role: "Marketing", color: "from-fuchsia-300 to-fuchsia-500" },
-  { name: "Avery Singh", role: "Engineering", color: "from-cyan-300 to-cyan-500" },
-  { name: "Quinn Walker", role: "Customer Success", color: "from-orange-300 to-orange-500" },
+  { name: "Imam Khalid", role: "CEO", color: "from-indigo-300 to-indigo-500" },
+  { name: "Abdullah Abdullah", role: "CTO", color: "from-pink-300 to-pink-500" },
+  { name: "Aditya Sharma", role: "CPO", color: "from-rose-300 to-rose-500" },
+  { name: "Ahmad Pasha", role: "Front End Lead", color: "from-purple-300 to-purple-500" },
+  { name: "Muhamad Moiz", role: "Back End Lead", color: "from-amber-300 to-amber-500" },
+  { name: "Ayush", role: "Full Stack Engineer", color: "from-emerald-300 to-emerald-500" },
+  { name: "Harnoor Boparai", role: "Full Stack Engineer", color: "from-sky-300 to-sky-500" },
+  { name: "Jaazib Tariq", role: "Full Stack Engineer", color: "from-fuchsia-300 to-fuchsia-500" },
+  { name: "Asad Malik", role: "Full Stack Engineer", color: "from-cyan-300 to-cyan-500" },
 ];
 
 const story = [
