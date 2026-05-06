@@ -43,10 +43,10 @@ const testimonials = [
 
 function TeamCard({ name, role, color }: { name: string; role: string; color: string }) {
   return (
-    <div className="group flex w-36 flex-col items-center gap-2 rounded-2xl border bg-card p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md sm:w-40">
-      <div className={`size-16 rounded-full bg-gradient-to-br ${color} ring-4 ring-background`} />
-      <p className="mt-1 text-center text-sm font-semibold leading-tight">{name}</p>
-      <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">{role}</span>
+    <div className="group flex w-44 flex-col items-center gap-3 rounded-3xl border bg-card p-5 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.1)] transition-all hover:-translate-y-1 hover:shadow-lg sm:w-48">
+      <div className={`size-20 rounded-full bg-gradient-to-br ${color} ring-4 ring-background`} />
+      <p className="mt-1 text-center text-base font-semibold leading-tight">{name}</p>
+      <span className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">{role}</span>
     </div>
   );
 }
