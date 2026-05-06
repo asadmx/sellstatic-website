@@ -142,60 +142,57 @@ function AboutPage() {
           testimonials={testimonials}
         />
 
-        {/* Location */}
+        {/* Location with stylized map */}
         <section className="border-t bg-card/50">
-          <div className="mx-auto grid max-w-5xl gap-10 px-6 py-24 md:grid-cols-2 md:items-center">
-            <div>
-              <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
+          <div className="mx-auto max-w-6xl px-6 py-24">
+            <div className="text-center">
+              <p className="inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
                 <MapPin className="size-3" /> We are located in
               </p>
-              <h2 className="mt-3 text-5xl font-semibold tracking-tight md:text-6xl">
+              <h2 className="mt-4 text-5xl font-semibold tracking-tight md:text-6xl">
                 Toronto, <span className="italic text-primary">Canada</span>
               </h2>
-              <p className="mt-5 max-w-md text-muted-foreground">
-                Built with focus and quiet determination. We make things that last — not because
-                it's easy, but because that's how we're wired.
-              </p>
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-2xl border bg-card p-6">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Scale</p>
-                <p className="mt-2 text-4xl font-semibold">1.2M+</p>
-                <p className="mt-1 text-xs text-muted-foreground">Ads generated this year</p>
-              </div>
-              <div className="rounded-2xl border bg-card p-6">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Community</p>
-                <p className="mt-2 text-4xl font-semibold">2,400+</p>
-                <p className="mt-1 text-xs text-muted-foreground">Active teams</p>
-              </div>
-              <div className="col-span-2 rounded-2xl border bg-card p-6">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Saved</p>
-                <p className="mt-2 text-4xl font-semibold">80%</p>
-                <p className="mt-1 text-xs text-muted-foreground">Avg. production time saved per campaign</p>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Map */}
-        <section className="border-t">
-          <div className="mx-auto max-w-6xl px-6 py-20">
-            <div className="mb-8 text-center">
-              <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
-                <MapPin className="size-3" /> Find us
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                Toronto, <span className="italic text-primary">Canada</span>
-              </h2>
-            </div>
-            <div className="overflow-hidden rounded-3xl border shadow-sm">
-              <iframe
-                title="SellStatic location — Toronto, Canada"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=-79.5432%2C43.6160%2C-79.3175%2C43.7615&layer=mapnik&marker=43.6532%2C-79.3832"
-                className="h-[420px] w-full"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            <div className="relative mt-12 grid items-center gap-10 md:grid-cols-[1fr_1.4fr]">
+              <div className="space-y-8">
+                <div>
+                  <p className="text-sm text-muted-foreground">Scale</p>
+                  <p className="mt-1 text-4xl font-semibold">1.2M+</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Ads generated this year</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Community</p>
+                  <p className="mt-1 text-4xl font-semibold">2,400+</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Active teams worldwide</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Saved</p>
+                  <p className="mt-1 text-4xl font-semibold">80%</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Avg. production time saved</p>
+                </div>
+              </div>
+
+              <div className="relative aspect-[4/3]">
+                <img
+                  src={northAmericaMap}
+                  alt="Map highlighting Toronto, Canada"
+                  loading="lazy"
+                  width={1280}
+                  height={896}
+                  className="absolute inset-0 size-full object-contain opacity-80"
+                />
+                {/* Highlight bubble over Toronto */}
+                <div className="absolute left-[64%] top-[44%]">
+                  <div className="relative flex size-28 items-center justify-center">
+                    <div className="absolute inset-0 rounded-full bg-white shadow-[0_10px_40px_-6px_rgba(168,85,247,0.45)]" />
+                    <div className="relative size-16 rounded-full bg-gradient-to-br from-primary/70 via-pink-400/70 to-purple-500/70 blur-[1px]" />
+                  </div>
+                  <div className="absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-full border bg-card px-3 py-1 text-xs font-semibold shadow-sm">
+                    Toronto
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
