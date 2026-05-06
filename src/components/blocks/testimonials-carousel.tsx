@@ -1,14 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { Quote } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 interface Testimonial {
   quote: string;
@@ -22,52 +14,66 @@ interface TestimonialsCarouselProps {
   testimonials: Testimonial[];
 }
 
+function Avatar({ name }: { name: string }) {
+  const initials = name
+    .split(" ")
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join("");
+  return (
+    <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary/40 to-pink-400/60 text-xs font-semibold text-white">
+      {initials}
+    </div>
+  );
+}
+
+function Card({ t }: { t: Testimonial }) {
+  return (
+    <div className="flex h-full flex-col justify-between gap-6 rounded-2xl border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
+      <p className="text-sm leading-relaxed text-foreground/90">"{t.quote}"</p>
+      <div className="flex items-center gap-3">
+        <Avatar name={t.name} />
+        <div>
+          <p className="text-sm font-semibold leading-tight">{t.name}</p>
+          <p className="text-xs text-muted-foreground">{t.role}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function TestimonialsCarousel({
-  title = "Why teams love SellStatic",
-  subtitle = "What our customers are saying",
+  title = "Trusted by startups and the world's largest companies",
+  subtitle = "Hear what teams are saying about SellStatic",
   testimonials,
 }: TestimonialsCarouselProps) {
-  return (
-    <section className="py-12 sm:py-20">
-      <div className="mx-auto max-w-5xl px-4 text-center sm:px-6">
-        <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-          {title}
-        </h2>
-        {subtitle && (
-          <p className="mt-3 text-base text-muted-foreground">{subtitle}</p>
-        )}
+  // Distribute into 3 columns
+  const cols: Testimonial[][] = [[], [], []];
+  testimonials.forEach((t, i) => cols[i % 3].push(t));
 
-        <div className="mt-12">
-          <Carousel opts={{ loop: true }}>
-            <div className="relative mx-auto max-w-2xl">
-              <CarouselContent>
-                {testimonials.map((t, index) => (
-                  <CarouselItem key={index}>
-                    <div className="p-2 pb-12">
-                      <div className="text-center">
-                        <Quote className="mx-auto my-4 size-8 text-primary/70" />
-                        <h4 className="mx-auto max-w-lg px-6 text-lg font-medium leading-relaxed">
-                          "{t.quote}"
-                        </h4>
-                        <div className="mt-8">
-                          <h4 className="text-base font-semibold">{t.name}</h4>
-                          <span className="text-sm text-muted-foreground">
-                            {t.role}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </CarouselItem>
+  return (
+    <section className="relative py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+            {title}
+          </h2>
+          {subtitle && (
+            <p className="mt-4 text-base text-muted-foreground">{subtitle}</p>
+          )}
+        </div>
+
+        <div className="relative mt-14">
+          <div className="grid gap-5 md:grid-cols-3">
+            {cols.map((col, i) => (
+              <div key={i} className="flex flex-col gap-5">
+                {col.map((t, idx) => (
+                  <Card key={idx} t={t} />
                 ))}
-              </CarouselContent>
-              <div className="pointer-events-none absolute inset-y-0 left-0 h-full w-2/12 bg-gradient-to-r from-background" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 h-full w-2/12 bg-gradient-to-l from-background" />
-            </div>
-            <div className="hidden md:block">
-              <CarouselPrevious className="bottom-0 left-1/2 top-auto -translate-x-16 translate-y-4" />
-              <CarouselNext className="bottom-0 left-auto right-1/2 top-auto translate-x-16 translate-y-4" />
-            </div>
-          </Carousel>
+              </div>
+            ))}
+          </div>
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
         </div>
       </div>
     </section>
