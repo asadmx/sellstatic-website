@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin, Sparkles } from "lucide-react";
 import { TestimonialsCarousel } from "@/components/blocks/testimonials-carousel";
+import northAmericaMap from "@/assets/north-america-map.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
