@@ -18,16 +18,15 @@ export const Route = createFileRoute("/about")({
 });
 
 const team = [
-  { name: "Alex Carter", role: "Co-Founder", color: "from-indigo-300 to-indigo-500" },
-  { name: "Jordan Lee", role: "CTO", color: "from-pink-300 to-pink-500" },
-  { name: "Morgan Reyes", role: "Lead UX Designer", color: "from-rose-300 to-rose-500" },
-  { name: "Sam Patel", role: "Co-Founder", color: "from-purple-300 to-purple-500" },
-  { name: "Riley Chen", role: "Head of Growth", color: "from-amber-300 to-amber-500" },
-  { name: "Taylor Brooks", role: "Engineering", color: "from-emerald-300 to-emerald-500" },
-  { name: "Jamie Park", role: "Product", color: "from-sky-300 to-sky-500" },
-  { name: "Casey Diaz", role: "Marketing", color: "from-fuchsia-300 to-fuchsia-500" },
-  { name: "Avery Singh", role: "Engineering", color: "from-cyan-300 to-cyan-500" },
-  { name: "Quinn Walker", role: "Customer Success", color: "from-orange-300 to-orange-500" },
+  { name: "Imam Khalid", role: "CEO", color: "from-indigo-300 to-indigo-500" },
+  { name: "Abdullah Abdullah", role: "CTO", color: "from-pink-300 to-pink-500" },
+  { name: "Aditya Sharma", role: "CPO", color: "from-rose-300 to-rose-500" },
+  { name: "Ahmad Pasha", role: "Front End Lead", color: "from-purple-300 to-purple-500" },
+  { name: "Muhamad Moiz", role: "Back End Lead", color: "from-amber-300 to-amber-500" },
+  { name: "Ayush", role: "Full Stack Engineer", color: "from-emerald-300 to-emerald-500" },
+  { name: "Harnoor Boparai", role: "Full Stack Engineer", color: "from-sky-300 to-sky-500" },
+  { name: "Jaazib Tariq", role: "Full Stack Engineer", color: "from-fuchsia-300 to-fuchsia-500" },
+  { name: "Asad Malik", role: "Full Stack Engineer", color: "from-cyan-300 to-cyan-500" },
 ];
 
 const story = [
@@ -44,10 +43,10 @@ const testimonials = [
 
 function TeamCard({ name, role, color }: { name: string; role: string; color: string }) {
   return (
-    <div className="group flex w-36 flex-col items-center gap-2 rounded-2xl border bg-card p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md sm:w-40">
-      <div className={`size-16 rounded-full bg-gradient-to-br ${color} ring-4 ring-background`} />
-      <p className="mt-1 text-center text-sm font-semibold leading-tight">{name}</p>
-      <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">{role}</span>
+    <div className="group flex w-44 flex-col items-center gap-3 rounded-3xl border bg-card p-5 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.1)] transition-all hover:-translate-y-1 hover:shadow-lg sm:w-48">
+      <div className={`size-20 rounded-full bg-gradient-to-br ${color} ring-4 ring-background`} />
+      <p className="mt-1 text-center text-base font-semibold leading-tight">{name}</p>
+      <span className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">{role}</span>
     </div>
   );
 }
@@ -174,6 +173,29 @@ function AboutPage() {
                 <p className="mt-2 text-4xl font-semibold">80%</p>
                 <p className="mt-1 text-xs text-muted-foreground">Avg. production time saved per campaign</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Map */}
+        <section className="border-t">
+          <div className="mx-auto max-w-6xl px-6 py-20">
+            <div className="mb-8 text-center">
+              <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
+                <MapPin className="size-3" /> Find us
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+                Toronto, <span className="italic text-primary">Canada</span>
+              </h2>
+            </div>
+            <div className="overflow-hidden rounded-3xl border shadow-sm">
+              <iframe
+                title="SellStatic location — Toronto, Canada"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-79.5432%2C43.6160%2C-79.3175%2C43.7615&layer=mapnik&marker=43.6532%2C-79.3832"
+                className="h-[420px] w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
         </section>
