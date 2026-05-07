@@ -177,7 +177,7 @@ function AboutPage() {
               </h2>
             </div>
 
-            <div className="relative mt-12 grid items-center gap-10 md:grid-cols-[1fr_1.4fr]">
+            <div className="relative mt-12 grid items-center gap-10 md:grid-cols-[1fr_2.2fr]">
               <div className="space-y-8">
                 <div>
                   <p className="text-sm text-muted-foreground">Scale</p>
@@ -196,14 +196,14 @@ function AboutPage() {
                 </div>
               </div>
 
-              <div className="relative aspect-[4/3]">
+              <div className="relative aspect-[16/10] w-full">
                 <img
                   src={northAmericaMap}
                   alt="Map highlighting Toronto, Canada"
                   loading="lazy"
-                  width={1280}
-                  height={896}
-                  className="absolute inset-0 size-full object-contain opacity-80"
+                  width={1600}
+                  height={1000}
+                  className="absolute inset-0 size-full object-cover opacity-90"
                 />
                 {/* Highlight bubble over Toronto */}
                 <div className="absolute left-[64%] top-[44%]">
