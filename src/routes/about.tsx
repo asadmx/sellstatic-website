@@ -93,11 +93,33 @@ function AboutPage() {
 
         {/* Team grid with radial backdrop */}
         <section className="relative mx-auto max-w-6xl px-6 pb-24">
-          <div className="absolute left-1/2 top-1/2 -z-0 size-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-primary/30 via-pink-300/30 to-purple-300/30 blur-3xl" />
-          <div className="relative z-10 flex flex-wrap justify-center gap-4">
-            {team.map((m) => (
-              <TeamCard key={m.name} {...m} />
-            ))}
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -z-0 size-[440px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[conic-gradient(from_120deg,theme(colors.pink.300),theme(colors.purple.400),theme(colors.indigo.300),theme(colors.pink.300))] opacity-40 blur-3xl" />
+          <svg
+            className="pointer-events-none absolute inset-0 -z-0 h-full w-full text-foreground"
+            viewBox="0 0 1000 500"
+            preserveAspectRatio="none"
+            fill="none"
+          >
+            <path d="M0,140 C200,80 350,200 500,140 C650,80 800,200 1000,140" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1" />
+            <path d="M0,260 C200,200 350,320 500,260 C650,200 800,320 1000,260" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1" />
+            <path d="M0,380 C200,320 350,440 500,380 C650,320 800,440 1000,380" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1" />
+          </svg>
+
+          <div className="relative z-10 space-y-4">
+            <div className="flex flex-wrap items-start justify-center gap-4">
+              {team.slice(0, 4).map((m, i) => (
+                <div key={m.name} className={i % 2 === 1 ? "mt-10" : ""}>
+                  <TeamCard {...m} />
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap items-start justify-center gap-4">
+              {team.slice(4).map((m, i) => (
+                <div key={m.name} className={i % 2 === 1 ? "mt-10" : ""}>
+                  <TeamCard {...m} />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
