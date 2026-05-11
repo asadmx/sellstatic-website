@@ -5,14 +5,11 @@
  */
 export function SiteBackground() {
   return (
-    <div
-      aria-hidden
-      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
-    >
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       {/* Base canvas */}
       <div className="absolute inset-0 bg-background" />
 
-      {/* Soft purple glow — top left */}
+      {/* Soft purple glow: top left */}
       <div
         className="absolute -left-40 -top-40 h-[520px] w-[520px] rounded-full opacity-60 blur-[120px]"
         style={{
@@ -21,7 +18,7 @@ export function SiteBackground() {
         }}
       />
 
-      {/* Soft warm glow — bottom right */}
+      {/* Soft warm glow: bottom right */}
       <div
         className="absolute -bottom-40 -right-32 h-[560px] w-[560px] rounded-full opacity-60 blur-[120px]"
         style={{
@@ -30,7 +27,7 @@ export function SiteBackground() {
         }}
       />
 
-      {/* Soft pink accent — center */}
+      {/* Soft pink accent: center */}
       <div
         className="absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 rounded-full opacity-40 blur-[140px]"
         style={{

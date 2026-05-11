@@ -11,7 +11,12 @@ interface Logo {
 }
 
 const logos: Logo[] = [
-  { id: "schulich", name: "Schulich School of Business", src: "/logos/schulich.png", className: "h-14" },
+  {
+    id: "schulich",
+    name: "Schulich School of Business",
+    src: "/logos/schulich.png",
+    className: "h-14",
+  },
   { id: "york", name: "York University", src: "/logos/york.png", className: "h-12" },
   { id: "csme", name: "Canadian SME", src: "/logos/csme.png", className: "h-14" },
   { id: "loi", name: "League of Innovators", src: "/logos/loi.png", className: "h-10" },
@@ -19,6 +24,7 @@ const logos: Logo[] = [
   { id: "yey", name: "YEY Awards", src: "/logos/yey.png", className: "h-10" },
   { id: "collision", name: "Collision", src: "/logos/collision.png", className: "h-10" },
   { id: "websummit", name: "Web Summit", src: "/logos/websummit.png", className: "h-12" },
+  { id: "tedx", name: "TEDx", src: "/logos/tedx.png", className: "h-10" },
 ];
 
 export function FeaturedLogos({ heading = "As Featured In" }: { heading?: string }) {

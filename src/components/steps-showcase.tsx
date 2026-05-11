@@ -17,7 +17,7 @@ const steps: Step[] = [
   },
   {
     title: "Add Images",
-    description: "Drop in product shots or brand assets — AI suggests visuals.",
+    description: "Drop in product shots or brand assets, AI suggests visuals.",
     year: "02",
     video: "/steps/add-images.mp4",
   },

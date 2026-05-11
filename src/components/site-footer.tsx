@@ -1,96 +1,126 @@
+import React from "react";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
+import { SiTiktok } from "react-icons/si";
 import { Link } from "@tanstack/react-router";
-import { Twitter, Linkedin, Mail } from "lucide-react";
-import logo from "@/assets/sellstatic-logo-mark.png";
+import logo from "@/assets/sellstatic-logo.png";
 
-const socialLinks = [
-  { icon: <Twitter className="size-4" />, href: "#", label: "Twitter" },
-  { icon: <Linkedin className="size-4" />, href: "#", label: "LinkedIn" },
-  { icon: <Mail className="size-4" />, href: "mailto:hello@sellstatic.com", label: "Email" },
-];
+type InternalHref = "/" | "/pricing" | "/about";
 
-const navLinks: { label: string; to: "/features" | "/pricing" | "/platforms" | "/about" }[] = [
-  { label: "Features", to: "/features" },
-  { label: "Pricing", to: "/pricing" },
-  { label: "Platforms", to: "/platforms" },
-  { label: "About", to: "/about" },
-];
-
-export function SiteFooter() {
-  const year = new Date().getFullYear();
-  return (
-    <footer className="relative overflow-hidden border-t bg-foreground text-background">
-      <div className="relative mx-auto max-w-6xl px-6 pb-40 pt-16">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-3">
-              <img src={logo} alt="SellStatic" className="h-10 w-auto" />
-              <span className="text-2xl font-semibold tracking-tight">
-                Sell<span className="italic text-primary">Static</span>
-              </span>
-            </div>
-            <p className="mt-4 max-w-sm text-sm text-background/60">
-              AI-powered ad creation for modern marketing teams. Design, generate,
-              and publish ads across every platform — fast.
-            </p>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-wider text-background/50">
-              Connect
-            </h4>
-            <ul className="flex flex-wrap gap-2">
-              {socialLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    aria-label={link.label}
-                    className="group flex items-center gap-2 rounded-full border border-background/15 bg-background/5 px-3 py-1.5 text-xs text-background/70 transition-all hover:border-primary/40 hover:bg-primary/10 hover:text-background"
-                  >
-                    <span className="grid size-6 place-items-center rounded-full bg-background/10 text-background/80 transition-colors group-hover:bg-primary/30">
-                      {link.icon}
-                    </span>
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Nav */}
-          <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-wider text-background/50">
-              Explore
-            </h4>
-            <ul className="grid grid-cols-2 gap-y-2 text-sm text-background/60">
-              {navLinks.map((link) => (
-                <li key={link.label}>
-                  <Link to={link.to} className="transition-colors hover:text-background">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Meta row */}
-        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-background/10 pt-6 text-xs text-background/40 sm:flex-row sm:items-center">
-          <p>© {year} SellStatic Inc. All rights reserved.</p>
-          <p>Made with care for marketers everywhere.</p>
-        </div>
-
-        {/* Large background wordmark */}
-        <div className="pointer-events-none absolute inset-x-0 -bottom-6 select-none overflow-hidden">
-          <div className="bg-gradient-to-b from-primary/30 via-primary/10 to-transparent bg-clip-text text-center text-[18vw] font-black leading-none tracking-tighter text-transparent">
-            SELLSTATIC
-          </div>
-        </div>
-
-        {/* Bottom shadow */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-foreground to-transparent" />
-      </div>
-    </footer>
-  );
+interface Footer7Props {
+  logo?: {
+    url: string;
+    src: string;
+    alt: string;
+    title: string;
+  };
+  sections?: Array<{
+    title: string;
+    links: Array<{ name: string; href: InternalHref | string }>;
+  }>;
+  description?: string;
+  socialLinks?: Array<{
+    icon: React.ReactElement;
+    href: string;
+    label: string;
+  }>;
+  copyright?: string;
 }
+
+const defaultSections = [
+  {
+    title: "Pages",
+    links: [
+      { name: "Home", href: "/" },
+      { name: "Pricing", href: "/pricing" },
+      { name: "About", href: "/about" },
+    ],
+  },
+];
+
+const defaultSocialLinks = [
+  {
+    icon: <FaInstagram className="size-5" />,
+    href: "https://www.instagram.com/sellstatic/",
+    label: "Instagram",
+  },
+  {
+    icon: <FaLinkedin className="size-5" />,
+    href: "https://www.linkedin.com/company/sellstatic/posts/?feedView=all",
+    label: "LinkedIn",
+  },
+  {
+    icon: <SiTiktok className="size-5" />,
+    href: "https://www.tiktok.com/@sellstatic",
+    label: "TikTok",
+  },
+];
+
+export const SiteFooter = ({
+  logo: logoProp = {
+    url: "https://www.sellstatic.app",
+    src: logo,
+    alt: "SellStatic",
+    title: "SellStatic",
+  },
+  sections = defaultSections,
+  description = "AI-powered ad creation for modern marketing teams. Design, generate, and publish ads across every platform, fast.",
+  socialLinks = defaultSocialLinks,
+  copyright = "(c) 2026 SellStatic. All rights reserved.",
+}: Footer7Props) => {
+  return (
+    <>
+      <section className="border-t" />
+      <section className="py-32">
+        <div className="container mx-auto">
+          <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left">
+            <div className="flex w-full flex-col justify-between gap-6 lg:items-start">
+              {/* Logo */}
+              <div className="flex items-center gap-2 lg:justify-start">
+                <a href={logoProp.url}>
+                  <img
+                    src={logoProp.src}
+                    alt={logoProp.alt}
+                    title={logoProp.title}
+                    className="h-8"
+                  />
+                </a>
+                <h2 className="text-xl font-semibold">{logoProp.title}</h2>
+              </div>
+              <p className="max-w-[70%] text-sm text-muted-foreground">{description}</p>
+              <ul className="flex items-center space-x-6 text-muted-foreground">
+                {socialLinks.map((social, idx) => (
+                  <li key={idx} className="font-medium hover:text-primary">
+                    <a href={social.href} aria-label={social.label}>
+                      {social.icon}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="grid w-full gap-6 md:grid-cols-1 lg:gap-20">
+              {sections.map((section, sectionIdx) => (
+                <div key={sectionIdx}>
+                  <h3 className="mb-4 font-bold">{section.title}</h3>
+                  <ul className="space-y-3 text-sm text-muted-foreground">
+                    {section.links.map((link, linkIdx) => (
+                      <li key={linkIdx} className="font-medium hover:text-primary">
+                        {link.href.startsWith("/") ? (
+                          <Link to={link.href as InternalHref}>{link.name}</Link>
+                        ) : (
+                          <a href={link.href}>{link.name}</a>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-8 flex flex-col justify-between gap-4 border-t py-8 text-xs font-medium text-muted-foreground md:flex-row md:items-center md:text-left">
+            <p className="order-2 lg:order-1">{copyright}</p>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};

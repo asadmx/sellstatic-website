@@ -30,18 +30,36 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "A React component for creating visually appealing hero sections with navigation and call-to-action elements." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "A React component for creating visually appealing hero sections with navigation and call-to-action elements." },
+      { title: "SellStatic | AI Marketing Platform" },
+      {
+        name: "description",
+        content:
+          "SellStatic turns one-line briefs into on-brand ads, videos, and social posts and publishes them across multiple platforms from one workspace.",
+      },
+      { name: "author", content: "SellStatic" },
+      { property: "og:title", content: "SellStatic | AI Marketing Platform" },
+      {
+        property: "og:description",
+        content: "SellStatic turns one-line briefs into on-brand ads, videos, and social posts.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "A React component for creating visually appealing hero sections with navigation and call-to-action elements." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b6803323-dae1-4aca-bfa2-1b9202d54235/id-preview-9a8172a7--439b43e7-099b-4384-a2b3-839e5725d59d.lovable.app-1777166211819.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b6803323-dae1-4aca-bfa2-1b9202d54235/id-preview-9a8172a7--439b43e7-099b-4384-a2b3-839e5725d59d.lovable.app-1777166211819.png" },
+      { name: "twitter:site", content: "@SellStatic" },
+      { name: "twitter:title", content: "SellStatic | AI Marketing Platform" },
+      {
+        name: "twitter:description",
+        content: "SellStatic turns one-line briefs into on-brand ads, videos, and social posts.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b6803323-dae1-4aca-bfa2-1b9202d54235/id-preview-9a8172a7--439b43e7-099b-4384-a2b3-839e5725d59d.lovable.app-1777166211819.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b6803323-dae1-4aca-bfa2-1b9202d54235/id-preview-9a8172a7--439b43e7-099b-4384-a2b3-839e5725d59d.lovable.app-1777166211819.png",
+      },
     ],
     links: [
       {

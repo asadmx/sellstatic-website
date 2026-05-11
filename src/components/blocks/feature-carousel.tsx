@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useState,
-  type MouseEvent,
-} from "react";
+import { useCallback, useEffect, useState, type MouseEvent } from "react";
 import {
   AnimatePresence,
   motion,
@@ -24,21 +18,12 @@ type WrapperStyle = MotionStyle & {
   "--y": MotionValue<string>;
 };
 
-interface ImageSet {
-  step1img1: string;
-  step1img2: string;
-  step2img1: string;
-  step2img2: string;
-  step3img: string;
-  step4img: string;
-  alt: string;
-}
-
 interface Step {
   id: string;
   name: string;
   title: string;
   description: string;
+  highlights?: string[];
 }
 
 const TOTAL_STEPS = 4;
@@ -64,8 +49,6 @@ const ANIMATION_PRESETS = {
   },
 } as const;
 
-type AnimationPreset = keyof typeof ANIMATION_PRESETS;
-
 function useNumberCycler(totalSteps = TOTAL_STEPS, interval = 5000) {
   const [currentNumber, setCurrentNumber] = useState(0);
   useEffect(() => {
@@ -74,10 +57,7 @@ function useNumberCycler(totalSteps = TOTAL_STEPS, interval = 5000) {
     }, interval);
     return () => clearTimeout(timerId);
   }, [currentNumber, totalSteps, interval]);
-  const setStep = useCallback(
-    (i: number) => setCurrentNumber(i % totalSteps),
-    [totalSteps],
-  );
+  const setStep = useCallback((i: number) => setCurrentNumber(i % totalSteps), [totalSteps]);
   return { currentNumber, setStep };
 }
 
@@ -95,35 +75,6 @@ function useIsMobile() {
 const stepVariants: Variants = {
   inactive: { scale: 0.9, opacity: 0.7 },
   active: { scale: 1, opacity: 1 },
-};
-
-const StepImage = forwardRef<
-  HTMLImageElement,
-  React.ImgHTMLAttributes<HTMLImageElement>
->(({ src, alt, className, style, ...props }, ref) => (
-  <img
-    ref={ref}
-    alt={alt}
-    src={src}
-    className={className}
-    style={{ position: "absolute", userSelect: "none", maxWidth: "unset", ...style }}
-    {...props}
-  />
-));
-StepImage.displayName = "StepImage";
-
-const MotionStepImage = motion(StepImage);
-
-const AnimatedStepImage = ({
-  preset = "fadeInScale",
-  delay = 0,
-  ...props
-}: React.ComponentProps<typeof MotionStepImage> & {
-  preset?: AnimationPreset;
-  delay?: number;
-}) => {
-  const cfg = ANIMATION_PRESETS[preset];
-  return <MotionStepImage {...props} {...cfg} transition={{ ...cfg.transition, delay }} />;
 };
 
 function FeatureCard({
@@ -148,7 +99,12 @@ function FeatureCard({
     <motion.div
       className="group relative w-full rounded-2xl"
       onMouseMove={handleMouseMove}
-      style={{ "--x": useMotionTemplate`${mouseX}px`, "--y": useMotionTemplate`${mouseY}px` } as WrapperStyle}
+      style={
+        {
+          "--x": useMotionTemplate`${mouseX}px`,
+          "--y": useMotionTemplate`${mouseY}px`,
+        } as WrapperStyle
+      }
     >
       <div className="relative w-full overflow-hidden rounded-3xl border bg-card transition-colors duration-300">
         <div
@@ -177,6 +133,18 @@ function FeatureCard({
               <p className="text-base leading-relaxed text-muted-foreground">
                 {steps[step].description}
               </p>
+              {steps[step].highlights && (
+                <ul className="mt-2 space-y-2 text-sm text-foreground/80">
+                  {steps[step].highlights.map((highlight) => (
+                    <li key={highlight} className="flex items-center gap-2">
+                      <span className="grid size-5 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                        <Check className="size-3" />
+                      </span>
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </motion.div>
             <div className="relative min-h-[320px] md:min-h-[420px]">{children}</div>
           </AnimatePresence>
@@ -227,7 +195,11 @@ function StepsNav({
                       : "bg-background text-foreground",
                   )}
                 >
-                  {isCompleted ? <Check className="h-3.5 w-3.5" /> : <span className="text-xs">{idx + 1}</span>}
+                  {isCompleted ? (
+                    <Check className="h-3.5 w-3.5" />
+                  ) : (
+                    <span className="text-xs">{idx + 1}</span>
+                  )}
                 </span>
                 <span className="hidden sm:inline-block">{step.name}</span>
               </button>
@@ -239,45 +211,187 @@ function StepsNav({
   );
 }
 
-const imgClass =
-  "rounded-xl border shadow-2xl shadow-primary/10 object-cover";
+function AdCreatorMockup() {
+  return (
+    <div className="absolute inset-0">
+      <motion.div
+        {...ANIMATION_PRESETS.slideInLeft}
+        className="absolute left-0 top-2 z-10 w-[68%] overflow-hidden rounded-2xl border border-neutral-900/70 bg-white shadow-2xl shadow-primary/15 ring-1 ring-black/20"
+      >
+        <div className="flex items-center justify-between border-b bg-muted/40 px-4 py-3">
+          <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+            <span className="grid size-6 place-items-center rounded-full bg-primary text-white">
+              1
+            </span>
+            Ad Content
+          </div>
+          <span className="rounded-full bg-primary/10 px-2 py-1 text-[10px] font-semibold text-primary">
+            AI Ads
+          </span>
+        </div>
+        <div className="grid gap-3 p-4">
+          <div>
+            <div className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Headline
+            </div>
+            <div className="rounded-lg border border-primary/40 bg-background px-3 py-2 text-xs font-medium">
+              Super Cars
+            </div>
+          </div>
+          <div>
+            <div className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Description
+            </div>
+            <div className="h-16 rounded-lg border bg-background px-3 py-2 text-xs text-muted-foreground">
+              Take a look at the best cars in the world
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <div className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                Audience
+              </div>
+              <div className="rounded-lg border bg-blue-50 px-3 py-2 text-xs">
+                Luxury car enthusiasts
+              </div>
+            </div>
+            <div>
+              <div className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                CTA
+              </div>
+              <div className="rounded-lg border bg-background px-3 py-2 text-xs">Discover Now</div>
+            </div>
+          </div>
+          <div className="flex gap-2 pt-1">
+            {["#FF5733", "#333333", "#FFFFFF"].map((color) => (
+              <div key={color} className="flex items-center gap-2 rounded-lg border px-2 py-1">
+                <span className="size-4 rounded-sm border" style={{ backgroundColor: color }} />
+                <span className="text-[10px] text-muted-foreground">{color}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div
+        {...ANIMATION_PRESETS.slideInRight}
+        transition={{ ...ANIMATION_PRESETS.slideInRight.transition, delay: 0.1 }}
+        className="absolute bottom-0 right-0 z-20 w-[66%] overflow-hidden rounded-2xl border border-neutral-900/70 bg-white shadow-2xl shadow-primary/20 ring-1 ring-black/20"
+      >
+        <img
+          src="/screenshots/cars.png"
+          alt="SellStatic generated ads dashboard screenshot"
+          className="h-full w-full object-cover object-top"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
+function VideoGeneratorMockup() {
+  return (
+    <div className="absolute inset-0">
+      <motion.div
+        {...ANIMATION_PRESETS.slideInLeft}
+        className="absolute left-0 top-0 z-10 w-[82%] overflow-hidden rounded-2xl border border-neutral-900/70 bg-white shadow-2xl shadow-primary/15 ring-1 ring-black/20"
+      >
+        <img
+          src="/screenshots/Video1.png"
+          alt="SellStatic AI video generator setup screenshot"
+          className="h-full w-full object-cover object-top"
+        />
+      </motion.div>
+
+      <motion.div
+        {...ANIMATION_PRESETS.slideInRight}
+        transition={{ ...ANIMATION_PRESETS.slideInRight.transition, delay: 0.1 }}
+        className="absolute bottom-4 right-0 z-20 w-[98%] overflow-hidden rounded-2xl border border-neutral-900/80 bg-black shadow-2xl shadow-primary/25 ring-1 ring-black/25"
+      >
+        <img
+          src="/screenshots/Video2.png"
+          alt="SellStatic video editor screenshot"
+          className="h-full w-full object-cover object-top"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
+function ScheduledPostsMockup() {
+  return (
+    <div className="absolute inset-0">
+      <motion.div
+        {...ANIMATION_PRESETS.slideInLeft}
+        className="absolute left-0 top-2 z-10 w-[90%] overflow-hidden rounded-2xl border border-neutral-900/60 bg-white shadow-2xl shadow-primary/15 ring-1 ring-black/15"
+      >
+        <img
+          src="/screenshots/social1.png"
+          alt="SellStatic social scheduling workspace screenshot"
+          className="h-full w-full object-cover object-top"
+        />
+      </motion.div>
+
+      <motion.div
+        {...ANIMATION_PRESETS.slideInRight}
+        transition={{ ...ANIMATION_PRESETS.slideInRight.transition, delay: 0.1 }}
+        className="absolute bottom-2 right-0 z-20 w-[96%] overflow-hidden rounded-2xl border border-neutral-900/70 bg-white shadow-2xl shadow-primary/25 ring-1 ring-black/20"
+      >
+        <img
+          src="/screenshots/social2.png"
+          alt="SellStatic scheduled posts calendar screenshot"
+          className="h-full w-full object-cover object-top"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
+function DashboardMockup() {
+  return (
+    <div className="absolute inset-0">
+      <motion.div
+        {...ANIMATION_PRESETS.slideInLeft}
+        className="absolute left-0 top-0 z-10 w-[92%] overflow-hidden rounded-2xl border border-neutral-900/60 bg-white shadow-2xl shadow-primary/15 ring-1 ring-black/15"
+      >
+        <img
+          src="/screenshots/dash1.png"
+          alt="SellStatic analytics dashboard screenshot"
+          className="h-full w-full object-cover object-top"
+        />
+      </motion.div>
+
+      <motion.div
+        {...ANIMATION_PRESETS.slideInRight}
+        transition={{ ...ANIMATION_PRESETS.slideInRight.transition, delay: 0.1 }}
+        className="absolute right-0 top-[34%] z-20 w-[98%] overflow-hidden rounded-2xl border border-neutral-900/70 bg-white shadow-2xl shadow-primary/25 ring-1 ring-black/20"
+      >
+        <img
+          src="/screenshots/dash2.png"
+          alt="SellStatic campaign performance dashboard screenshot"
+          className="h-full w-full object-cover object-top"
+        />
+      </motion.div>
+    </div>
+  );
+}
 
 export interface FeatureCarouselProps {
   steps: readonly Step[];
-  image: ImageSet;
 }
 
-export function FeatureCarousel({ steps, image }: FeatureCarouselProps) {
+export function FeatureCarousel({ steps }: FeatureCarouselProps) {
   const { currentNumber: step, setStep } = useNumberCycler(steps.length);
 
   const renderContent = () => {
     switch (step) {
       case 0:
-        return (
-          <div className="relative h-full w-full">
-            <AnimatedStepImage alt={image.alt} src={image.step1img1} preset="slideInLeft" className={cn(imgClass, "left-0 top-[15%] w-[50%]")} />
-            <AnimatedStepImage alt={image.alt} src={image.step1img2} preset="slideInRight" delay={0.1} className={cn(imgClass, "left-[40%] top-[35%] w-[60%]")} />
-          </div>
-        );
+        return <AdCreatorMockup />;
       case 1:
-        return (
-          <div className="relative h-full w-full">
-            <AnimatedStepImage alt={image.alt} src={image.step2img1} preset="fadeInScale" className={cn(imgClass, "left-[5%] top-[20%] w-[50%]")} />
-            <AnimatedStepImage alt={image.alt} src={image.step2img2} preset="fadeInScale" delay={0.1} className={cn(imgClass, "left-[55%] top-[45%] w-[40%]")} />
-          </div>
-        );
+        return <VideoGeneratorMockup />;
       case 2:
-        return (
-          <div className="relative h-full w-full">
-            <AnimatedStepImage alt={image.alt} src={image.step3img} preset="fadeInScale" className={cn(imgClass, "left-[5%] top-[25%] w-[90%]")} />
-          </div>
-        );
+        return <ScheduledPostsMockup />;
       case 3:
-        return (
-          <div className="relative h-full w-full">
-            <AnimatedStepImage alt={image.alt} src={image.step4img} preset="fadeInScale" className={cn(imgClass, "left-[5%] top-[25%] w-[90%]")} />
-          </div>
-        );
+        return <DashboardMockup />;
       default:
         return null;
     }

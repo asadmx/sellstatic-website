@@ -8,9 +8,12 @@ import logo from "@/assets/sellstatic-logo.png";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Sign in — SellStatic" },
-      { name: "description", content: "Sign in or create your SellStatic account to start generating ads in seconds." },
-      { property: "og:title", content: "Sign in — SellStatic" },
+      { title: "Sign in | SellStatic" },
+      {
+        name: "description",
+        content: "Sign in or create your SellStatic account to start generating ads in seconds.",
+      },
+      { property: "og:title", content: "Sign in | SellStatic" },
       { property: "og:description", content: "Sign in or join SellStatic." },
     ],
   }),
@@ -77,7 +80,7 @@ const AuthSeparator = () => (
 function LoginPage() {
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
-      {/* Left — branding panel */}
+      {/* Left: branding panel */}
       <div className="relative hidden overflow-hidden bg-gradient-to-br from-primary/15 via-background to-background lg:block">
         <FloatingPaths position={1} />
         <FloatingPaths position={-1} />
@@ -94,14 +97,19 @@ function LoginPage() {
             <p className="mt-4 text-sm text-muted-foreground">~ Ali Hassan, Marketing Lead</p>
           </div>
 
-          <p className="text-xs text-muted-foreground">© SellStatic — Your AI marketing engine.</p>
+          <p className="text-xs text-muted-foreground">
+            (c) SellStatic | Your AI marketing engine.
+          </p>
         </div>
       </div>
 
-      {/* Right — form */}
+      {/* Right: form */}
       <div className="relative flex flex-col px-6 py-8 sm:px-12">
         <div className="flex items-center justify-between">
-          <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+          >
             <ChevronLeftIcon className="size-4" /> Home
           </Link>
           <Link to="/" className="lg:hidden">
@@ -140,12 +148,7 @@ function LoginPage() {
             </p>
             <div className="relative">
               <AtSignIcon className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                type="email"
-                required
-                placeholder="you@example.com"
-                className="ps-9"
-              />
+              <Input type="email" required placeholder="you@example.com" className="ps-9" />
             </div>
             <Button type="submit" className="w-full" size="lg">
               Continue with email
@@ -154,8 +157,14 @@ function LoginPage() {
 
           <p className="mt-6 text-xs text-muted-foreground">
             By clicking continue, you agree to our{" "}
-            <a href="#" className="underline hover:text-foreground">Terms of Service</a> and{" "}
-            <a href="#" className="underline hover:text-foreground">Privacy Policy</a>.
+            <a href="#" className="underline hover:text-foreground">
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a href="#" className="underline hover:text-foreground">
+              Privacy Policy
+            </a>
+            .
           </p>
         </div>
       </div>

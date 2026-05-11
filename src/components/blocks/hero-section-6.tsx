@@ -22,73 +22,167 @@ import { AdShowcase } from "@/components/blocks/ad-showcase";
 import { GooeyText } from "@/components/ui/gooey-text";
 import { Reveal } from "@/components/reveal";
 import { Link } from "@tanstack/react-router";
+import AutoScroll from "embla-carousel-auto-scroll";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import teamBooth from "@/assets/team-booth.jpg";
-import webSummit from "@/assets/web-summit.jpg";
-import wildCollision from "@/assets/wild-collision.jpg";
-import wildTeam from "@/assets/wild-team.jpg";
 import trailerPoster from "@/assets/trailer-poster.jpg";
-import stepImages from "@/assets/step-images.jpg";
-import stepText from "@/assets/step-text.jpg";
-import stepTemplates from "@/assets/step-templates.jpg";
-import stepPreview from "@/assets/step-preview.jpg";
 import { useRef, useState } from "react";
 
 const productSteps = [
-  { id: "1", name: "Ad Creator", title: "Generate ads from a one-line brief", description: "Describe your offer and SellStatic generates 100+ on-brand ad variations across every format and aspect ratio in seconds." },
-  { id: "2", name: "Video Generator", title: "Turn any idea into a multi-scene video", description: "Drop a link, image, or text. Our AI Video Director writes the script, picks visuals, adds voiceover, and renders it for every channel." },
-  { id: "3", name: "Scheduled Posts", title: "Plan a month of posts in one calendar", description: "Schedule across 13+ platforms from a single drag-and-drop calendar. Approvals, time zones, and best-time-to-post handled for you." },
-  { id: "4", name: "Dashboard", title: "See what's working — instantly", description: "Track CTR, impressions, conversions, and spend across every ad and channel from one clean performance dashboard." },
+  {
+    id: "1",
+    name: "Ad Creator",
+    title: "Create campaign-ready ads in a guided flow",
+    description:
+      "Write the headline, audience, CTA, and brand colors once. SellStatic turns the brief into polished ad variations you can preview, save, and publish.",
+    highlights: [
+      "Live preview while you write",
+      "AI-generated image ad variations",
+      "Download or post directly to social",
+    ],
+  },
+  {
+    id: "2",
+    name: "Video Generator",
+    title: "Generate and edit video ads in one workflow",
+    description:
+      "Choose the video style, model, format, and prompt, then move into a full editor with media, text, timeline controls, and an AI assistant for faster revisions.",
+    highlights: [
+      "Pick from leading video models and formats",
+      "Preview generation status in real time",
+      "Refine clips in a timeline-based editor",
+    ],
+  },
+  {
+    id: "3",
+    name: "Scheduled Posts",
+    title: "Schedule every social post from one workspace",
+    description:
+      "Draft posts, attach campaign creative, choose connected channels, and keep upcoming launches organized from a clean publishing calendar.",
+    highlights: [
+      "Manage social drafts and scheduled posts",
+      "Preview channel-ready content before publishing",
+      "Keep campaigns organized across platforms",
+    ],
+  },
+  {
+    id: "4",
+    name: "Dashboard",
+    title: "Track creative performance from one dashboard",
+    description:
+      "Watch campaign results, compare generated creatives, and spot which channels are driving the strongest performance without jumping between tools.",
+    highlights: [
+      "See key campaign metrics at a glance",
+      "Compare ad performance by creative and channel",
+      "Use insights to plan the next test faster",
+    ],
+  },
 ];
 
-const productImages = {
-  step1img1: stepText,
-  step1img2: stepImages,
-  step2img1: stepTemplates,
-  step2img2: stepPreview,
-  step3img: stepImages,
-  step4img: stepPreview,
-  alt: "SellStatic product screenshot",
-};
-
 const features = [
-  { icon: TbWand, title: "AI Ad Generator", desc: "Describe your offer in a sentence — get 100 on-brand ad variations across formats in seconds." },
-  { icon: TbPalette, title: "Brand Kit Sync", desc: "Upload your logo, fonts, and colors once. Every asset stays perfectly on-brand, automatically." },
-  { icon: TbRocket, title: "One-Click Publish", desc: "Schedule and post to 13+ networks from a single calendar — no more copy-pasting between dashboards." },
-  { icon: TbUsersGroup, title: "Approval Workflows", desc: "Loop in stakeholders with shareable previews and inline comments before anything goes live." },
-  { icon: TbChartHistogram, title: "Live Performance", desc: "See which creative is winning in real time, then auto-remix the best performers into new variants." },
-  { icon: TbApps, title: "Native Integrations", desc: "Plug into Meta, TikTok, Google, LinkedIn, and more — no Zapier, no duct tape, just connect and go." },
+  {
+    icon: TbWand,
+    title: "AI Ad Generator",
+    desc: "Describe your offer in a sentence and get 100 on-brand ad variations across formats in seconds.",
+  },
+  {
+    icon: TbPalette,
+    title: "Brand Kit Sync",
+    desc: "Upload your logo, fonts, and colors once. Every asset stays on-brand automatically.",
+  },
+  {
+    icon: TbRocket,
+    title: "One-Click Publish",
+    desc: "Schedule and post to 13+ networks from a single calendar, without copy-pasting between dashboards.",
+  },
+  {
+    icon: TbChartHistogram,
+    title: "Analytics & Data",
+    desc: "Track what is working in real time, then use the data to guide your next creative move.",
+  },
+  {
+    icon: TbUsersGroup,
+    title: "Live Collaboration",
+    desc: "Loop in stakeholders with shareable previews and comments before anything goes live.",
+  },
+  {
+    icon: TbApps,
+    title: "Your Personal Video Ad Agent",
+    desc: "Turn a brief, a link, or a script into polished video ads you can refine and publish quickly.",
+  },
 ];
 
 const faqs = [
-  { q: "How is SellStatic different from a regular ad tool?", a: "Most tools give you a blank canvas. SellStatic gives you 100 finished, on-brand ad variations the moment you describe your campaign — then publishes them everywhere from one place." },
-  { q: "How quickly can I get started?", a: "Under 5 minutes. Import your brand kit, connect your ad accounts, and your first batch of ads is ready to schedule before your coffee gets cold." },
-  { q: "Which platforms do you support?", a: "Facebook, Instagram, Threads, X, TikTok, LinkedIn, Pinterest, YouTube, Twitch, Google Business, plus Facebook Ads, Google Ads, and TikTok Ads." },
-  { q: "Do I need design or copywriting skills?", a: "Nope. Our AI handles layout, typography, and copy in your brand voice. You stay in control with quick edits and one-click variations." },
-  { q: "Is my data safe?", a: "Yes. We never use your content to train public models, your brand assets are encrypted at rest, and you can export or delete everything at any time." },
-  { q: "Can I try it free?", a: "Absolutely. Start free with no credit card — generate your first 25 ads on us." },
+  {
+    q: "How is SellStatic different from Canva or Adobe Express?",
+    a: "Those are design tools. SellStatic is built for performance marketers. It generates 100+ ad variations tailored to each platform, handles scheduling across 13+ networks, and tracks performance from one dashboard.",
+  },
+  {
+    q: "Can I generate video ads, or just static images?",
+    a: "Both. Upload a link, image, or description and the AI Video Agent generates scripted, edited video ads with voiceover, visuals, and branding.",
+  },
+  {
+    q: "Do you work with my existing brand guidelines?",
+    a: "Yes. Upload your logo, fonts, colors, and tone guidelines once. Every generated ad respects your brand kit automatically.",
+  },
+  {
+    q: "How much does SellStatic cost?",
+    a: "SellStatic has three plans: Drive, Growth, and Enterprise. Monthly and annual billing are available for Drive and Growth.",
+  },
+  {
+    q: "Which ad networks do you support?",
+    a: "Facebook, Instagram, Threads, X, TikTok, LinkedIn, Pinterest, YouTube, Twitch, Google Ads, Facebook Ads Manager, TikTok Ads Manager, and LinkedIn Campaign Manager.",
+  },
+  {
+    q: "Do you provide analytics and performance tracking?",
+    a: "Yes, Growth and Enterprise plans include CTR, impressions, conversions, and spend by platform and campaign.",
+  },
 ];
 
 const problems = [
-  { icon: TbClockHour4, title: "Time Consuming", desc: "Creating and managing content takes much longer than it should." },
-  { icon: TbPuzzle2, title: "Skill Gaps", desc: "You need design, writing, and tech skills just to get started." },
-  { icon: TbPlugConnected, title: "Poor Integration", desc: "Tools don't talk to each other, making publishing and planning a hassle." },
-  { icon: TbCoin, title: "Wasting Money", desc: "Paying for multiple tools and freelancers adds up quickly." },
+  {
+    icon: TbClockHour4,
+    title: "Time Consuming",
+    desc: "Creating and managing content takes much longer than it should.",
+  },
+  {
+    icon: TbPuzzle2,
+    title: "Skill Gaps",
+    desc: "You need design, writing, and tech skills just to get started.",
+  },
+  {
+    icon: TbPlugConnected,
+    title: "Poor Integration",
+    desc: "Tools don't talk to each other, making publishing and planning a hassle.",
+  },
+  {
+    icon: TbCoin,
+    title: "Wasting Money",
+    desc: "Paying for multiple tools and freelancers adds up quickly.",
+  },
 ];
 
-
 const stats = [
-  { v: "100+", l: "Ad creatives generated" },
-  { v: "15s", l: "From concept to first draft" },
-  { v: "13", l: "Connected platforms" },
+  { v: "100,000+", l: "Ads generated" },
+  { v: "5.2s", l: "Over 100 ads created" },
+  { v: "6", l: "Countries we're operating in" },
+  { v: "50", l: "Integrations and counting" },
   { v: "20+", l: "Hours saved per week" },
 ];
 
+const adPreviews = [
+  "/ads/apple.mp4",
+  "/ads/sellstatic.mp4",
+  "/ads/ikea.mp4",
+  "/ads/cadillac.mp4",
+  "/ads/Figma.mp4",
+  "/ads/Mercedes-Benz Canada.mp4",
+];
 
 export function HeroSection() {
   return (
@@ -108,23 +202,76 @@ export function HeroSection() {
 
               <Reveal as="div" delay={100}>
                 <h1 className="mt-8 text-balance text-4xl font-semibold md:text-5xl lg:text-6xl">
-                  Your AI and marketing engine built for <span className="italic text-primary">growth</span>.
+                  Your AI Marketing engine built for{" "}
+                  <span className="italic text-primary">growth</span>.
                 </h1>
                 <p className="mx-auto mt-6 max-w-2xl text-balance text-muted-foreground">
                   SellStatic turns your ideas into on-brand ads and social posts, then schedules
-                  them across platforms — so you can focus on what matters most.
+                  them across platforms so you can focus on what matters most.
                 </p>
 
                 <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <Button asChild size="lg">
-                    <Link to="/create-ad"><span>Try Now</span><ArrowRight className="ml-2 size-4" /></Link>
-                  </Button>
-                  <Button asChild size="lg" variant="outline">
-                    <Link to="/dashboard"><span>Open dashboard</span></Link>
+                    <a
+                      href="https://www.sellstatic.app/home"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span>Get Started</span>
+                      <ArrowRight className="ml-2 size-4" />
+                    </a>
                   </Button>
                 </div>
               </Reveal>
             </div>
+          </div>
+        </section>
+
+        {/* AI GENERATED VIDEO ADS (AUTO-SCROLL STRIP) */}
+        <section className="mx-auto max-w-6xl px-6 py-6">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            AI Generated Video Ads
+          </p>
+          <div className="relative mt-4">
+            <Carousel
+              opts={{ loop: true, align: "start" }}
+              plugins={[
+                AutoScroll({
+                  playOnInit: true,
+                  speed: 0.7,
+                  stopOnInteraction: false,
+                  stopOnMouseEnter: false,
+                }),
+              ]}
+              className="w-full"
+            >
+              <CarouselContent className="ml-0 flex items-center">
+                {[...adPreviews, ...adPreviews].map((src, i) => (
+                  <CarouselItem
+                    key={`${i}-${String(src)}`}
+                    className="basis-[82%] pl-3 sm:basis-[58%] md:basis-[42%] lg:basis-[32%]"
+                  >
+                    <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b1d]">
+                      <div className="aspect-video w-full">
+                        <video
+                          src={src}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          preload="metadata"
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#0b0b1d] to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#0b0b1d] to-transparent" />
           </div>
         </section>
 
@@ -138,10 +285,10 @@ export function HeroSection() {
               See it in action
             </p>
             <h2 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
-              Watch SellStatic build a <span className="italic text-primary">full campaign</span> in 60 seconds.
+              Watch Our <span className="italic text-primary">Trailer</span>.
             </h2>
             <p className="mt-4 text-muted-foreground">
-              From a one-line brief to scheduled posts across every platform — no editing, no juggling tabs.
+              See how a brief becomes a campaign without the usual back-and-forth.
             </p>
           </Reveal>
 
@@ -182,25 +329,27 @@ export function HeroSection() {
                 Core features
               </p>
               <h2 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
-                Everything you need to <span className="italic text-primary">launch and learn</span>.
+                A suite of powerful tools to{" "}
+                <span className="italic text-primary">launch better</span>.
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Six tightly-integrated tools that replace your entire creative stack.
+                A suite of powerful tools that helps you move from concept to campaign with less
+                friction.
               </p>
             </div>
 
             <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {features.map((f, i) => (
                 <Reveal key={f.title} delay={i * 70}>
-                  <div
-                    className="group relative h-full overflow-hidden rounded-2xl border bg-background p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
-                  >
+                  <div className="group relative h-full overflow-hidden rounded-2xl border bg-background p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10">
                     <div className="absolute -right-10 -top-10 size-32 rounded-full bg-primary/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
                     <div className="relative grid size-11 place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20">
                       <f.icon className="size-5" />
                     </div>
                     <h3 className="relative mt-5 text-lg font-semibold">{f.title}</h3>
-                    <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
+                    <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {f.desc}
+                    </p>
                   </div>
                 </Reveal>
               ))}
@@ -218,10 +367,11 @@ export function HeroSection() {
               One platform, <span className="italic text-primary">every tool</span> you need.
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Ad creator, video generator, scheduled posts, performance dashboard — all under one roof.
+              Ad creator, video generator, scheduled posts, and performance dashboard all under one
+              roof.
             </p>
           </Reveal>
-          <FeatureCarousel steps={productSteps} image={productImages} />
+          <FeatureCarousel steps={productSteps} />
         </section>
 
         {/* AD SHOWCASE */}
@@ -235,16 +385,21 @@ export function HeroSection() {
             </h2>
             <div>
               <p className="max-w-md text-muted-foreground">
-                Generate on-brand ads, schedule everywhere, and measure results in one place.
-                Join teams scheduling and publishing across every platform with SellStatic.
+                Generate on-brand ads, schedule everywhere, and measure results in one place. Join
+                teams scheduling and publishing across every platform with SellStatic.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <Button asChild size="lg">
-                  <Link to="/create-ad">Get Started <ArrowRight className="ml-1 size-4" /></Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link to="/platforms">See platforms</Link>
-                </Button>
+                <div className="mt-10">
+                  <Button asChild size="lg">
+                    <a
+                      href="https://www.sellstatic.app/home"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Get Started <ArrowRight className="ml-1 size-4" />
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -263,6 +418,17 @@ export function HeroSection() {
           </p>
 
           <ConnectedPlatforms />
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button asChild size="lg">
+              <a href="https://www.sellstatic.app/home" target="_blank" rel="noopener noreferrer">
+                <span>Get Started</span>
+                <ArrowRight className="ml-2 size-4" />
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link to="/pricing">View pricing</Link>
+            </Button>
+          </div>
         </section>
 
         {/* WHY CHOOSE US */}
@@ -272,13 +438,15 @@ export function HeroSection() {
               Why Choose Us
             </p>
             <h2 className="max-w-3xl text-3xl font-semibold md:text-4xl lg:text-5xl">
-              Empowering teams with <span className="italic text-primary">AI-driven</span> tools to move faster.
+              Empowering teams with <span className="italic text-primary">AI-driven</span> tools to
+              move faster.
             </h2>
             <p className="mt-6 max-w-2xl text-background/60">
-              Real numbers from real usage — measurable gains in creation speed and weekly time saved.
+              Real numbers from real usage, measurable gains in creation speed and weekly time
+              saved.
             </p>
 
-            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-background/10 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-background/10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
               {stats.map((s) => (
                 <div key={s.l} className="bg-foreground p-8">
                   <div className="text-4xl font-semibold italic text-primary">{s.v}</div>
@@ -289,57 +457,6 @@ export function HeroSection() {
           </div>
         </section>
 
-        {/* ABOUT — team photos collage */}
-        <section className="mx-auto max-w-6xl px-6 py-24">
-          <div className="grid gap-12 md:grid-cols-2 md:items-center">
-            <Reveal>
-              <h2 className="text-4xl font-semibold leading-tight md:text-5xl">
-                About <span className="italic text-primary">SellStatic</span>
-                <br />
-                with Creativity and Speed
-              </h2>
-              <p className="mt-6 max-w-md text-muted-foreground">
-                Wherever you are shouldn't be a limiter to great marketing. We're building an
-                AI-first platform to help modern teams create, publish, and measure campaigns —
-                fast and on brand.
-              </p>
-              <div className="mt-8">
-                <Button asChild size="lg">
-                  <Link to="/about">Explore Product <ArrowRight className="ml-1 size-4" /></Link>
-                </Button>
-              </div>
-            </Reveal>
-
-            <Reveal delay={150}>
-              <div className="grid grid-cols-2 gap-4">
-                <img
-                  src={wildCollision}
-                  alt="SellStatic team at Collision Toronto"
-                  loading="lazy"
-                  className="aspect-square w-full rounded-2xl border object-cover shadow-lg shadow-primary/5 transition-transform duration-500 hover:scale-[1.02]"
-                />
-                <img
-                  src={teamBooth}
-                  alt="SellStatic founders at expo booth"
-                  loading="lazy"
-                  className="aspect-square w-full rounded-2xl border object-cover shadow-lg shadow-primary/5 transition-transform duration-500 hover:scale-[1.02]"
-                />
-                <img
-                  src={webSummit}
-                  alt="SellStatic on stage at Web Summit"
-                  loading="lazy"
-                  className="aspect-square w-full rounded-2xl border object-cover shadow-lg shadow-primary/5 transition-transform duration-500 hover:scale-[1.02]"
-                />
-                <img
-                  src={wildTeam}
-                  alt="SellStatic team in branded shirts"
-                  loading="lazy"
-                  className="aspect-square w-full rounded-2xl border object-cover shadow-lg shadow-primary/5 transition-transform duration-500 hover:scale-[1.02]"
-                />
-              </div>
-            </Reveal>
-          </div>
-        </section>
         {/* HOW IT WORKS */}
         <section className="mx-auto max-w-5xl px-6 py-24">
           <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
@@ -353,29 +470,8 @@ export function HeroSection() {
             <StepsShowcase />
           </div>
           <p className="mt-6 text-center text-xs text-muted-foreground">
-            Hover a step to preview. Built for speed — every interaction takes seconds, not hours.
+            Hover a step to preview. Built for speed. Every interaction takes seconds, not hours.
           </p>
-        </section>
-
-        {/* READY CTA */}
-        <section className="border-y bg-accent/40">
-          <div className="mx-auto max-w-5xl px-6 py-20 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wider text-primary">Ready when you are</p>
-            <h2 className="mx-auto mt-4 max-w-2xl text-3xl font-semibold md:text-4xl lg:text-5xl">
-              Bring your brand kit, connect platforms, and publish within <span className="italic text-primary">minutes</span>.
-            </h2>
-            <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
-              Import your brand and start publishing your content today.
-            </p>
-            <div className="mt-8 flex justify-center gap-3">
-              <Button asChild size="lg">
-                <Link to="/create-ad">Get Started <ArrowRight className="ml-1 size-4" /></Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link to="/pricing">View pricing</Link>
-              </Button>
-            </div>
-          </div>
         </section>
 
         {/* FAQ */}
@@ -389,7 +485,8 @@ export function HeroSection() {
                 Questions about <span className="italic text-primary">SellStatic</span>?
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Everything you need to know about our platform, pricing, and how AI ad generation works.
+                Everything you need to know about our platform, pricing, and how AI ad generation
+                works.
               </p>
             </div>
             <Accordion type="single" collapsible className="w-full">
@@ -408,25 +505,27 @@ export function HeroSection() {
         </section>
 
         {/* NEWSLETTER */}
-        <section className="mx-auto max-w-3xl px-6 py-20 text-center">
-          <h2 className="text-2xl font-semibold md:text-3xl">
-            Join to stay up to date with <span className="italic text-primary">SellStatic</span>
-          </h2>
-          <p className="mt-3 text-muted-foreground">
-            Product updates, launches, and early access — straight to your inbox.
-          </p>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="mx-auto mt-6 flex max-w-md flex-col gap-2 sm:flex-row"
-          >
-            <input
-              type="email"
-              required
-              placeholder="you@company.com"
-              className="flex-1 rounded-md border bg-background px-4 py-2.5 text-sm outline-none ring-primary/30 focus:ring-2"
-            />
-            <Button type="submit">Subscribe</Button>
-          </form>
+        <section className="border-y bg-primary/5">
+          <div className="mx-auto max-w-3xl px-6 py-20 text-center">
+            <h2 className="text-3xl font-semibold md:text-4xl">
+              Stay up to date with <span className="italic text-primary">SellStatic</span>.
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+              Get product updates, launch notes, and practical marketing ideas sent to your inbox.
+            </p>
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="mx-auto mt-8 flex max-w-md flex-col gap-2 sm:flex-row"
+            >
+              <input
+                type="email"
+                required
+                placeholder="you@example.com"
+                className="flex-1 rounded-md border bg-background px-4 py-2.5 text-sm outline-none ring-primary/30 focus:ring-2"
+              />
+              <Button type="submit">Stay updated</Button>
+            </form>
+          </div>
         </section>
       </main>
 

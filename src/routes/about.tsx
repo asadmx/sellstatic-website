@@ -2,16 +2,21 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 import { TestimonialsCarousel } from "@/components/blocks/testimonials-carousel";
+import { AnimatedText } from "@/components/ui/animated-text";
 import northAmericaMap from "@/assets/north-america-map.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — SellStatic" },
-      { name: "description", content: "Meet the team behind SellStatic — creators, designers, and builders making marketing tools that feel fun, human, and ridiculously easy to use." },
-      { property: "og:title", content: "About — SellStatic" },
+      { title: "About SellStatic" },
+      {
+        name: "description",
+        content:
+          "Meet the team behind SellStatic, creators, designers, and builders making marketing tools that feel fun, human, and ridiculously easy to use.",
+      },
+      { property: "og:title", content: "About SellStatic" },
       { property: "og:description", content: "Meet the team behind SellStatic." },
     ],
   }),
@@ -31,15 +36,82 @@ const team = [
 ];
 
 const story = [
-  { tag: "The Early Days", text: "We were marketers and indie founders building landing pages and ads from our bedrooms — experimenting, breaking things, and learning what actually sells." },
-  { tag: "Turning Point", text: "After years of stitching together a dozen tools just to ship a single campaign, we saw every team face the same struggle. So we built SellStatic, the ad studio we always wished we had." },
-  { tag: "Growth", text: "Today, 2,400+ teams use SellStatic to design, generate, and publish ads across 13+ platforms — from solo creators to fast-growing brands." },
+  {
+    tag: "The Early Days",
+    text: "We started by building landing pages and ads from our bedrooms, testing ideas quickly and learning what actually moved people to act.",
+  },
+  {
+    tag: "Turning Point",
+    text: "After years of stitching together a dozen tools just to ship a single campaign, we saw every team hit the same wall. So we built SellStatic, the ad studio we always wished we had.",
+  },
+  {
+    tag: "Growth",
+    text: "Today, teams use SellStatic to design, generate, and publish ads across multiple platforms, from solo creators to fast-growing brands.",
+  },
+];
+
+const storyImages = [
+  "/ads/WhatsApp Image 2026-05-11 at 12.55.49 PM.jpeg",
+  "/ads/WhatsApp Image 2026-05-11 at 12.52.03 PM.jpeg",
+  "/ads/WhatsApp Image 2026-05-11 at 12.52.56 PM.jpeg",
+  "/ads/WhatsApp Image 2026-05-11 at 12.52.03 PM.jpeg",
 ];
 
 const testimonials = [
-  { quote: "SellStatic cut our ad production time by 80%. We went from a week of back-and-forth to publishing in under an hour.", name: "Jordan Kim", role: "Head of Growth, Vercel" },
-  { quote: "The templates are actually good — not the usual generic stuff. We launched a full campaign across 5 platforms in one afternoon.", name: "Maya Chen", role: "Marketing Director, Lemon Squeezy" },
-  { quote: "As a solo founder, I used to outsource all our ad design. SellStatic replaced that entirely.", name: "Rohan Mehta", role: "Founder, CartSniper" },
+  {
+    quote:
+      "SellStatic helped us stop treating content like a last minute task. We can build clean, on brand posts quickly, and our team actually feels ahead now.",
+    name: "Maya Chen",
+    role: "Marketing Manager at Northline Dental",
+  },
+  {
+    quote:
+      "Before SellStatic, we were always waiting on someone to make new visuals. Now we can test ideas faster and keep our social channels active without extra stress.",
+    name: "Jordan Patel",
+    role: "Founder at GlowHaus Studio",
+  },
+  {
+    quote:
+      "SellStatic made our ads look much more polished without changing the way our team works. It is simple, fast, and fits into our weekly routine really well.",
+    name: "Emily Ross",
+    role: "Operations Lead at Oak & Olive Kitchen",
+  },
+  {
+    quote:
+      "We needed a better way to create content for promos and new listings. SellStatic helped us move quicker while still keeping everything consistent with our brand.",
+    name: "Marcus Bennett",
+    role: "Sales Director at RidgePoint Realty",
+  },
+  {
+    quote:
+      "The biggest difference is how much easier it is to stay consistent. SellStatic gives us strong content options without making the posts feel generic or forced.",
+    name: "Sofia Ramirez",
+    role: "Brand Coordinator at TerraSole Apparel",
+  },
+  {
+    quote:
+      "SellStatic has saved our team a lot of time. We can go from a rough idea to a usable ad in minutes, which has made our campaigns much easier to manage.",
+    name: "Daniel Kim",
+    role: "Co-Founder at FreshFork Meals",
+  },
+  {
+    quote:
+      "I was surprised by how natural the content felt. SellStatic helps us create posts that look professional but still sound like they came from our business.",
+    name: "Avery Brooks",
+    role: "Studio Manager at PeakForm Fitness",
+  },
+  {
+    quote:
+      "Our team uses SellStatic whenever we need quick campaign creative. It keeps the process simple, cuts down on back and forth, and helps us publish faster.",
+    name: "Priya Shah",
+    role: "Growth Lead at LaunchLoop",
+  },
+  {
+    quote:
+      "SellStatic gave us a practical way to keep marketing moving during busy weeks. The output is clean, useful, and much better than starting from scratch every time.",
+    name: "Nathan Walker",
+    role: "Owner at Maple & Main Coffee",
+  },
 ];
 
 function TeamCard({ name, role, color }: { name: string; role: string; color: string }) {
@@ -47,7 +119,9 @@ function TeamCard({ name, role, color }: { name: string; role: string; color: st
     <div className="group relative flex w-36 flex-col items-center gap-3 rounded-2xl border border-border/60 bg-card/95 px-4 py-5 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.15)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:shadow-xl sm:w-40">
       <div className={`size-16 rounded-full bg-gradient-to-br ${color} ring-4 ring-background`} />
       <p className="text-center text-[15px] font-medium leading-tight text-foreground">{name}</p>
-      <span className="rounded-full bg-muted px-3 py-1 text-[11px] font-medium text-muted-foreground">{role}</span>
+      <span className="rounded-full bg-muted px-3 py-1 text-[11px] font-medium text-muted-foreground">
+        {role}
+      </span>
     </div>
   );
 }
@@ -59,36 +133,25 @@ function AboutPage() {
       <main>
         {/* Hero */}
         <section className="mx-auto max-w-5xl px-6 pb-12 pt-24 text-center lg:pt-28">
-          <p className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
-            <Sparkles className="size-3 text-primary" /> About SellStatic
-          </p>
+          <AnimatedText
+            text="About SellStatic"
+            as="span"
+            replay
+            duration={0.035}
+            delay={0.02}
+            className="mx-auto mb-8"
+            textClassName="text-5xl font-black tracking-tight text-foreground sm:text-6xl"
+            underlineClassName="rounded-full"
+            underlineHeight="h-1.5"
+            underlineOffset="-bottom-3"
+          />
           <h1 className="mt-6 text-balance text-5xl font-semibold tracking-tight md:text-6xl lg:text-7xl">
             Meet the team behind <span className="italic text-primary">SellStatic</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            A team of creators, designers, and builders making marketing tools that feel fun,
-            human, and ridiculously easy to use.
+            A team of creators, designers, and builders making marketing tools that feel fun, human,
+            and ridiculously easy to use.
           </p>
-        </section>
-
-        {/* Stats badges */}
-        <section className="mx-auto max-w-4xl px-6 pb-16">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="flex items-center gap-4 rounded-2xl border bg-card p-5 shadow-sm">
-              <div className="size-14 shrink-0 rounded-xl bg-gradient-to-br from-primary/30 to-primary/60" />
-              <div>
-                <p className="text-sm font-semibold">Backed by VC funds</p>
-                <p className="text-xs text-muted-foreground">$5M+ valuation</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 rounded-2xl border bg-card p-5 shadow-sm">
-              <div className="size-14 shrink-0 rounded-xl bg-gradient-to-br from-pink-300 to-purple-500" />
-              <div>
-                <p className="text-sm font-semibold">Loved by 2,400+ teams</p>
-                <p className="text-xs text-muted-foreground">Across the world</p>
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* Team grid with radial backdrop */}
@@ -100,9 +163,24 @@ function AboutPage() {
             preserveAspectRatio="none"
             fill="none"
           >
-            <path d="M0,140 C200,80 350,200 500,140 C650,80 800,200 1000,140" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1" />
-            <path d="M0,260 C200,200 350,320 500,260 C650,200 800,320 1000,260" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1" />
-            <path d="M0,380 C200,320 350,440 500,380 C650,320 800,440 1000,380" stroke="currentColor" strokeOpacity="0.1" strokeWidth="1" />
+            <path
+              d="M0,140 C200,80 350,200 500,140 C650,80 800,200 1000,140"
+              stroke="currentColor"
+              strokeOpacity="0.1"
+              strokeWidth="1"
+            />
+            <path
+              d="M0,260 C200,200 350,320 500,260 C650,200 800,320 1000,260"
+              stroke="currentColor"
+              strokeOpacity="0.1"
+              strokeWidth="1"
+            />
+            <path
+              d="M0,380 C200,320 350,440 500,380 C650,320 800,440 1000,380"
+              stroke="currentColor"
+              strokeOpacity="0.1"
+              strokeWidth="1"
+            />
           </svg>
 
           <div className="relative z-10 space-y-4">
@@ -129,15 +207,28 @@ function AboutPage() {
             <h2 className="text-center text-4xl font-semibold tracking-tight md:text-5xl">
               Our <span className="italic text-primary">story</span>
             </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
+              We are a small team with a simple goal: help marketers move from idea to live campaign
+              without the usual chaos.
+            </p>
             <div className="mt-14 space-y-10">
               {story.map((s, i) => (
                 <div
                   key={s.tag}
                   className={`grid items-center gap-8 md:grid-cols-2 ${i % 2 ? "md:[&>*:first-child]:order-2" : ""}`}
                 >
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-3xl border bg-gradient-to-br from-muted via-card to-primary/10 shadow-sm" />
+                  <div className="w-full overflow-hidden rounded-3xl border shadow-sm">
+                    <img
+                      src={storyImages[i]}
+                      alt={s.tag}
+                      loading="lazy"
+                      className="aspect-[4/3] w-full object-cover"
+                    />
+                  </div>
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-primary">{s.tag}</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                      {s.tag}
+                    </p>
                     <p className="mt-3 text-2xl font-medium leading-snug text-foreground/90 md:text-3xl">
                       {s.text}
                     </p>
@@ -151,10 +242,11 @@ function AboutPage() {
         {/* Belief */}
         <section className="mx-auto max-w-4xl px-6 py-24 text-center">
           <h2 className="text-balance text-4xl font-semibold tracking-tight md:text-5xl">
-            We believe creativity shouldn't <span className="italic text-primary">feel like work</span>.
+            We believe creativity shouldn't{" "}
+            <span className="italic text-primary">feel like work</span>.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-muted-foreground">
-            Every feature in SellStatic exists to remove friction — so marketers can spend more time
+            Every feature in SellStatic exists to remove friction, so marketers can spend more time
             telling stories and less time fighting tools.
           </p>
         </section>
@@ -181,18 +273,18 @@ function AboutPage() {
               <div className="space-y-8">
                 <div>
                   <p className="text-sm text-muted-foreground">Scale</p>
-                  <p className="mt-1 text-4xl font-semibold">1.2M+</p>
-                  <p className="mt-1 text-sm text-muted-foreground">Ads generated this year</p>
+                  <p className="mt-1 text-4xl font-semibold">100,000+</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Ads generated to date</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Community</p>
-                  <p className="mt-1 text-4xl font-semibold">2,400+</p>
-                  <p className="mt-1 text-sm text-muted-foreground">Active teams worldwide</p>
+                  <p className="text-sm text-muted-foreground">Availability</p>
+                  <p className="mt-1 text-4xl font-semibold">6</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Countries and counting</p>
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Saved</p>
                   <p className="mt-1 text-4xl font-semibold">80%</p>
-                  <p className="mt-1 text-sm text-muted-foreground">Avg. production time saved</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Avg. time saved per campaign</p>
                 </div>
               </div>
 
@@ -204,9 +296,12 @@ function AboutPage() {
                   width={1600}
                   height={1000}
                   className="absolute inset-0 size-full object-cover opacity-90"
+                  style={{
+                    filter: "brightness(0.97) contrast(1.05) saturate(1.14)",
+                  }}
                 />
                 {/* Highlight bubble over Toronto */}
-                <div className="absolute left-[64%] top-[44%]">
+                <div className="absolute left-[68%] top-[49%]">
                   <div className="relative flex size-28 items-center justify-center">
                     <div className="absolute inset-0 rounded-full bg-white shadow-[0_10px_40px_-6px_rgba(168,85,247,0.45)]" />
                     <div className="relative size-16 rounded-full bg-gradient-to-br from-primary/70 via-pink-400/70 to-purple-500/70 blur-[1px]" />
@@ -224,10 +319,13 @@ function AboutPage() {
         <section className="border-t bg-accent/40">
           <div className="mx-auto max-w-5xl px-6 py-20 text-center">
             <h2 className="text-3xl font-semibold md:text-4xl">
-              Built with love — to make marketing <span className="italic text-primary">easy for all</span>.
+              Built with love, to make marketing{" "}
+              <span className="italic text-primary">easy for all</span>.
             </h2>
             <div className="mt-6 flex justify-center">
-              <Button size="lg">Start free <ArrowRight className="ml-1 size-4" /></Button>
+              <Button size="lg">
+                Get Started <ArrowRight className="ml-1 size-4" />
+              </Button>
             </div>
             <p className="mt-4 text-xs text-muted-foreground">hello@sellstatic.com</p>
           </div>
