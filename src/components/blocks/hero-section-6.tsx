@@ -31,7 +31,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import trailerPoster from "@/assets/trailer-poster.jpg";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const productSteps = [
   {
@@ -253,13 +253,8 @@ export function HeroSection() {
                   >
                     <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b1d]">
                       <div className="aspect-video w-full">
-                        <video
+                        <LazyVideo
                           src={src}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          preload="metadata"
                           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                       </div>
@@ -531,6 +526,38 @@ export function HeroSection() {
 
       <SiteFooter />
     </>
+  );
+}
+
+function LazyVideo({ src, className }: { src: string; className?: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !video.src) {
+          video.src = src;
+          video.load();
+          video.play().catch(() => {});
+        }
+      },
+      { rootMargin: "150px" },
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [src]);
+
+  return (
+    <video
+      ref={ref}
+      loop
+      muted
+      playsInline
+      preload="none"
+      className={className}
+    />
   );
 }
 
