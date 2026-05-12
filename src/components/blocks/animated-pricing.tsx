@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, X } from "lucide-react";
-import { useState } from "react";
+import { Check } from "lucide-react";
 import type { ComponentType } from "react";
 
 interface PricingCardProps {
@@ -12,6 +11,7 @@ interface PricingCardProps {
   annual: boolean;
   description: string;
   cta: string;
+  href?: string;
   background: string;
   BGComponent: ComponentType;
   features: string[];
@@ -34,6 +34,7 @@ export function AnimatedPricing({ annual = false }: AnimatedPricingProps) {
           annual={annual}
           description="For solo marketers who need a simple way to create and schedule ads."
           cta="Start Drive"
+          href="https://www.sellstatic.app/verify-stripe?tier=drive"
           background="bg-indigo-500 dark:bg-indigo-600"
           BGComponent={BGComponent1}
           features={[
@@ -53,6 +54,7 @@ export function AnimatedPricing({ annual = false }: AnimatedPricingProps) {
           annual={annual}
           description="For growing teams that need better video, faster workflows, and stronger output."
           cta="Start Growth"
+          href="https://www.sellstatic.app/verify-stripe?tier=growth"
           background="bg-purple-500 dark:bg-purple-600"
           BGComponent={BGComponent2}
           features={[
@@ -97,13 +99,13 @@ function PricingCard({
   annual,
   description,
   cta,
+  href = "https://www.sellstatic.app",
   background,
   BGComponent,
   features,
   badge,
   priceLabel,
 }: PricingCardProps) {
-  const [open, setOpen] = useState(false);
   const price = annual ? annualPrice : monthlyPrice;
   const displayPrice = priceLabel ?? (typeof price === "number" ? `$${price}` : "");
   return (
@@ -153,64 +155,17 @@ function PricingCard({
         </ul>
       </div>
       {priceLabel === "Custom" ? (
-        <>
-          <button
-            onClick={() => setOpen(true)}
-            className="absolute bottom-4 left-4 right-4 z-20 rounded-lg border-2 border-white bg-white py-2 text-center font-mono font-black uppercase text-neutral-800 backdrop-blur-sm transition-all duration-200 hover:border-white/80 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent"
-          >
-            {cta}
-          </button>
-
-          {open && (
-            <div className="fixed inset-0 z-50 grid place-items-center">
-              <div className="absolute inset-0 bg-black/50" onClick={() => setOpen(false)} />
-              <div className="relative z-10 w-full max-w-md rounded-lg bg-card p-6 shadow-xl">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="text-lg font-semibold">Contact Sales</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      Reach out and we'll help you with a custom plan.
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => setOpen(false)}
-                    className="rounded-full p-1 text-muted-foreground hover:text-white"
-                  >
-                    <X className="size-5" />
-                  </button>
-                </div>
-
-                <div className="mt-4 space-y-3 text-sm">
-                  <p>
-                    <strong>Email:</strong>{" "}
-                    <a href="mailto:sales@sellstatic.app" className="text-primary">
-                      sales@sellstatic.app
-                    </a>
-                  </p>
-                  <p>
-                    <strong>Phone:</strong>{" "}
-                    <a href="tel:+15555555555" className="text-primary">
-                      +1 (555) 555-5555
-                    </a>
-                  </p>
-                  <p>Or send us a message and we'll schedule a quick demo.</p>
-                </div>
-
-                <div className="mt-6 flex justify-end">
-                  <a
-                    href="mailto:sales@sellstatic.app"
-                    className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white"
-                  >
-                    Email Sales
-                  </a>
-                </div>
-              </div>
-            </div>
-          )}
-        </>
+        <a
+          href="https://calendar.app.google/LVzTHL3eHRQX4KpQ6"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute bottom-4 left-4 right-4 z-20 inline-flex items-center justify-center rounded-lg border-2 border-white bg-white py-2 text-center font-mono font-black uppercase text-neutral-800 backdrop-blur-sm transition-all duration-200 hover:border-white/80 hover:bg-white/10 hover:text-white"
+        >
+          {cta}
+        </a>
       ) : (
         <a
-          href="https://www.sellstatic.app"
+          href={href}
           target="_blank"
           rel="noopener noreferrer"
           className="absolute bottom-4 left-4 right-4 z-20 inline-flex items-center justify-center rounded-lg border-2 border-white bg-white py-2 text-center font-mono font-black uppercase text-neutral-800 backdrop-blur-sm transition-all duration-200 hover:border-white/80 hover:bg-white/10 hover:text-white"
