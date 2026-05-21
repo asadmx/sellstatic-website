@@ -1,0 +1,26 @@
+[
+  {
+    "video": "apple.mp4",
+    "poster": "apple.jpg"
+  },
+  {
+    "video": "sellstatic.mp4",
+    "poster": "sellstatic.jpg"
+  },
+  {
+    "video": "ikea.mp4",
+    "poster": "ikea.jpg"
+  },
+  {
+    "video": "cadillac.mp4",
+    "poster": "cadillac.jpg"
+  },
+  {
+    "video": "Figma.mp4",
+    "poster": "figma.jpg"
+  },
+  {
+    "video": "Mercedes-Benz Canada.mp4",
+    "poster": "mercedes-benz-canada.jpg"
+  }
+]

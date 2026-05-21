@@ -176,12 +176,36 @@ const stats = [
 ];
 
 const adPreviews = [
-  "/ads/apple.mp4",
-  "/ads/sellstatic.mp4",
-  "/ads/ikea.mp4",
-  "/ads/cadillac.mp4",
-  "/ads/Figma.mp4",
-  "/ads/Mercedes-Benz Canada.mp4",
+  {
+    src: "/ads/apple.mp4",
+    poster: "/screenshots/generated/apple.jpg",
+    label: "Apple ad preview",
+  },
+  {
+    src: "/ads/sellstatic.mp4",
+    poster: "/screenshots/generated/sellstatic.jpg",
+    label: "SellStatic ad preview",
+  },
+  {
+    src: "/ads/ikea.mp4",
+    poster: "/screenshots/generated/ikea.jpg",
+    label: "IKEA ad preview",
+  },
+  {
+    src: "/ads/cadillac.mp4",
+    poster: "/screenshots/generated/cadillac.jpg",
+    label: "Cadillac ad preview",
+  },
+  {
+    src: "/ads/Figma.mp4",
+    poster: "/screenshots/generated/figma.jpg",
+    label: "Figma ad preview",
+  },
+  {
+    src: "/ads/Mercedes-Benz Canada.mp4",
+    poster: "/screenshots/generated/mercedes-benz-canada.jpg",
+    label: "Mercedes-Benz ad preview",
+  },
 ];
 
 export function HeroSection() {
@@ -246,20 +270,12 @@ export function HeroSection() {
               className="w-full"
             >
               <CarouselContent className="ml-0 flex items-center">
-                {[...adPreviews, ...adPreviews].map((src, i) => (
+                {[...adPreviews, ...adPreviews].map((preview, i) => (
                   <CarouselItem
-                    key={`${i}-${String(src)}`}
+                    key={`${i}-${preview.src}`}
                     className="basis-[82%] pl-3 sm:basis-[58%] md:basis-[42%] lg:basis-[32%]"
                   >
-                    <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b1d]">
-                      <div className="aspect-video w-full">
-                        <LazyVideo
-                          src={src}
-                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </div>
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
-                    </div>
+                    <HeroPreviewVideo preview={preview} />
                   </CarouselItem>
                 ))}
               </CarouselContent>
@@ -611,6 +627,120 @@ function DemoVideo() {
           </button>
         )}
       </div>
+    </div>
+  );
+}
+
+function HeroPreviewVideo({
+  preview,
+}: {
+  preview: {
+    src: string;
+    poster: string;
+    label: string;
+  };
+}) {
+  const [isReady, setIsReady] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    const v = videoRef.current;
+    if (!el || !v) return;
+
+    let didLoad = false;
+
+    const loadVideo = () => {
+      if (didLoad) return;
+      didLoad = true;
+      setIsLoading(true);
+      // set src and let browser load metadata only
+      if (!v.getAttribute("src")) {
+        v.setAttribute("src", preview.src);
+        v.preload = "metadata";
+        // call load to start metadata retrieval
+        try {
+          v.load();
+        } catch (e) {
+          // ignore
+        }
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // load this and prioritize
+            loadVideo();
+            // also optionally load nearby items via a custom event handled by parent carousel
+          }
+        });
+      },
+      { root: null, rootMargin: "400px", threshold: 0.15 }
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+    };
+    // preview.src is constant for this item
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preview.src]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b1d]"
+      aria-label={preview.label}
+    >
+      <div className="relative aspect-video w-full">
+        <img
+          src={preview.poster}
+          alt={preview.label}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+            isReady && !hasError ? "opacity-0" : "opacity-100"
+          }`}
+          loading="eager"
+        />
+
+        <video
+          ref={videoRef}
+          // src is set lazily by IntersectionObserver
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          onCanPlay={() => {
+            setIsReady(true);
+            setIsLoading(false);
+          }}
+          onPlaying={() => {
+            setIsReady(true);
+            setIsLoading(false);
+          }}
+          onError={() => {
+            setHasError(true);
+            setIsLoading(false);
+          }}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 will-change-opacity ${
+            isReady && !hasError ? "opacity-100" : "opacity-0"
+          } group-hover:scale-105`}
+        />
+
+        {/* subtle loader: small dot centered, minimal visual impact */}
+        {isLoading && !isReady && (
+          <div className="absolute inset-0 grid place-items-center">
+            <div className="h-2.5 w-2.5 rounded-full bg-white/60 animate-pulse opacity-80" />
+          </div>
+        )}
+      </div>
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
     </div>
   );
 }
