@@ -172,13 +172,21 @@ function TeamCard({
 }) {
   return (
     <div className="group relative flex w-44 flex-col items-center gap-5 rounded-2xl border border-border/60 bg-card/95 px-5 py-7 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.15)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:shadow-xl sm:w-48">
-      <div className={`relative size-24 overflow-hidden rounded-full bg-gradient-to-br ${color} ring-4 ring-background`}>
-        <img
-          src={image}
-          alt={`${name} headshot`}
-          className="h-full w-full object-cover"
-          loading="lazy"
+      <div className="relative size-28 shrink-0">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(233,213,255,0.7)_0%,rgba(196,181,253,0.45)_35%,rgba(168,85,247,0.22)_62%,rgba(168,85,247,0)_78%)] blur-md"
         />
+        <div
+          className={`relative mx-auto size-24 overflow-hidden rounded-full bg-gradient-to-br ${color} ring-4 ring-background shadow-[0_0_0_1px_rgba(168,85,247,0.18),0_0_28px_rgba(168,85,247,0.22)]`}
+        >
+          <img
+            src={image}
+            alt={`${name} headshot`}
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
       </div>
       <p className="text-center text-[15px] font-medium leading-tight text-foreground">{name}</p>
       <span className="rounded-full bg-muted px-3 py-1 text-[11px] font-medium text-muted-foreground">
