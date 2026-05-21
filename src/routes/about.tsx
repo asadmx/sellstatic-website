@@ -24,15 +24,60 @@ export const Route = createFileRoute("/about")({
 });
 
 const team = [
-  { name: "Imam Khalid", role: "CEO", color: "from-indigo-300 to-indigo-500" },
-  { name: "Abdullah Abdullah", role: "CTO", color: "from-pink-300 to-pink-500" },
-  { name: "Aditya Sharma", role: "CPO", color: "from-rose-300 to-rose-500" },
-  { name: "Ahmad Pasha", role: "Front End Lead", color: "from-purple-300 to-purple-500" },
-  { name: "Muhamad Moiz", role: "Back End Lead", color: "from-amber-300 to-amber-500" },
-  { name: "Ayush", role: "Full Stack Engineer", color: "from-emerald-300 to-emerald-500" },
-  { name: "Harnoor Boparai", role: "Full Stack Engineer", color: "from-sky-300 to-sky-500" },
-  { name: "Jaazib Tariq", role: "Full Stack Engineer", color: "from-fuchsia-300 to-fuchsia-500" },
-  { name: "Asad Malik", role: "Full Stack Engineer", color: "from-cyan-300 to-cyan-500" },
+  {
+    name: "Imam Khalid",
+    role: "CEO",
+    color: "from-indigo-300 to-indigo-500",
+    image: "/headshots/imam.png",
+  },
+  {
+    name: "Abdullah Abdullah",
+    role: "CTO",
+    color: "from-pink-300 to-pink-500",
+    image: "/headshots/abdullah.png",
+  },
+  {
+    name: "Aditya Sharma",
+    role: "CPO",
+    color: "from-rose-300 to-rose-500",
+    image: "/headshots/aditya.png",
+  },
+  {
+    name: "Ahmad Pasha",
+    role: "Front End Lead",
+    color: "from-purple-300 to-purple-500",
+    image: "/headshots/ahmad.png",
+  },
+  {
+    name: "Muhamad Moiz",
+    role: "Back End Lead",
+    color: "from-amber-300 to-amber-500",
+    image: "/headshots/moiz.png",
+  },
+  {
+    name: "Sharat",
+    role: "Full Stack Engineer",
+    color: "from-emerald-300 to-emerald-500",
+    image: "/headshots/sharat.png",
+  },
+  {
+    name: "Harnoor Boparai",
+    role: "Full Stack Engineer",
+    color: "from-sky-300 to-sky-500",
+    image: "/headshots/harnoor.png",
+  },
+  {
+    name: "Jaazib Tariq",
+    role: "Full Stack Engineer",
+    color: "from-fuchsia-300 to-fuchsia-500",
+    image: "/headshots/jaazib.png",
+  },
+  {
+    name: "Asad Malik",
+    role: "Full Stack Engineer",
+    color: "from-cyan-300 to-cyan-500",
+    image: "/headshots/asad.png",
+  },
 ];
 
 const story = [
@@ -114,10 +159,27 @@ const testimonials = [
   },
 ];
 
-function TeamCard({ name, role, color }: { name: string; role: string; color: string }) {
+function TeamCard({
+  name,
+  role,
+  color,
+  image,
+}: {
+  name: string;
+  role: string;
+  color: string;
+  image: string;
+}) {
   return (
-    <div className="group relative flex w-36 flex-col items-center gap-3 rounded-2xl border border-border/60 bg-card/95 px-4 py-5 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.15)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:shadow-xl sm:w-40">
-      <div className={`size-16 rounded-full bg-gradient-to-br ${color} ring-4 ring-background`} />
+    <div className="group relative flex w-44 flex-col items-center gap-5 rounded-2xl border border-border/60 bg-card/95 px-5 py-7 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.15)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:shadow-xl sm:w-48">
+      <div className={`relative size-24 overflow-hidden rounded-full bg-gradient-to-br ${color} ring-4 ring-background`}>
+        <img
+          src={image}
+          alt={`${name} headshot`}
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
       <p className="text-center text-[15px] font-medium leading-tight text-foreground">{name}</p>
       <span className="rounded-full bg-muted px-3 py-1 text-[11px] font-medium text-muted-foreground">
         {role}
