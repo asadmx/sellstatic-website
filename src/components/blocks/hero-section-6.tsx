@@ -516,12 +516,12 @@ export function HeroSection() {
         </section>
 
         {/* NEWSLETTER */}
-        <section className="border-y bg-primary/5">
+        <section className="border-y border-white/10 bg-[#050505] text-white">
           <div className="mx-auto max-w-3xl px-6 py-20 text-center">
             <h2 className="text-3xl font-semibold md:text-4xl">
               Stay up to date with <span className="italic text-primary">SellStatic</span>.
             </h2>
-            <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+            <p className="mx-auto mt-3 max-w-xl text-white/70">
               Get product updates, launch notes, and practical marketing ideas sent to your inbox.
             </p>
             <form
@@ -532,7 +532,7 @@ export function HeroSection() {
                 type="email"
                 required
                 placeholder="you@example.com"
-                className="flex-1 rounded-md border bg-background px-4 py-2.5 text-sm outline-none ring-primary/30 focus:ring-2"
+                className="flex-1 rounded-md border border-white/10 bg-white/95 px-4 py-2.5 text-sm text-foreground outline-none ring-primary/30 focus:ring-2"
               />
               <Button type="submit">Stay updated</Button>
             </form>

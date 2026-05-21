@@ -68,59 +68,91 @@ export const SiteFooter = ({
   copyright = "(c) 2026 SellStatic. All rights reserved.",
 }: Footer7Props) => {
   return (
-    <>
-      <section className="border-t" />
-      <section className="py-32">
-        <div className="container mx-auto">
-          <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left">
-            <div className="flex w-full flex-col justify-between gap-6 lg:items-start">
-              {/* Logo */}
-              <div className="flex items-center gap-2 lg:justify-start">
-                <a href={logoProp.url}>
-                  <img
-                    src={logoProp.src}
-                    alt={logoProp.alt}
-                    title={logoProp.title}
-                    className="h-8"
-                  />
-                </a>
-                <h2 className="text-xl font-semibold">{logoProp.title}</h2>
+    <footer className="relative w-full overflow-hidden border-t border-border/50 bg-background text-foreground">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-40 -top-40 h-[420px] w-[420px] rounded-full opacity-50 blur-[120px]"
+        style={{
+          background:
+            "radial-gradient(circle at center, oklch(0.78 0.18 295 / 0.35), transparent 70%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-40 -right-32 h-[460px] w-[460px] rounded-full opacity-50 blur-[130px]"
+        style={{
+          background:
+            "radial-gradient(circle at center, oklch(0.85 0.15 340 / 0.28), transparent 70%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-6xl px-6 py-10 sm:py-12">
+        <div className="flex flex-col items-center">
+          <div className="flex items-center space-x-3">
+            <a href={logoProp.url} aria-label={logoProp.title} className="shrink-0">
+              <img src={logoProp.src} alt={logoProp.alt} title={logoProp.title} className="h-16 sm:h-20" />
+            </a>
+          </div>
+          <p className="mt-4 max-w-2xl text-center text-base font-normal leading-relaxed text-muted-foreground sm:text-lg">
+            {description}
+          </p>
+
+          <div className="mt-8 flex w-full flex-col gap-8 md:flex-row md:justify-center md:gap-16 lg:gap-24">
+            {sections.map((section) => (
+              <div key={section.title} className="text-center md:text-left">
+                <h3 className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
+                  {section.title}
+                </h3>
+                <ul className="space-y-2.5 text-base text-foreground/75 sm:text-lg">
+                  {section.links.map((link) => (
+                    <li key={link.name} className="font-medium transition-colors hover:text-primary">
+                      {link.href.startsWith("/") ? (
+                        <Link to={link.href as InternalHref}>{link.name}</Link>
+                      ) : (
+                        <a href={link.href}>{link.name}</a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p className="max-w-[70%] text-sm text-muted-foreground">{description}</p>
-              <ul className="flex items-center space-x-6 text-muted-foreground">
-                {socialLinks.map((social, idx) => (
-                  <li key={idx} className="font-medium hover:text-primary">
-                    <a href={social.href} aria-label={social.label}>
-                      {social.icon}
+            ))}
+
+            <div className="text-center md:text-left">
+              <h3 className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
+                Social
+              </h3>
+              <ul className="space-y-2.5 text-base text-foreground/75 sm:text-lg">
+                {socialLinks.map((social) => (
+                  <li key={social.label} className="font-medium transition-colors hover:text-primary">
+                    <a
+                      href={social.href}
+                      aria-label={social.label}
+                      className="inline-flex items-center gap-3"
+                    >
+                      <span className="text-primary [&_svg]:size-6">{social.icon}</span>
+                      <span>{social.label}</span>
                     </a>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="grid w-full gap-6 md:grid-cols-1 lg:gap-20">
-              {sections.map((section, sectionIdx) => (
-                <div key={sectionIdx}>
-                  <h3 className="mb-4 font-bold">{section.title}</h3>
-                  <ul className="space-y-3 text-sm text-muted-foreground">
-                    {section.links.map((link, linkIdx) => (
-                      <li key={linkIdx} className="font-medium hover:text-primary">
-                        {link.href.startsWith("/") ? (
-                          <Link to={link.href as InternalHref}>{link.name}</Link>
-                        ) : (
-                          <a href={link.href}>{link.name}</a>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="mt-8 flex flex-col justify-between gap-4 border-t py-8 text-xs font-medium text-muted-foreground md:flex-row md:items-center md:text-left">
-            <p className="order-2 lg:order-1">{copyright}</p>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+      <div className="relative border-t border-border/60 bg-background/70 backdrop-blur-sm">
+        <div className="mx-auto max-w-6xl px-6 py-4 text-center text-sm font-normal text-muted-foreground">
+          {copyright}
+        </div>
+      </div>
+    </footer>
   );
 };

@@ -386,7 +386,7 @@ function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t bg-accent/40">
+        <section className="border-t border-white/10 bg-[#050505] text-white">
           <div className="mx-auto max-w-5xl px-6 py-20 text-center">
             <h2 className="text-3xl font-semibold md:text-4xl">
               Built with love, to make marketing{" "}

@@ -40,36 +40,50 @@ function PricingPage() {
         </section>
 
         {/* AI agents */}
-        <section className="mx-auto max-w-6xl px-6 pb-24">
-          <div className="grid gap-8 rounded-3xl border bg-card/70 p-8 shadow-[0_10px_40px_-12px_rgba(0,0,0,0.08)] lg:grid-cols-[1.1fr_1.2fr] lg:items-center">
+        <section className="border-y border-white/10 bg-[#050505] text-white">
+          <div className="mx-auto grid max-w-6xl gap-8 px-6 py-24 lg:grid-cols-[1.1fr_1.2fr] lg:items-center">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#C4B5FD] md:text-base">
                 AI Agents for Marketing
               </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">
                 Agents that help you move from brief to launch{" "}
                 <span className="italic text-primary">faster</span>.
               </h2>
-              <p className="mt-4 max-w-xl text-muted-foreground">
+              <p className="mt-4 max-w-xl text-white/70">
                 SellStatic agents help you write, generate, refine, and publish campaigns without
                 bouncing between tools.
+              </p>
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/55">
+                Each agent is designed to handle a specific part of the workflow, so your team can
+                go from idea to polished output with fewer handoffs, less repetition, and much
+                faster turnaround.
               </p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
               {[
-                ["Ad Agent", "Turns a short brief into ready-to-test static ad variations."],
+                [
+                  "Ad Agent",
+                  "Turns a short brief into ready-to-test static ad variations, complete with clear headlines and CTA ideas.",
+                ],
                 [
                   "Video Ad Agent",
-                  "Builds and polishes short-form video ads from your idea or URL.",
+                  "Builds and polishes short-form video ads from your idea or URL, then helps shape a version that feels ready to publish.",
                 ],
                 [
                   "Social Agent",
-                  "Keeps your scheduled content moving across channels without extra busywork.",
+                  "Keeps your scheduled content moving across channels without extra busywork, so your queue stays active and consistent.",
                 ],
-                ["Analytics Agent", "Explains what is performing and what to test next."],
+                [
+                  "Analytics Agent",
+                  "Explains what is performing, what is slowing down, and what to test next so you can make sharper decisions.",
+                ],
               ].map(([title, desc]) => (
-                <div key={title} className="rounded-2xl border bg-background p-5">
+                <div
+                  key={title}
+                  className="rounded-2xl border border-border/70 bg-white p-5 text-foreground shadow-[0_8px_24px_-12px_rgba(0,0,0,0.25)]"
+                >
                   <div className="text-sm font-semibold text-foreground">{title}</div>
                   <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
                 </div>
