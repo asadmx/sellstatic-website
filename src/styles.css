@@ -182,3 +182,19 @@
     transform: translate(-20%, -30%) scale(1.3);
   }
 }
+
+@keyframes statty-sway {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-0.35deg);
+  }
+  50% {
+    transform: translate3d(2px, -3px, 0) rotate(0.35deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .statty-sway {
+    animation: statty-sway 5.8s ease-in-out infinite;
+  }
+}

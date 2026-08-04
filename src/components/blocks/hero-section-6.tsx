@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/accordion";
 import trailerPoster from "@/assets/trailer-poster.jpg";
 import { useRef, useState, useEffect } from "react";
+import { StattySpotlight } from "@/components/statty-spotlight";
 
 const productSteps = [
   {
@@ -216,36 +217,55 @@ export function HeroSection() {
       <main>
         {/* HERO */}
         <section className="overflow-hidden">
-          <div className="relative mx-auto max-w-5xl px-6 py-28 lg:py-24">
-            <div className="relative z-10 mx-auto max-w-3xl text-center">
-              <GooeyText
-                texts={["Marketing", "made", "easy"]}
-                className="mx-auto h-12 w-full max-w-md"
-                textClassName="text-2xl md:text-3xl font-semibold tracking-tight text-primary"
-              />
+          <div className="relative mx-auto max-w-6xl px-6 py-20 lg:py-24">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute right-[-12%] top-[10%] size-[32rem] rounded-full bg-primary/10 blur-[110px]"
+            />
 
-              <Reveal as="div" delay={100}>
-                <h1 className="mt-8 text-balance text-4xl font-semibold md:text-5xl lg:text-6xl">
-                  Your AI Marketing engine built for{" "}
-                  <span className="italic text-primary">growth</span>.
-                </h1>
-                <p className="mx-auto mt-6 max-w-2xl text-balance text-muted-foreground">
-                  SellStatic turns your ideas into on-brand ads and social posts, then schedules
-                  them across platforms so you can focus on what matters most.
-                </p>
+            <div className="relative z-10 grid items-center gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:gap-8">
+              <div className="mx-auto max-w-3xl text-center">
+                <GooeyText
+                  texts={["Marketing", "made", "easy"]}
+                  className="mx-auto h-12 w-full max-w-md"
+                  textClassName="text-2xl md:text-3xl font-semibold tracking-tight text-primary"
+                />
 
-                <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <Button asChild size="lg">
-                    <a
-                      href="https://www.sellstatic.app/home"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span>Get Started</span>
-                      <ArrowRight className="ml-2 size-4" />
-                    </a>
-                  </Button>
-                </div>
+                <Reveal as="div" delay={100}>
+                  <h1 className="mt-8 text-balance text-4xl font-semibold md:text-5xl lg:text-6xl">
+                    Your AI Marketing engine built for{" "}
+                    <span className="italic text-primary">growth</span>.
+                  </h1>
+                  <p className="mx-auto mt-6 max-w-2xl text-balance text-muted-foreground">
+                    SellStatic turns your ideas into on-brand ads and social posts, then schedules
+                    them across platforms so you can focus on what matters most.
+                  </p>
+
+                  <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                    <Button asChild size="lg">
+                      <a
+                        href="https://www.sellstatic.app/home"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span>Get Started</span>
+                        <ArrowRight className="ml-2 size-4" />
+                      </a>
+                    </Button>
+                  </div>
+                </Reveal>
+              </div>
+
+              <Reveal
+                delay={180}
+                y={16}
+                className="mx-auto w-full max-w-[430px] lg:-mr-6 lg:ml-auto"
+              >
+                <StattySpotlight
+                  pose="swoop"
+                  alt="Statty swooping into the SellStatic website"
+                  eager
+                />
               </Reveal>
             </div>
           </div>
@@ -369,7 +389,14 @@ export function HeroSection() {
         </section>
 
         {/* PRODUCT FEATURE CAROUSEL */}
-        <section className="mx-auto max-w-6xl px-6 py-24">
+        <section className="relative mx-auto max-w-6xl px-6 py-24">
+          <Reveal
+            delay={120}
+            y={12}
+            className="pointer-events-none absolute -right-12 top-16 hidden w-56 xl:block"
+          >
+            <StattySpotlight pose="wave" alt="Statty waving beside the product feature tour" />
+          </Reveal>
           <Reveal className="mx-auto mb-12 max-w-2xl text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
               Everything we offer
@@ -389,28 +416,31 @@ export function HeroSection() {
         <AdShowcase />
 
         {/* SHIP CTA */}
-        <section className="border-y bg-accent/40">
-          <div className="mx-auto grid max-w-5xl gap-10 px-6 py-20 md:grid-cols-2 md:items-center">
+        <section className="overflow-hidden border-y bg-accent/40">
+          <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-6 py-16 md:grid-cols-2 lg:grid-cols-[1fr_0.9fr_1fr] lg:py-14">
             <h2 className="text-3xl font-semibold md:text-4xl lg:text-5xl">
               Ship your next campaign <span className="italic text-primary">today</span>.
             </h2>
-            <div>
+            <StattySpotlight
+              pose="rocketRide"
+              alt="Statty riding a SellStatic rocket toward launch"
+              className="mx-auto w-full max-w-[290px] md:col-span-2 md:row-start-2 lg:col-span-1 lg:row-start-1"
+            />
+            <div className="md:col-start-2 md:row-start-1 lg:col-start-3">
               <p className="max-w-md text-muted-foreground">
                 Generate on-brand ads, schedule everywhere, and measure results in one place. Join
                 teams scheduling and publishing across every platform with SellStatic.
               </p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                <div className="mt-10">
-                  <Button asChild size="lg">
-                    <a
-                      href="https://www.sellstatic.app/home"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Get Started <ArrowRight className="ml-1 size-4" />
-                    </a>
-                  </Button>
-                </div>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button asChild size="lg">
+                  <a
+                    href="https://www.sellstatic.app/home"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Get Started <ArrowRight className="ml-1 size-4" />
+                  </a>
+                </Button>
               </div>
             </div>
           </div>
@@ -444,7 +474,12 @@ export function HeroSection() {
 
         {/* WHY CHOOSE US */}
         <section className="bg-foreground text-background">
-          <div className="mx-auto max-w-5xl px-6 py-24">
+          <div className="relative mx-auto max-w-5xl px-6 py-24">
+            <StattySpotlight
+              pose="dive"
+              alt="Statty diving toward SellStatic's performance results"
+              className="pointer-events-none absolute -right-14 -top-[-10px] hidden w-64 lg:block"
+            />
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary/80">
               Why Choose Us
             </p>
