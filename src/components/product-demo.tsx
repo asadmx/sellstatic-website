@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -11,8 +11,6 @@ import {
   LayoutGrid,
   Link2,
   Loader2,
-  LockKeyhole,
-  Mail,
   Palette,
   Play,
   ScanSearch,
@@ -22,7 +20,6 @@ import {
   X,
   Zap,
 } from "lucide-react";
-import logo from "@/assets/sellstatic-logo.png";
 import { cn } from "@/lib/utils";
 
 type DemoStage = "link" | "extracting" | "brief" | "generating" | "results";
@@ -152,81 +149,6 @@ function DemoButton({
     >
       {children}
     </button>
-  );
-}
-
-function WelcomeGate({ onStart }: { onStart: () => void }) {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-
-  const submit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError("Enter a valid email to start the demo.");
-      return;
-    }
-    setError("");
-    onStart();
-  };
-
-  return (
-    <div className="relative z-10 flex h-full items-center justify-center p-5">
-      <motion.div
-        initial={{ opacity: 0, y: 18, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        className="w-full max-w-lg rounded-[32px] border border-violet-300/15 bg-[#17121f]/95 p-6 shadow-2xl shadow-black/50 backdrop-blur-xl sm:p-8"
-      >
-        <div className="flex items-center justify-between gap-4">
-          <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-lg">
-            <img src={logo} alt="SellStatic" className="h-11 w-11 object-contain" />
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-emerald-300">
-            <Play className="h-3 w-3 fill-current" /> 30-second demo
-          </span>
-        </div>
-
-        <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-violet-300">
-          Link in. Ads out.
-        </p>
-        <h2 className="mt-2 text-3xl font-black tracking-tight text-white sm:text-4xl">
-          See the simple version.
-        </h2>
-        <p className="mt-3 max-w-md text-sm leading-6 text-white/55">
-          Give SellStatic one website link. We pull out the useful details and turn them into
-          campaign-ready ads.
-        </p>
-
-        <form onSubmit={submit} className="mt-7">
-          <label htmlFor="demo-email" className="mb-2 block text-xs font-semibold text-white/75">
-            Work email
-          </label>
-          <div className="relative">
-            <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
-            <input
-              id="demo-email"
-              type="email"
-              value={email}
-              onChange={(event) => {
-                setEmail(event.target.value);
-                setError("");
-              }}
-              placeholder="you@company.com"
-              className="h-13 w-full rounded-2xl border border-white/10 bg-white/[0.06] pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-violet-400/70 focus:ring-4 focus:ring-violet-500/10"
-            />
-          </div>
-          {error && <p className="mt-2 text-xs text-rose-300">{error}</p>}
-          <DemoButton type="submit" className="mt-3 w-full">
-            Show me how it works <ArrowRight className="h-4 w-4" />
-          </DemoButton>
-        </form>
-
-        <p className="mt-4 flex gap-2 text-[10px] leading-4 text-white/35">
-          <LockKeyhole className="mt-0.5 h-3 w-3 shrink-0" />
-          This is a frontend-only illustration of the SellStatic workflow. It is not connected to
-          sellstatic.app, and your email is not submitted or saved.
-        </p>
-      </motion.div>
-    </div>
   );
 }
 
@@ -1139,7 +1061,6 @@ function MobileNotice() {
 }
 
 export function ProductDemo({ className }: { className?: string }) {
-  const [started, setStarted] = useState(false);
   const [stage, setStage] = useState<DemoStage>("link");
   const [url, setUrl] = useState(SAMPLE_URL);
   const [brief, setBrief] = useState<BrandBrief>({ ...INITIAL_BRIEF });
@@ -1195,38 +1116,34 @@ export function ProductDemo({ className }: { className?: string }) {
     >
       {isMobile && <MobileNotice />}
 
-      {!started ? (
-        <WelcomeGate onStart={() => setStarted(true)} />
-      ) : (
-        <div className="relative z-10 h-full">
-          <DemoTourGuide stage={stage} />
-          <div className="h-full">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={stage}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.24 }}
-                className="h-full overflow-y-auto overscroll-contain"
-              >
-                {stage === "link" && <LinkStage url={url} setUrl={setUrl} onAnalyze={analyze} />}
-                {stage === "extracting" && <ExtractingStage revealed={revealed} />}
-                {stage === "brief" && (
-                  <BriefStage
-                    brief={brief}
-                    setBrief={setBrief}
-                    onGenerate={() => setStage("generating")}
-                    onBack={() => setStage("link")}
-                  />
-                )}
-                {stage === "generating" && <GeneratingStage />}
-                {stage === "results" && <ResultsStage onRestart={restart} />}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+      <div className="relative z-10 h-full">
+        <DemoTourGuide stage={stage} />
+        <div className="h-full">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={stage}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.24 }}
+              className="h-full overflow-y-auto overscroll-contain"
+            >
+              {stage === "link" && <LinkStage url={url} setUrl={setUrl} onAnalyze={analyze} />}
+              {stage === "extracting" && <ExtractingStage revealed={revealed} />}
+              {stage === "brief" && (
+                <BriefStage
+                  brief={brief}
+                  setBrief={setBrief}
+                  onGenerate={() => setStage("generating")}
+                  onBack={() => setStage("link")}
+                />
+              )}
+              {stage === "generating" && <GeneratingStage />}
+              {stage === "results" && <ResultsStage onRestart={restart} />}
+            </motion.div>
+          </AnimatePresence>
         </div>
-      )}
+      </div>
     </div>
   );
 }
