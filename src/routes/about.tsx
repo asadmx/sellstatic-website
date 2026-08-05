@@ -342,11 +342,6 @@ function AboutPage() {
             <div className="relative mt-12 grid items-center gap-10 md:grid-cols-[1fr_2.2fr]">
               <div className="space-y-8">
                 <div>
-                  <p className="text-sm text-muted-foreground">Scale</p>
-                  <p className="mt-1 text-4xl font-semibold">100,000+</p>
-                  <p className="mt-1 text-sm text-muted-foreground">Ads generated to date</p>
-                </div>
-                <div>
                   <p className="text-sm text-muted-foreground">Availability</p>
                   <p className="mt-1 text-4xl font-semibold">6</p>
                   <p className="mt-1 text-sm text-muted-foreground">Countries and counting</p>

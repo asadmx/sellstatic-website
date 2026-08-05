@@ -169,7 +169,6 @@ const problems = [
 ];
 
 const stats = [
-  { v: "100,000+", l: "Ads generated" },
   { v: "5.2s", l: "Over 100 ads created" },
   { v: "6", l: "Countries we're operating in" },
   { v: "50", l: "Integrations and counting" },
@@ -354,7 +353,7 @@ export function HeroSection() {
 
         {/* CORE FEATURES */}
         <section className="border-y bg-card/40">
-          <div className="mx-auto max-w-6xl px-6 py-24">
+          <div className="relative mx-auto max-w-6xl px-6 py-24">
             <div className="mx-auto max-w-2xl text-center">
               <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">
                 Core features
@@ -492,7 +491,7 @@ export function HeroSection() {
               saved.
             </p>
 
-            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-background/10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-px overflow-hidden rounded-2xl bg-background/10 text-center sm:grid-cols-2 md:grid-cols-4">
               {stats.map((s) => (
                 <div key={s.l} className="bg-foreground p-8">
                   <div className="text-4xl font-semibold italic text-primary">{s.v}</div>
@@ -551,26 +550,28 @@ export function HeroSection() {
         </section>
 
         {/* NEWSLETTER */}
-        <section className="border-y border-white/10 bg-[#050505] text-white">
-          <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-            <h2 className="text-3xl font-semibold md:text-4xl">
-              Stay up to date with <span className="italic text-primary">SellStatic</span>.
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-white/70">
-              Get product updates, launch notes, and practical marketing ideas sent to your inbox.
-            </p>
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="mx-auto mt-8 flex max-w-md flex-col gap-2 sm:flex-row"
-            >
-              <input
-                type="email"
-                required
-                placeholder="you@example.com"
-                className="flex-1 rounded-md border border-white/10 bg-white/95 px-4 py-2.5 text-sm text-foreground outline-none ring-primary/30 focus:ring-2"
-              />
-              <Button type="submit">Stay updated</Button>
-            </form>
+        <section className="overflow-hidden border-y border-white/10 bg-[#050505] text-white">
+          <div className="relative mx-auto max-w-6xl px-6 py-20">
+            <div className="relative z-10 mx-auto max-w-3xl text-center">
+              <h2 className="text-3xl font-semibold md:text-4xl">
+                Stay up to date with <span className="italic text-primary">SellStatic</span>.
+              </h2>
+              <p className="mx-auto mt-3 max-w-xl text-white/70">
+                Get product updates, launch notes, and practical marketing ideas sent to your inbox.
+              </p>
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="mx-auto mt-8 flex max-w-md flex-col gap-2 sm:flex-row"
+              >
+                <input
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  className="flex-1 rounded-md border border-white/10 bg-white/95 px-4 py-2.5 text-sm text-foreground outline-none ring-primary/30 focus:ring-2"
+                />
+                <Button type="submit">Stay updated</Button>
+              </form>
+            </div>
           </div>
         </section>
       </main>
@@ -600,16 +601,7 @@ function LazyVideo({ src, className }: { src: string; className?: string }) {
     return () => observer.disconnect();
   }, [src]);
 
-  return (
-    <video
-      ref={ref}
-      loop
-      muted
-      playsInline
-      preload="none"
-      className={className}
-    />
-  );
+  return <video ref={ref} loop muted playsInline preload="none" className={className} />;
 }
 
 function DemoVideo() {
@@ -715,7 +707,7 @@ function HeroPreviewVideo({
           }
         });
       },
-      { root: null, rootMargin: "400px", threshold: 0.15 }
+      { root: null, rootMargin: "400px", threshold: 0.15 },
     );
 
     observer.observe(el);
@@ -723,8 +715,6 @@ function HeroPreviewVideo({
     return () => {
       observer.disconnect();
     };
-    // preview.src is constant for this item
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preview.src]);
 
   return (

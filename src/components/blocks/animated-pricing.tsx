@@ -25,68 +25,75 @@ interface AnimatedPricingProps {
 
 export function AnimatedPricing({ annual = false }: AnimatedPricingProps) {
   return (
-    <section className="bg-background px-4 py-12 transition-colors">
-      <div className="mx-auto flex flex-wrap justify-center gap-4">
-        <PricingCard
-          label="Drive"
-          monthlyPrice={19.99}
-          annualPrice={14}
-          annual={annual}
-          description="For solo marketers who need a simple way to create and schedule ads."
-          cta="Start Drive"
-          href="https://www.sellstatic.app/verify-stripe?tier=drive"
-          background="bg-indigo-500 dark:bg-indigo-600"
-          BGComponent={BGComponent1}
-          features={[
-            "150 credits",
-            "Full dashboard access",
-            "Template ad generator",
-            "Social scheduling",
-            "1 brand kit",
-            "Basic video editing",
-          ]}
+    <section className="overflow-visible bg-background px-4 py-12 transition-colors">
+      <div className="relative mx-auto w-fit max-w-full">
+        <img
+          src="/images/mascot/statty-pricing-wave.png"
+          alt="Statty waving"
+          className="pointer-events-none absolute -left-[249px] top-9 z-20 hidden w-[390px] max-w-none select-none drop-shadow-[0_18px_16px_rgba(91,50,210,0.2)] xl:block"
         />
-        <PricingCard
-          label="Growth"
-          badge="Most Popular"
-          monthlyPrice={59.99}
-          annualPrice={42}
-          annual={annual}
-          description="For growing teams that need better video, faster workflows, and stronger output."
-          cta="Start Growth"
-          href="https://www.sellstatic.app/verify-stripe?tier=growth"
-          background="bg-purple-500 dark:bg-purple-600"
-          BGComponent={BGComponent2}
-          features={[
-            "700 credits",
-            "Everything in Drive",
-            "Access to all video models",
-            "High quality video generation",
-            "Image to video",
-            "AI voiceover",
-            "Link to Ads / Video",
-            "AI Video Agent (NEW)",
-          ]}
-        />
-        <PricingCard
-          label="Enterprise"
-          monthlyPrice={0}
-          annualPrice={0}
-          annual={annual}
-          priceLabel="Custom"
-          description="For teams that want a tailored setup, larger scale, and hands-on support."
-          cta="Contact Us"
-          background="bg-slate-900 dark:bg-slate-950"
-          BGComponent={BGComponent4}
-          features={[
-            "Custom credits",
-            "Dedicated onboarding",
-            "Custom workflows",
-            "Dedicated instance",
-            "Priority support",
-            "Custom implementation",
-          ]}
-        />
+        <div className="flex flex-wrap justify-center gap-4">
+          <PricingCard
+            label="Drive"
+            monthlyPrice={19.99}
+            annualPrice={14}
+            annual={annual}
+            description="For solo marketers who need a simple way to create and schedule ads."
+            cta="Start Drive"
+            href="https://www.sellstatic.app/verify-stripe?tier=drive"
+            background="bg-indigo-500 dark:bg-indigo-600"
+            BGComponent={BGComponent1}
+            features={[
+              "150 credits",
+              "Full dashboard access",
+              "Template ad generator",
+              "Social scheduling",
+              "1 brand kit",
+              "Basic video editing",
+            ]}
+          />
+          <PricingCard
+            label="Growth"
+            badge="Most Popular"
+            monthlyPrice={59.99}
+            annualPrice={42}
+            annual={annual}
+            description="For growing teams that need better video, faster workflows, and stronger output."
+            cta="Start Growth"
+            href="https://www.sellstatic.app/verify-stripe?tier=growth"
+            background="bg-purple-500 dark:bg-purple-600"
+            BGComponent={BGComponent2}
+            features={[
+              "700 credits",
+              "Everything in Drive",
+              "Access to all video models",
+              "High quality video generation",
+              "Image to video",
+              "AI voiceover",
+              "Link to Ads / Video",
+              "AI Video Agent (NEW)",
+            ]}
+          />
+          <PricingCard
+            label="Enterprise"
+            monthlyPrice={0}
+            annualPrice={0}
+            annual={annual}
+            priceLabel="Custom"
+            description="For teams that want a tailored setup, larger scale, and hands-on support."
+            cta="Contact Us"
+            background="bg-slate-900 dark:bg-slate-950"
+            BGComponent={BGComponent4}
+            features={[
+              "Custom credits",
+              "Dedicated onboarding",
+              "Custom workflows",
+              "Dedicated instance",
+              "Priority support",
+              "Custom implementation",
+            ]}
+          />
+        </div>
       </div>
     </section>
   );
@@ -109,11 +116,8 @@ function PricingCard({
   const price = annual ? annualPrice : monthlyPrice;
   const displayPrice = priceLabel ?? (typeof price === "number" ? `$${price}` : "");
   return (
-    <motion.div
-      whileHover="hover"
-      transition={{ duration: 1, ease: "backInOut" }}
-      variants={{ hover: { scale: 1.03 } }}
-      className={`relative w-80 shrink-0 overflow-hidden rounded-xl p-8 pb-24 ${background} shadow-lg transition-shadow hover:shadow-xl`}
+    <div
+      className={`relative w-80 shrink-0 overflow-hidden rounded-xl p-8 pb-24 ${background} shadow-lg`}
     >
       <div className="relative z-10 text-white">
         <div className="mb-3 flex items-center gap-2">
@@ -126,15 +130,10 @@ function PricingCard({
             </span>
           )}
         </div>
-        <motion.span
-          initial={{ scale: 0.85 }}
-          variants={{ hover: { scale: 1 } }}
-          transition={{ duration: 1, ease: "backInOut" }}
-          className="my-2 block origin-top-left font-mono text-5xl font-black leading-[1.1]"
-        >
+        <span className="my-2 block origin-top-left font-mono text-5xl font-black leading-[1.1]">
           {displayPrice}
           {priceLabel !== "Custom" && <span className="text-2xl font-bold opacity-80">/mo</span>}
-        </motion.span>
+        </span>
         {annual &&
           typeof monthlyPrice === "number" &&
           typeof annualPrice === "number" &&
@@ -174,7 +173,7 @@ function PricingCard({
         </a>
       )}
       <BGComponent />
-    </motion.div>
+    </div>
   );
 }
 

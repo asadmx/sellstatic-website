@@ -146,8 +146,8 @@ function FeatureCard({
                 </ul>
               )}
             </motion.div>
-            <div className="relative min-h-[320px] md:min-h-[420px]">{children}</div>
           </AnimatePresence>
+          <div className="relative min-h-[320px] md:min-h-[420px]">{children}</div>
         </div>
       </div>
     </motion.div>
