@@ -8,6 +8,7 @@ import logo from "@/assets/sellstatic-logo.png";
 
 const links = [
   { label: "Home", href: "/" },
+  { label: "Demo", href: "/demo" },
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
 ];
@@ -35,7 +36,7 @@ export function SiteHeader() {
           {links.map((link) => (
             <Link
               key={link.label}
-              to={link.href as "/" | "/pricing" | "/about"}
+              to={link.href as "/" | "/demo" | "/pricing" | "/about"}
               className={buttonVariants({ variant: "ghost", size: "lg", className: "px-6 py-3" })}
             >
               {link.label}
@@ -68,7 +69,7 @@ export function SiteHeader() {
                 {links.map((link) => (
                   <Link
                     key={link.label}
-                    to={link.href as "/" | "/pricing" | "/about"}
+                    to={link.href as "/" | "/demo" | "/pricing" | "/about"}
                     onClick={() => setOpen(false)}
                     className={buttonVariants({ variant: "ghost", className: "justify-start" })}
                   >
